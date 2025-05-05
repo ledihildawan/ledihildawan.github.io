@@ -5194,14 +5194,10 @@ Created using IcoMoon - icomoon.io
   font-size: 18px; }
   .progress-container .progress-bar {
     height: 5px;
-    transform: scaleX(0);
-    transition: transform 2s ease-in-out;
-    transform-origin: 0% 0%; }
+    font-size: 18px; }
   .progress-container .progress {
     height: 5px;
     font-size: 18px; }
-  .progress-container .aos-animate {
-    transform: scaleX(1); }
 
 /* Experience Style */
 .cc-experience .cc-experience-header {
@@ -5262,8 +5258,8 @@ Created using IcoMoon - icomoon.io
 
 /* Footer */
 /* Social button style */
-.cc-facebook:hover i {
-  color: #3b5998; }
+.cc-github:hover i {
+  color: #24292e; }
 
 .cc-twitter:hover i {
   color: #1da1f2; }
@@ -5277,6 +5273,22 @@ Created using IcoMoon - icomoon.io
 .cc-linkedin:hover i {
   color: #00669c; }
 
+.cc-threads svg {
+  width: 1.6em;
+  height: 1.6em;
+  vertical-align: middle; }
+
+.cc-threads:hover svg {
+  color: #000000; }
+
+.btn.btn-icon:not(.btn-footer) svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1.125rem;
+  height: 1.125rem; }
+
 /* Credit Style */
 a.credit {
   color: inherit;
@@ -5287,3 +5299,8 @@ a.credit {
 /* Common Style */
 .section {
   padding-bottom: 0; }
+
+/* Scrollbar (modern CSS API) */
+html {
+  scrollbar-width: thin;
+  scrollbar-gutter: stable; }
