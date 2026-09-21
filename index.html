@@ -10,15 +10,19 @@
     <meta property="og:description" content="Portfolio dan profil profesional Ledi Hildawan, Software Engineer." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://ledihildawan.github.io/" />
-    <meta property="og:image" content="https://ledihildawan.github.io/images/profile.jpg" />
+    <meta property="og:image" content="https://ledihildawan.github.io/images/profile.webp" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Ledi Hildawan - Software Engineer" />
     <meta name="twitter:description" content="Portfolio dan profil profesional Ledi Hildawan, Software Engineer." />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- Critical CSS: above-the-fold styles -->
+    <style>
+.page-header{background-color:#E9ECEF;position:relative;overflow:hidden}.page-header-img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1}.page-header-small{min-height:50vh !important}.filter-color{background-color:#445E93;opacity:0.6;position:absolute;top:0;left:0;width:100%;height:100%;z-index:2}.content-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100%;text-align:center;z-index:3}.cc-profile-image{width:130px;height:130px;margin:0 auto;border-radius:50%;overflow:hidden;display:block}.cc-profile-image a{display:block}.cc-profile-image img{width:100%;height:auto}.h2.title{font-size:1.5em;font-weight:700;line-height:1.2;color:#fff;margin:0.67em 0}.category{font-size:1rem;color:rgba(255,255,255,0.8);font-weight:400}.text-white{color:#fff !important}.navbar{position:fixed;top:0;width:100%;z-index:1000;padding:0.625rem 1rem;transition:background-color 0.3s}.navbar-brand{color:#fff !important;font-weight:700;font-size:1.125rem;text-decoration:none}.navbar-nav{display:flex;list-style:none;padding:0;margin:0;flex-direction:row}.navbar-nav .nav-link{color:rgba(255,255,255,0.8) !important;padding:0.5rem 1rem;text-decoration:none}.navbar-toggler{border:1px solid rgba(255,255,255,0.5);padding:0.25rem 0.75rem;border-radius:0.25rem;cursor:pointer;background:transparent}.navbar-toggler-bar{display:block;width:22px;height:2px;background:#fff;margin:5px 0}.bg-primary{background-color:#445E93 !important}.profile-page{min-height:100vh;position:relative}.wrapper{position:relative;min-height:100vh}.btn-primary{background-color:#445E93;color:#fff;padding:0.625rem 1.25rem;border-radius:0.25rem;border:none;cursor:pointer;text-decoration:none;display:inline-block;font-size:0.875rem;font-weight:600}.btn{border-radius:0.25rem;border:none;cursor:pointer;text-decoration:none;display:inline-block;font-size:0.875rem;font-weight:600;padding:0.625rem 1.25rem;transition:all 0.2s}.btn-default{background-color:#6c757d;color:#fff}.btn-round{border-radius:50%;padding:0;width:47px;height:47px;display:inline-flex;align-items:center;justify-content:center}.btn-lg{font-size:1rem;padding:0.75rem 1.5rem}.btn-icon i,.btn-icon svg{margin:0 auto}.fa{display:inline-block;font-family:"Font Awesome 6 Free";font-size:1.25em;line-height:1}.sidebar-collapse{padding-left:0}.smooth-scroll{scroll-behavior:smooth}.container{width:100%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}.d-flex{display:flex !important}.align-items-center{align-items:center !important}.justify-content-center{justify-content:center !important}
+    </style>
+    <link href="fonts/montserrat.css" rel="stylesheet" />
+    <link href="fonts/font-awesome/fa-min.css" rel="stylesheet" />
     <link href="css/bootstrap.min.css?ver=1.1.0" rel="stylesheet" />
-    <link href="css/main.css?ver=1.1.0" rel="stylesheet" />
+    <link href="css/main.min.css?ver=1.1.0" rel="stylesheet" />
   </head>
   <body id="top">
     <header>
@@ -41,11 +45,11 @@
               </button>
             </div>
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
-              <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link smooth-scroll" href="#about">Tentang Saya</a></li>
-                <li class="nav-item"><a class="nav-link smooth-scroll" href="#portfolio">Portfolio</a></li>
-                <li class="nav-item"><a class="nav-link smooth-scroll" href="#experience">Pengalaman</a></li>
-                <li class="nav-item"><a class="nav-link smooth-scroll" href="#contact">Kontak</a></li>
+              <ul class="navbar-nav" role="list">
+                <li class="nav-item" role="listitem"><a class="nav-link smooth-scroll" href="#about">Tentang Saya</a></li>
+                <li class="nav-item" role="listitem"><a class="nav-link smooth-scroll" href="#portfolio">Portfolio</a></li>
+                <li class="nav-item" role="listitem"><a class="nav-link smooth-scroll" href="#experience">Pengalaman</a></li>
+                <li class="nav-item" role="listitem"><a class="nav-link smooth-scroll" href="#contact">Kontak</a></li>
               </ul>
             </div>
           </div>
@@ -53,19 +57,26 @@
       </div>
     </header>
 
-    <div class="page-content">
+    <main id="main-content" class="page-content" role="main">
       <div>
         <div class="profile-page">
           <div class="wrapper">
             <div class="page-header page-header-small" filter-color="green">
               <div
-                class="page-header-image"
-                style="background-image: url('images/background.jpg')"
-              ></div>
+                class="page-header-img"
+                src="images/background.jpg"
+                  alt=""
+                width="1920"
+                height="1272"
+                fetchpriority="high"
+                decoding="async"
+              />
               <div class="container">
                 <div class="content-center">
                   <div class="cc-profile-image">
-                    <a href="images/profile.jpg"><img src="images/profile.jpg" alt="Image" /></a>
+                    <a href="images/profile.webp" aria-label="Foto Profil Ledi Hildawan"
+                      ><img src="images/profile.webp" alt="Foto Profil Ledi Hildawan" width="130" height="130"
+                    /></a>
                   </div>
                   <div class="h2 title">Ledi Hildawan</div>
                   <p class="category text-white">Software Engineer</p>
@@ -86,53 +97,58 @@
               </div>
               <div class="section">
                 <div class="container">
-                  <div class="button-container">
-                    <a
+                  <ul class="button-container" role="list" style="list-style:none;padding:0;margin:0;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
+                    <li role="listitem"><a
                       class="btn btn-default btn-round btn-lg btn-icon"
                       href="https://github.com/ledihildawan/"
                       target="_blank"
                       rel="noopener noreferrer"
                       data-toggle="tooltip"
                       title="Ikuti saya di GitHub"
+                      aria-label="GitHub Ledi Hildawan"
                       ><i class="fa fa-github"></i
-                    ></a>
-                    <a
+                    ></a></li>
+                    <li role="listitem"><a
                       class="btn btn-default btn-round btn-lg btn-icon"
                       href="https://www.linkedin.com/in/ledi-hildawan-194176162/"
                       target="_blank"
                       rel="noopener noreferrer"
                       data-toggle="tooltip"
                       title="Ikuti saya di LinkedIn"
+                      aria-label="LinkedIn Ledi Hildawan"
                       ><i class="fa fa-linkedin"></i
-                    ></a>
-                    <a
+                    ></a></li>
+                    <li role="listitem"><a
                       class="btn btn-default btn-round btn-lg btn-icon"
                       href="https://twitter.com/ledihildawan/"
                       target="_blank"
                       rel="noopener noreferrer"
                       data-toggle="tooltip"
                       title="Ikuti saya di Twitter"
+                      aria-label="Twitter Ledi Hildawan"
                       ><i class="fa fa-twitter"></i
-                    ></a>
-                    <a
+                    ></a></li>
+                    <li role="listitem"><a
                       class="btn btn-default btn-round btn-lg btn-icon"
                       href="https://www.instagram.com/ledihildawan/"
                       target="_blank"
                       rel="noopener noreferrer"
                       data-toggle="tooltip"
                       title="Ikuti saya di Instagram"
+                      aria-label="Instagram Ledi Hildawan"
                       ><i class="fa fa-instagram"></i
-                    ></a>
-                    <a
+                    ></a></li>
+                    <li role="listitem"><a
                       class="btn btn-default btn-round btn-lg btn-icon"
                       href="https://www.threads.com/@ledihildawan"
                       target="_blank"
                       rel="noopener noreferrer"
                       data-toggle="tooltip"
                       title="Ikuti saya di Threads"
+                      aria-label="Threads Ledi Hildawan"
                       ><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" focusable="false"><title>Threads</title><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.308-.883-2.359-.89h-.029c-.844 0-1.992.232-2.721 1.32L7.734 7.847c.98-1.454 2.568-2.256 4.478-2.256h.044c3.194.02 5.097 1.975 5.287 5.388.108.046.216.094.321.142 1.49.7 2.58 1.761 3.154 3.07.797 1.82.871 4.79-1.548 7.158-1.85 1.81-4.094 2.628-7.277 2.65Zm1.003-11.69c-.242 0-.487.007-.739.021-1.836.103-2.98.946-2.916 2.143.067 1.256 1.452 1.839 2.784 1.767 1.224-.065 2.818-.543 3.086-3.71a10.5 10.5 0 0 0-2.215-.221z"/></svg
-                    ></a>
-                  </div>
+                    ></a></li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -185,19 +201,34 @@
                 <div class="h4 text-center mb-4 title">Portfolio</div>
                 <div class="nav-align-center">
                   <ul class="nav nav-pills nav-pills-primary" role="tablist">
-                    <li class="nav-item">
-                      <a class="nav-link active" data-toggle="tab" href="#web-development" role="tablist"
-                        ><i class="fa fa-laptop" aria-hidden="true"></i
+                    <li class="nav-item" role="presentation">
+                      <a
+                        class="nav-link active"
+                        data-toggle="tab"
+                        href="#web-development"
+                        role="tab"
+                        aria-label="Web Development"
+                        ><i class="fa fa-laptop" aria-hidden="true" tabindex="-1"></i
                       ></a>
                     </li>
-                    <li class="nav-item">
-                      <a class="nav-link" data-toggle="tab" href="#graphic-design" role="tablist"
-                        ><i class="fa fa-picture-o" aria-hidden="true"></i
+                    <li class="nav-item" role="presentation">
+                      <a
+                        class="nav-link"
+                        data-toggle="tab"
+                        href="#graphic-design"
+                        role="tab"
+                        aria-label="Graphic Design"
+                        ><i class="fa fa-picture-o" aria-hidden="true" tabindex="-1"></i
                       ></a>
                     </li>
-                    <li class="nav-item">
-                      <a class="nav-link" data-toggle="tab" href="#Photography" role="tablist"
-                        ><i class="fa fa-camera" aria-hidden="true"></i
+                    <li class="nav-item" role="presentation">
+                      <a
+                        class="nav-link"
+                        data-toggle="tab"
+                        href="#Photography"
+                        role="tab"
+                        aria-label="Photography"
+                        ><i class="fa fa-camera" aria-hidden="true" tabindex="-1"></i
                       ></a>
                     </li>
                   </ul>
@@ -214,9 +245,9 @@
 
 
                       >
-                        <a href="#web-development">
+                        <a href="#web-development" aria-label="Proyek Web Pariatur">
                           <figure class="cc-effect">
-                            <img src="images/web-development-1.jpg" alt="Image" />
+                            <img src="images/web-development-1.webp" alt="Proyek Web Pariatur" loading="lazy" />
                             <figcaption>
                               <div class="h4">Pariatur</div>
                               <p>Web Development</p>
@@ -229,9 +260,9 @@
 
 
                       >
-                        <a href="#web-development">
+                        <a href="#web-development" aria-label="Proyek Web Funsinc">
                           <figure class="cc-effect">
-                            <img src="images/web-development-2.jpg" alt="Image" />
+                            <img src="images/web-development-2.webp" alt="Proyek Web Funsinc" loading="lazy" />
                             <figcaption>
                               <div class="h4">Funsinc</div>
                               <p>Web Development</p>
@@ -246,9 +277,9 @@
 
 
                       >
-                        <a href="#web-development">
+                        <a href="#web-development" aria-label="Proyek Web Aurier">
                           <figure class="cc-effect">
-                            <img src="images/web-development-3.jpg" alt="Image" />
+                            <img src="images/web-development-3.webp" alt="Proyek Web Aurier" loading="lazy" />
                             <figcaption>
                               <div class="h4">Aurier</div>
                               <p>Web Development</p>
@@ -261,9 +292,9 @@
 
 
                       >
-                        <a href="#web-development">
+                        <a href="#web-development" aria-label="Proyek Web Travelly">
                           <figure class="cc-effect">
-                            <img src="images/web-development-4.jpg" alt="Image" />
+                            <img src="images/web-development-4.webp" alt="Proyek Web Travelly" loading="lazy" />
                             <figcaption>
                               <div class="h4">Travelly</div>
                               <p>Web Development</p>
@@ -284,9 +315,9 @@
 
 
                       >
-                        <a href="#graphic-design">
+                        <a href="#graphic-design" aria-label="Desain Grafis Untitled 1">
                           <figure class="cc-effect">
-                            <img src="images/graphic-design-1.jpg" alt="Image" />
+                            <img src="images/graphic-design-1.webp" alt="Desain Grafis Untitled 1" loading="lazy" />
                             <figcaption>
                               <div class="h4">Untitled 1</div>
                               <p>Graphic Design</p>
@@ -299,9 +330,9 @@
 
 
                       >
-                        <a href="#graphic-design">
+                        <a href="#graphic-design" aria-label="Desain Grafis Untitled 2">
                           <figure class="cc-effect">
-                            <img src="images/graphic-design-2.jpg" alt="Image" />
+                            <img src="images/graphic-design-2.webp" alt="Desain Grafis Untitled 2" loading="lazy" />
                             <figcaption>
                               <div class="h4">Untitled 2</div>
                               <p>Graphic Design</p>
@@ -316,9 +347,9 @@
 
 
                       >
-                        <a href="#graphic-design">
+                        <a href="#graphic-design" aria-label="Desain Grafis Untitled 3">
                           <figure class="cc-effect">
-                            <img src="images/graphic-design-3.jpg" alt="Image" />
+                            <img src="images/graphic-design-3.webp" alt="Desain Grafis Untitled 3" loading="lazy" />
                             <figcaption>
                               <div class="h4">Untitled 3</div>
                               <p>Graphic Design</p>
@@ -331,9 +362,9 @@
 
 
                       >
-                        <a href="#graphic-design">
+                        <a href="#graphic-design" aria-label="Desain Grafis Untitled 4">
                           <figure class="cc-effect">
-                            <img src="images/graphic-design-4.jpg" alt="Image" />
+                            <img src="images/graphic-design-4.webp" alt="Desain Grafis Untitled 4" loading="lazy" />
                             <figcaption>
                               <div class="h4">Untitled 4</div>
                               <p>Graphic Design</p>
@@ -348,9 +379,9 @@
 
 
                       >
-                        <a href="#graphic-design">
+                        <a href="#graphic-design" aria-label="Desain Grafis Untitled 5">
                           <figure class="cc-effect">
-                            <img src="images/graphic-design-5.jpg" alt="Image" />
+                            <img src="images/graphic-design-5.webp" alt="Desain Grafis Untitled 5" loading="lazy" />
                             <figcaption>
                               <div class="h4">Untitled 5</div>
                               <p>Graphic Design</p>
@@ -371,9 +402,9 @@
 
 
                       >
-                        <a href="#Photography">
+                        <a href="#Photography" aria-label="Fotografi Kota Baubau">
                           <figure class="cc-effect">
-                            <img src="images/photography-1.jpg" alt="Image" />
+                            <img src="images/photography-1.webp" alt="Fotografi Kota Baubau" loading="lazy" />
                             <figcaption>
                               <div class="h4">Kota Baubau</div>
                               <p>Photography</p>
@@ -480,7 +511,7 @@
         <div class="section" id="contact">
           <div
             class="cc-contact-information"
-            style="background-image: url('images/map.png'); background-size: cover; background-repeat: no-repeat"
+            style="background-image: url('images/map.webp'); background-size: cover; background-repeat: no-repeat"
           >
             <div class="container">
               <div class="cc-contact">
@@ -546,24 +577,51 @@
           </div>
         </div>
       </div>
-    </div>
-    <footer class="footer">
+    </main>
+    <footer class="footer" role="contentinfo">
       <div class="container text-center">
-        <a class="cc-github btn btn-link" href="https://github.com/ledihildawan/" target="_blank" rel="noopener noreferrer"
-          ><i class="fa fa-github fa-2x" aria-hidden="true"></i
-        ></a>
-        <a class="cc-linkedin btn btn-link" href="https://www.linkedin.com/in/ledi-hildawan-194176162/" target="_blank" rel="noopener noreferrer"
-          ><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i
-        ></a>
-        <a class="cc-twitter btn btn-link" href="https://twitter.com/ledihildawan/" target="_blank" rel="noopener noreferrer"
-          ><i class="fa fa-twitter fa-2x" aria-hidden="true"></i
-        ></a>
-        <a class="cc-instagram btn btn-link" href="https://www.instagram.com/ledihildawan/" target="_blank" rel="noopener noreferrer"
-          ><i class="fa fa-instagram fa-2x" aria-hidden="true"></i
-        ></a>
-        <a class="cc-threads btn btn-link" href="https://www.threads.com/@ledihildawan" target="_blank" rel="noopener noreferrer"
-          ><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" focusable="false"><title>Threads</title><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.308-.883-2.359-.89h-.029c-.844 0-1.992.232-2.721 1.32L7.734 7.847c.98-1.454 2.568-2.256 4.478-2.256h.044c3.194.02 5.097 1.975 5.287 5.388.108.046.216.094.321.142 1.49.7 2.58 1.761 3.154 3.07.797 1.82.871 4.79-1.548 7.158-1.85 1.81-4.094 2.628-7.277 2.65Zm1.003-11.69c-.242 0-.487.007-.739.021-1.836.103-2.98.946-2.916 2.143.067 1.256 1.452 1.839 2.784 1.767 1.224-.065 2.818-.543 3.086-3.71a10.5 10.5 0 0 0-2.215-.221z"/></svg
-        ></a>
+        <ul role="list" style="list-style:none;padding:0;margin:0;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+          <li role="listitem"><a
+            class="cc-github btn btn-link"
+            href="https://github.com/ledihildawan/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub Ledi Hildawan"
+            ><i class="fa fa-github fa-2x" aria-hidden="true" tabindex="-1"></i
+          ></a></li>
+          <li role="listitem"><a
+            class="cc-linkedin btn btn-link"
+            href="https://www.linkedin.com/in/ledi-hildawan-194176162/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn Ledi Hildawan"
+            ><i class="fa fa-linkedin fa-2x" aria-hidden="true" tabindex="-1"></i
+          ></a></li>
+          <li role="listitem"><a
+            class="cc-twitter btn btn-link"
+            href="https://twitter.com/ledihildawan/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Twitter Ledi Hildawan"
+            ><i class="fa fa-twitter fa-2x" aria-hidden="true" tabindex="-1"></i
+          ></a></li>
+          <li role="listitem"><a
+            class="cc-instagram btn btn-link"
+            href="https://www.instagram.com/ledihildawan/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram Ledi Hildawan"
+            ><i class="fa fa-instagram fa-2x" aria-hidden="true" tabindex="-1"></i
+          ></a></li>
+          <li role="listitem"><a
+            class="cc-threads btn btn-link"
+            href="https://www.threads.com/@ledihildawan"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Threads Ledi Hildawan"
+            ><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" focusable="false"><title>Threads</title><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.308-.883-2.359-.89h-.029c-.844 0-1.992.232-2.721 1.32L7.734 7.847c.98-1.454 2.568-2.256 4.478-2.256h.044c3.194.02 5.097 1.975 5.287 5.388.108.046.216.094.321.142 1.49.7 2.58 1.761 3.154 3.07.797 1.82.871 4.79-1.548 7.158-1.85 1.81-4.094 2.628-7.277 2.65Zm1.003-11.69c-.242 0-.487.007-.739.021-1.836.103-2.98.946-2.916 2.143.067 1.256 1.452 1.839 2.784 1.767 1.224-.065 2.818-.543 3.086-3.71a10.5 10.5 0 0 0-2.215-.221z"/></svg
+          ></a></li>
+        </ul>
       </div>
       <div class="text-center text-muted">
         <p>
@@ -572,10 +630,10 @@
         </p>
       </div>
     </footer>
-    <script src="js/core/jquery.3.2.1.min.js?ver=1.1.0"></script>
-    <script src="js/core/popper.min.js?ver=1.1.0"></script>
-    <script src="js/core/bootstrap.min.js?ver=1.1.0"></script>
-    <script src="js/now-ui-kit.js?ver=1.1.0"></script>
-    <script src="scripts/main.js?ver=1.1.0"></script>
+    <script src="js/core/jquery.3.2.1.min.js?ver=1.1.0" defer></script>
+    <script src="js/core/popper.min.js?ver=1.1.0" defer></script>
+    <script src="js/core/bootstrap.min.js?ver=1.1.0" defer></script>
+    <script src="js/now-ui-kit.min.js?ver=1.1.0" defer></script>
+    <script src="scripts/main.js?ver=1.1.0" defer></script>
   </body>
 </html>

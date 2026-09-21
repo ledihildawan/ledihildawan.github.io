@@ -2278,10 +2278,10 @@ p {
   color: #445E93 !important; }
 
 .text-info {
-  color: #2CA8FF !important; }
+  color: #1377CC !important; }
 
 .text-success {
-  color: #18ce0f !important; }
+  color: #1B8F0A !important; }
 
 .text-warning {
   color: #FFB236 !important; }
@@ -5304,3 +5304,20 @@ a.credit {
 html {
   scrollbar-width: thin;
   scrollbar-gutter: stable; }
+
+/* Accessibility & Color Contrast Enhancements */
+.category {
+  color: #666666 !important; }
+
+.footer-big p,
+.card-description,
+.description {
+  color: #666666 !important; }
+
+.footer .text-muted,
+.footer .text-muted p {
+  color: #666666 !important; }
+
+a.credit {
+  color: #444444 !important; }
+
