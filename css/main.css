@@ -3528,22 +3528,22 @@ Created using IcoMoon - icomoon.io
     content: " "; }
 
 .index-page .page-header {
-  height: 125vh; }
+  height: 125dvh; }
   .index-page .page-header .container > .content-center {
     top: 37%; }
   .index-page .page-header .category-absolute {
     position: absolute;
-    top: 100vh;
+    top: 100dvh;
     margin-top: -60px;
     padding: 0 15px;
     width: 100%;
     color: rgba(255, 255, 255, 0.5); }
 
 .landing-page .header {
-  height: 100vh;
+  height: 100dvh;
   position: relative; }
   .landing-page .header .container {
-    padding-top: 26vh;
+    padding-top: 26dvh;
     color: #FFFFFF;
     z-index: 2;
     position: relative; }
@@ -3660,7 +3660,7 @@ Created using IcoMoon - icomoon.io
   z-index: 4; }
 
 .section-full-page > .content {
-  min-height: calc(100vh - 80px); }
+  min-height: calc(100dvh - 80px); }
 
 .section-full-page .full-page-background {
   position: absolute;
@@ -3781,13 +3781,13 @@ Created using IcoMoon - icomoon.io
   padding-bottom: 0; }
 
 .section-full-screen {
-  height: 100vh; }
+  height: 100dvh; }
 
 .section-signup {
-  padding-top: 20vh; }
+  padding-top: 20dvh; }
 
 .page-header {
-  height: 100vh;
+  height: 100dvh;
   max-height: 1050px;
   padding: 0;
   color: #FFFFFF;
@@ -3824,7 +3824,7 @@ Created using IcoMoon - icomoon.io
   .page-header .description {
     color: rgba(255, 255, 255, 0.5); }
   .page-header.page-header-small {
-    height: 60vh;
+    height: 60dvh;
     max-height: 440px; }
   .page-header:after, .page-header:before {
     position: absolute;
@@ -3975,7 +3975,7 @@ Created using IcoMoon - icomoon.io
   .section-images .hero-images-container,
   .section-images .hero-images-container-1,
   .section-images .hero-images-container-2 {
-    margin-top: -38vh; }
+    margin-top: -38svh; }
   .section-images .hero-images-container {
     max-width: 670px; }
   .section-images .hero-images-container-1 {
@@ -4119,7 +4119,7 @@ Created using IcoMoon - icomoon.io
     position: fixed;
     display: block;
     top: 0;
-    height: 100% !important;
+    height: 100svh !important;
     width: 300px;
     right: 0;
     z-index: 1032;
@@ -4130,14 +4130,14 @@ Created using IcoMoon - icomoon.io
     text-align: left;
     max-height: none !important;
     transform: translate3d(300px, 0, 0);
-    transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1); }
+    transition: transform 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1), height 0.15s ease-out; }
     .sidebar-collapse .navbar-collapse:before {
-      background: #445E93;
+      background: var(--lh-accent, #3F54A6);
       /* For browsers that do not support gradients */
       /* For Safari 5.1 to 6.0 */
       /* For Opera 11.1 to 12.0 */
       /* For Firefox 3.6 to 15 */
-      background: linear-gradient(#445E93 0%, #000 80%);
+      background: linear-gradient(var(--lh-accent, #3F54A6) 0%, var(--lh-charcoal, #1a1a1a) 80%);
       /* Standard syntax (must be last) */
       opacity: 0.76;
       filter: alpha(opacity=76);
@@ -4349,7 +4349,7 @@ Created using IcoMoon - icomoon.io
   .sidebar-collapse .wrapper {
     transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1); }
   .sidebar-collapse #bodyClick {
-    height: 100%;
+    height: 100svh;
     width: 100%;
     position: fixed;
     opacity: 1;
@@ -4602,7 +4602,7 @@ Created using IcoMoon - icomoon.io
     position: fixed;
     display: block;
     top: 0;
-    height: 100% !important;
+    height: 100svh !important;
     width: 300px;
     right: 0;
     z-index: 1032;
@@ -4613,7 +4613,7 @@ Created using IcoMoon - icomoon.io
     text-align: left;
     max-height: none !important;
     transform: translate3d(300px, 0, 0);
-    transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1); }
+    transition: transform 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1), height 0.15s ease-out; }
     .burger-menu .navbar-collapse:before {
       background: #445E93;
       /* For browsers that do not support gradients */
@@ -4985,7 +4985,7 @@ Created using IcoMoon - icomoon.io
     right: 21%;
     top: 55%; }
   .index-page .category-absolute {
-    top: 90vh; } }
+    top: 90svh; } }
 
 @media screen and (max-width: 580px) {
   .alert button.close {
@@ -5258,28 +5258,70 @@ Created using IcoMoon - icomoon.io
 
 /* Footer */
 /* Social button style */
-.cc-github:hover i {
+.cc-github:hover i,
+.cc-github:focus i {
   color: #24292e; }
 
-.cc-twitter:hover i {
+.btn.btn-icon.cc-github:hover,
+.btn.btn-icon.cc-github:focus {
+  background-color: #24292e;
+  border-color: #24292e;
+  color: #ffffff; }
+
+.cc-twitter:hover i,
+.cc-twitter:focus i {
   color: #1da1f2; }
 
-.cc-google-plus:hover i {
+.btn.btn-icon.cc-twitter:hover,
+.btn.btn-icon.cc-twitter:focus {
+  background-color: #1da1f2;
+  border-color: #1da1f2;
+  color: #ffffff; }
+
+.cc-google-plus:hover i,
+.cc-google-plus:focus i {
   color: #dd4b39; }
 
-.cc-instagram:hover i {
+.btn.btn-icon.cc-google-plus:hover,
+.btn.btn-icon.cc-google-plus:focus {
+  background-color: #dd4b39;
+  border-color: #dd4b39;
+  color: #ffffff; }
+
+.cc-instagram:hover i,
+.cc-instagram:focus i {
   color: #405de6; }
 
-.cc-linkedin:hover i {
+.btn.btn-icon.cc-instagram:hover,
+.btn.btn-icon.cc-instagram:focus {
+  background-color: #405de6;
+  border-color: #405de6;
+  color: #ffffff; }
+
+.cc-linkedin:hover i,
+.cc-linkedin:focus i {
   color: #00669c; }
+
+.btn.btn-icon.cc-linkedin:hover,
+.btn.btn-icon.cc-linkedin:focus {
+  background-color: #00669c;
+  border-color: #00669c;
+  color: #ffffff; }
 
 .cc-threads svg {
   width: 1.6em;
   height: 1.6em;
   vertical-align: middle; }
 
-.cc-threads:hover svg {
+.cc-threads:hover svg,
+.cc-threads:focus svg {
   color: #000000; }
+
+.btn.btn-icon.cc-threads:hover,
+.btn.btn-icon.cc-threads:focus {
+  background-color: #000000;
+  border-color: #000000;
+  color: #ffffff; }
 
 .btn.btn-icon:not(.btn-footer) svg {
   position: absolute;

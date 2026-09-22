@@ -15,8 +15,25 @@ $('a.smooth-scroll')
     target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
     // Does a scroll target exist?
     if (target.length) {
-      // Only prevent default if animation is actually gonna happen
       event.preventDefault();
+      
+      // If menu is open, close it first, then scroll from original position
+      if ($('html').hasClass('nav-open')) {
+        $('html, body').stop(true);
+        $('#bodyClick').trigger('click');
+        // Restore scroll position before animating
+        var scrollTop = parseInt(document.body.style.top) * -1 || 0;
+        $('html, body').scrollTop(scrollTop);
+        // Small delay to let menu close and unlock first
+        setTimeout(function() {
+          $('html, body').animate({
+            scrollTop: target.offset().top
+          }, 600);
+        }, 100);
+        return;
+      }
+      
+      // Normal smooth scroll
       $('html, body').animate({
         scrollTop: target.offset().top
       }, 1000, function() {
@@ -34,6 +51,53 @@ $('a.smooth-scroll')
     }
   }
 });
+
+// Tutup menu mobile ketika link navigasi diklik
+$('.navbar-collapse a').on('click', function() {
+  if ($('html').hasClass('nav-open')) {
+    // Stop smooth scroll animation sebelum close
+    $('html, body').stop(true);
+    $('#bodyClick').trigger('click');
+  }
+});
+
+// Scroll lock saat navbar mobile open — prevents address bar hide/show → no viewport jump
+(function () {
+  var scrollPosition = 0;
+
+  function lockScroll() {
+    scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
+    document.body.style.top = '-' + scrollPosition + 'px';
+  }
+
+  function unlockScroll() {
+    document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.width = '';
+    document.body.style.top = '';
+    window.scrollTo(0, scrollPosition);
+  }
+
+  // Use MutationObserver to watch nav-open class on <html>
+  if (typeof MutationObserver !== 'undefined') {
+    var observer = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
+        if (mutation.attributeName === 'class') {
+          var html = document.documentElement;
+          if (html.classList.contains('nav-open')) {
+            lockScroll();
+          } else {
+            unlockScroll();
+          }
+        }
+      });
+    });
+    observer.observe(document.documentElement, { attributes: true });
+  }
+})();
 
 // Lazy load background images
 if ('IntersectionObserver' in window) {

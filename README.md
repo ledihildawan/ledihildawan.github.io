@@ -29,7 +29,7 @@ Main ones:
 | `--lh-base` | `#F0EFEB` | Navbar, avatar pulse |
 | `--lh-primary` | `#F0EEE9` | Buttons, year strips |
 | `--lh-ink` | `#2C2C2C` | Text, borders, shadows |
-| `--lh-link` / `--lh-accent` | `#3F54A6` | Links, active states, focus |
+| `--lh-link` / `--lh-accent` | `#2D4DB6` | Links, active states, focus (WCAG AAA) |
 
 **Contact form** — sends through Formspree. The form ID is in the `action` attribute in
 [index.html](index.html) and referenced again in [scripts/main.js](scripts/main.js).
