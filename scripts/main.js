@@ -34,3 +34,38 @@ $('a.smooth-scroll')
     }
   }
 });
+
+// Lazy load background images
+if ('IntersectionObserver' in window) {
+  var lazyBgObserver = new IntersectionObserver(function(entries, observer) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var el = entry.target;
+        var dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var bg = (dark && el.getAttribute('data-bg-dark')) || el.getAttribute('data-bg');
+        if (bg) {
+          el.style.backgroundImage = 'url(' + bg + ')';
+        }
+        observer.unobserve(el);
+      }
+    });
+  });
+  document.querySelectorAll('.lazy-bg').forEach(function(el) {
+    lazyBgObserver.observe(el);
+  });
+} else {
+  document.querySelectorAll('.lazy-bg').forEach(function(el) {
+    var bg = el.getAttribute('data-bg');
+    if (bg) el.style.backgroundImage = 'url(' + bg + ')';
+  });
+}
+
+// Tooltips: render in <body> (not clipped by hero overflow:hidden);
+// social tooltips get their brand color via a custom template class
+$('[data-toggle="tooltip"], [rel="tooltip"]').tooltip('dispose').each(function () {
+  var net = (this.className.match(/cc-(github|linkedin|twitter|instagram|threads)/) || [])[1];
+  $(this).tooltip({
+    container: 'body',
+    template: '<div class="tooltip' + (net ? ' cc-' + net + '-tip' : '') + '" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>'
+  });
+});
