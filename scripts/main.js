@@ -156,10 +156,10 @@ $('[data-toggle="tooltip"], [rel="tooltip"]').tooltip('dispose').each(function (
     link.setAttribute('target', chatMode ? '_blank' : '_self');
     link.setAttribute('rel', chatMode ? 'noopener noreferrer' : '');
     link.innerHTML = (chatMode ? WA_ICON : TEL_ICON) + NUM;
-    link.setAttribute('aria-label', (chatMode ? 'Chat WhatsApp' : 'Telepon') + ' Ledi Hildawan');
+    link.setAttribute('aria-label', (chatMode ? 'Chat WhatsApp: ' : 'Telepon: ') + NUM);
     btns.forEach(function (b) {
       var active = (b.getAttribute('data-mode') === 'wa') === chatMode;
-      b.style.opacity = active ? '1' : '.45';
+      b.style.opacity = active ? '1' : '.7';
       b.setAttribute('aria-pressed', active ? 'true' : 'false');
     });
   }
