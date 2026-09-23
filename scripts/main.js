@@ -32,6 +32,7 @@ document.addEventListener('click', function (e) {
 });
 
 // ===== Smooth scroll untuk link ber-hash (pengganti jQuery animate) =====
+var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 document.querySelectorAll('a.smooth-scroll').forEach(function (link) {
   link.addEventListener('click', function (event) {
     var hash = link.hash;
@@ -46,7 +47,7 @@ document.querySelectorAll('a.smooth-scroll').forEach(function (link) {
     var doScroll = function () {
       window.scrollTo({
         top: target.getBoundingClientRect().top + window.pageYOffset,
-        behavior: 'smooth'
+        behavior: reduceMotion ? 'auto' : 'smooth'
       });
       setTimeout(function () {
         target.focus({ preventScroll: true });
@@ -54,7 +55,7 @@ document.querySelectorAll('a.smooth-scroll').forEach(function (link) {
           target.setAttribute('tabindex', '-1');
           target.focus({ preventScroll: true });
         }
-      }, 700);
+      }, reduceMotion ? 0 : 700);
     };
     if (document.documentElement.classList.contains('nav-open')) {
       var bc = document.getElementById('bodyClick');
