@@ -2,15 +2,16 @@
 // Don't forget to add it into respective layouts where this js file is needed
 
 // ===== Menu mobile: toggle nav-open + overlay #bodyClick (pengganti now-ui-kit) =====
+// Animasi via CSS (slide .3s + scrim fade + morph ikon); JS hanya toggle class.
 var navMenu = { visible: 0, toggle: null };
 function navMenuClose() {
   document.documentElement.classList.remove('nav-open');
   navMenu.visible = 0;
+  if (navMenu.toggle) navMenu.toggle.classList.remove('toggled');
   var bc = document.getElementById('bodyClick');
-  if (bc) bc.parentNode.removeChild(bc);
-  if (navMenu.toggle) {
-    var t = navMenu.toggle;
-    setTimeout(function () { t.classList.remove('toggled'); }, 550);
+  if (bc) {
+    bc.classList.add('is-closing');
+    setTimeout(function () { if (bc.parentNode) bc.parentNode.removeChild(bc); }, 300);
   }
 }
 document.addEventListener('click', function (e) {
@@ -18,7 +19,10 @@ document.addEventListener('click', function (e) {
   if (!btn) return;
   navMenu.toggle = btn;
   if (navMenu.visible === 1) { navMenuClose(); return; }
-  setTimeout(function () { btn.classList.add('toggled'); }, 580);
+  // buang sisa overlay lama (mis. close lalu cepat-cepat buka lagi)
+  var old = document.getElementById('bodyClick');
+  if (old) old.parentNode.removeChild(old);
+  btn.classList.add('toggled');
   var bc = document.createElement('div');
   bc.id = 'bodyClick';
   bc.addEventListener('click', navMenuClose);
