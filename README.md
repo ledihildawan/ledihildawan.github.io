@@ -47,7 +47,7 @@ Main ones:
 - Bump the `?ver=` query when changing CSS or JS files, otherwise browsers serve the cached one
 - [css/style.min.css](css/style.min.css) loads after the inline styles and contains duplicate `!important` rules
   from the original theme — sometimes an override needs `html body` in front of the selector
-- Leave [js/core/](js/core) and [js/plugins/](js/plugins) alone; they're vendored libraries
+- All site JavaScript is vanilla, in [scripts/main.js](scripts/main.js) — no jQuery/Bootstrap runtime
 
 ## Docs in this repo
 

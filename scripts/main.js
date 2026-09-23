@@ -1,65 +1,129 @@
 // Add your javascript here
 // Don't forget to add it into respective layouts where this js file is needed
 
-// Smooth scroll for links with hashes
-$('a.smooth-scroll')
-.click(function(event) {
-  // On-page links
-  if (
-    location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') 
-    && 
-    location.hostname == this.hostname
-  ) {
-    // Figure out element to scroll to
-    var target = $(this.hash);
-    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-    // Does a scroll target exist?
-    if (target.length) {
-      event.preventDefault();
-      
-      // If menu is open, close it first, then scroll from original position
-      if ($('html').hasClass('nav-open')) {
-        $('html, body').stop(true);
-        $('#bodyClick').trigger('click');
-        // Restore scroll position before animating
-        var scrollTop = parseInt(document.body.style.top) * -1 || 0;
-        $('html, body').scrollTop(scrollTop);
-        // Small delay to let menu close and unlock first
-        setTimeout(function() {
-          $('html, body').animate({
-            scrollTop: target.offset().top
-          }, 600);
-        }, 100);
-        return;
-      }
-      
-      // Normal smooth scroll
-      $('html, body').animate({
-        scrollTop: target.offset().top
-      }, 1000, function() {
-        // Callback after animation
-        // Must change focus!
-        var $target = $(target);
-        $target.focus();
-        if ($target.is(":focus")) { // Checking if the target was focused
-          return false;
-        } else {
-          $target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
-          $target.focus(); // Set focus again
-        };
-      });
-    }
+// ===== Menu mobile: toggle nav-open + overlay #bodyClick (pengganti now-ui-kit) =====
+var navMenu = { visible: 0, toggle: null };
+function navMenuClose() {
+  document.documentElement.classList.remove('nav-open');
+  navMenu.visible = 0;
+  var bc = document.getElementById('bodyClick');
+  if (bc) bc.parentNode.removeChild(bc);
+  if (navMenu.toggle) {
+    var t = navMenu.toggle;
+    setTimeout(function () { t.classList.remove('toggled'); }, 550);
   }
+}
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest ? e.target.closest('.navbar-toggler') : null;
+  if (!btn) return;
+  navMenu.toggle = btn;
+  if (navMenu.visible === 1) { navMenuClose(); return; }
+  setTimeout(function () { btn.classList.add('toggled'); }, 580);
+  var bc = document.createElement('div');
+  bc.id = 'bodyClick';
+  bc.addEventListener('click', navMenuClose);
+  document.body.appendChild(bc);
+  document.documentElement.classList.add('nav-open');
+  navMenu.visible = 1;
 });
 
-// Tutup menu mobile ketika link navigasi diklik
-$('.navbar-collapse a').on('click', function() {
-  if ($('html').hasClass('nav-open')) {
-    // Stop smooth scroll animation sebelum close
-    $('html, body').stop(true);
-    $('#bodyClick').trigger('click');
-  }
+// ===== Smooth scroll untuk link ber-hash (pengganti jQuery animate) =====
+document.querySelectorAll('a.smooth-scroll').forEach(function (link) {
+  link.addEventListener('click', function (event) {
+    var hash = link.hash;
+    if (
+      !hash ||
+      location.pathname.replace(/^\//, '') !== link.pathname.replace(/^\//, '') ||
+      location.hostname !== link.hostname
+    ) return;
+    var target = document.querySelector(hash) || document.querySelector('[name="' + hash.slice(1) + '"]');
+    if (!target) return;
+    event.preventDefault();
+    var doScroll = function () {
+      window.scrollTo({
+        top: target.getBoundingClientRect().top + window.pageYOffset,
+        behavior: 'smooth'
+      });
+      setTimeout(function () {
+        target.focus({ preventScroll: true });
+        if (document.activeElement !== target) {
+          target.setAttribute('tabindex', '-1');
+          target.focus({ preventScroll: true });
+        }
+      }, 700);
+    };
+    if (document.documentElement.classList.contains('nav-open')) {
+      var bc = document.getElementById('bodyClick');
+      if (bc) bc.click();
+      var scrollTop = parseInt(document.body.style.top, 10) * -1 || 0;
+      window.scrollTo(0, scrollTop);
+      setTimeout(doScroll, 100);
+      return;
+    }
+    doScroll();
+  });
 });
+
+// ===== Tutup menu mobile ketika link navigasi diklik =====
+document.querySelectorAll('.navbar-collapse a').forEach(function (a) {
+  a.addEventListener('click', function () {
+    if (document.documentElement.classList.contains('nav-open')) {
+      var bc = document.getElementById('bodyClick');
+      if (bc) bc.click();
+    }
+  });
+});
+
+// ===== Navbar transparan saat scroll (color-on-scroll, pengganti now-ui-kit) =====
+(function () {
+  var navbar = document.querySelector('.navbar[color-on-scroll]');
+  if (!navbar) return;
+  var dist = parseInt(navbar.getAttribute('color-on-scroll'), 10) || 500;
+  var transparent = true, ticking = false;
+  function check() {
+    ticking = false;
+    if (window.pageYOffset > dist) {
+      if (transparent) { transparent = false; navbar.classList.remove('navbar-transparent'); }
+    } else if (!transparent) {
+      transparent = true; navbar.classList.add('navbar-transparent');
+    }
+  }
+  window.addEventListener('scroll', function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(check);
+  }, { passive: true });
+  check();
+})();
+
+// ===== Highlight input-group saat fokus (pengganti now-ui-kit) =====
+document.querySelectorAll('.form-control').forEach(function (input) {
+  var parent = input.parentElement;
+  if (!parent || !parent.classList.contains('input-group')) return;
+  input.addEventListener('focus', function () { parent.classList.add('input-group-focus'); });
+  input.addEventListener('blur', function () { parent.classList.remove('input-group-focus'); });
+});
+
+// ===== Tab portofolio (pengganti Bootstrap tab plugin) =====
+(function () {
+  var links = document.querySelectorAll('a[data-toggle="tab"]');
+  if (!links.length) return;
+  links.forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      var pane = document.querySelector(link.getAttribute('href'));
+      if (!pane) return;
+      links.forEach(function (a) {
+        var on = a === link;
+        a.classList.toggle('active', on);
+        a.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      document.querySelectorAll('.tab-content .tab-pane').forEach(function (p) {
+        p.classList.toggle('active', p === pane);
+      });
+    });
+  });
+})();
 
 // Scroll lock saat navbar mobile open — prevents address bar hide/show → no viewport jump
 (function () {
@@ -124,19 +188,53 @@ if ('IntersectionObserver' in window) {
   });
 }
 
-// Tooltips: render in <body> (not clipped by hero overflow:hidden);
-// social tooltips get their brand color via a custom template class
-$('[data-toggle="tooltip"], [rel="tooltip"]').tooltip('dispose').each(function () {
-  var net = (this.className.match(/cc-(github|linkedin|twitter|instagram|threads)/) || [])[1];
-  $(this).tooltip({
-    container: 'body',
-    template: '<div class="tooltip' + (net ? ' cc-' + net + '-tip' : '') + '" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>'
+// ===== Tooltips vanilla (pengganti Bootstrap tooltip + Popper) =====
+// Render di <body> agar tidak terpotong overflow:hidden hero; warna brand
+// via class cc-<net>-tip. Placement: top.
+(function () {
+  var tipEl = null;
+  function hide() {
+    if (tipEl) { tipEl.parentNode.removeChild(tipEl); tipEl = null; }
+  }
+  function show(el) {
+    hide();
+    var title = el.getAttribute('title');
+    if (!title) return;
+    var net = (el.className.match(/cc-(github|linkedin|twitter|instagram|threads)/) || [])[1];
+    tipEl = document.createElement('div');
+    tipEl.className = 'tooltip bs-tooltip-top' + (net ? ' cc-' + net + '-tip' : '');
+    tipEl.setAttribute('role', 'tooltip');
+    var arrow = document.createElement('div');
+    arrow.className = 'arrow';
+    arrow.style.left = '50%';
+    arrow.style.transform = 'translateX(-50%)';
+    var inner = document.createElement('div');
+    inner.className = 'tooltip-inner';
+    inner.textContent = title;
+    tipEl.appendChild(arrow);
+    tipEl.appendChild(inner);
+    document.body.appendChild(tipEl);
+    var r = el.getBoundingClientRect();
+    tipEl.style.top = (r.top + window.pageYOffset - tipEl.offsetHeight) + 'px';
+    tipEl.style.left = (r.left + window.scrollX + r.width / 2) + 'px';
+    tipEl.style.transform = 'translateX(-50%)';
+    tipEl.classList.add('show');
+  }
+  document.querySelectorAll('[data-toggle="tooltip"], [rel="tooltip"]').forEach(function (el) {
+    if (!el.getAttribute('title')) return;
+    el.addEventListener('mouseenter', function () { show(el); });
+    el.addEventListener('mouseleave', hide);
+    el.addEventListener('focus', function () { show(el); });
+    el.addEventListener('blur', hide);
   });
-});
+  window.addEventListener('scroll', hide, { passive: true });
+  window.addEventListener('resize', hide);
+})();
 
 // Validasi email form kontak: sintaks ketat + blocklist domain spam/disposable
-// Sumber data: data/disposable_email_domains.json (125 ribu domain), dimuat
-// lazy saat user mulai mengisi email supaya tidak membebani initial load.
+// Sumber data: data/disposable_email_domains.txt (satu domain per baris, domain
+// registrable saja), dimuat lazy saat user mulai mengisi email. Pencocokan
+// suffix: domain apapun di bawah domain yang diblok ikut tertangkap.
 (function () {
   var CORE_SPAM_DOMAINS = [
     'mailinator.com', 'tempmail.com', 'temp-mail.org', '10minutemail.com', 'guerrillamail.com',
@@ -154,16 +252,26 @@ $('[data-toggle="tooltip"], [rel="tooltip"]').tooltip('dispose').each(function (
   // Muat daftar lengkap saat email pertama kali difokuskan
   input.addEventListener('focus', function loadFullList() {
     input.removeEventListener('focus', loadFullList);
-    fetch('data/disposable_email_domains.json')
-      .then(function (r) { return r.json(); })
-      .then(function (d) {
-        fullList = new Set(d.domains || []);
+    fetch('data/disposable_email_domains.txt')
+      .then(function (r) { return r.text(); })
+      .then(function (t) {
+        fullList = new Set(t.split(/\r?\n/));
       })
       .catch(function () { /* fallback: pakai core list */ });
   });
 
+  // Cek domain dan semua suffix-nya (foo.mailinator.com -> mailinator.com)
+  function inFullList(domain) {
+    if (!fullList) return false;
+    var labels = domain.split('.');
+    for (var i = 0; i < labels.length; i++) {
+      if (fullList.has(labels.slice(i).join('.'))) return true;
+    }
+    return false;
+  }
+
   function isSpam(domain) {
-    if (fullList) return fullList.has(domain);
+    if (fullList) return inFullList(domain);
     return CORE_SPAM_DOMAINS.indexOf(domain) !== -1;
   }
 
