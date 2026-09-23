@@ -105,24 +105,55 @@ document.querySelectorAll('.form-control').forEach(function (input) {
 });
 
 // ===== Tab portofolio (pengganti Bootstrap tab plugin) =====
+// Pola WAI-ARIA: roving tabindex + navigasi panah (selection follows focus)
 (function () {
-  var links = document.querySelectorAll('a[data-toggle="tab"]');
-  if (!links.length) return;
-  links.forEach(function (link) {
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('a[data-toggle="tab"]'));
+  if (!tabs.length) return;
+  var panes = tabs.map(function (t) { return document.querySelector(t.getAttribute('href')); });
+
+  function activate(link, focus) {
+    tabs.forEach(function (a, i) {
+      var on = a === link;
+      a.classList.toggle('active', on);
+      a.setAttribute('aria-selected', on ? 'true' : 'false');
+      a.tabIndex = on ? 0 : -1;
+      if (panes[i]) panes[i].classList.toggle('active', on);
+    });
+    if (focus) link.focus();
+  }
+
+  // Beri id + relasi aria-controls / aria-labelledby
+  tabs.forEach(function (a, i) {
+    if (!a.id && panes[i]) a.id = 'tab-' + panes[i].id.toLowerCase();
+    if (panes[i]) {
+      a.setAttribute('aria-controls', panes[i].id);
+      if (!panes[i].getAttribute('aria-labelledby')) panes[i].setAttribute('aria-labelledby', a.id);
+    }
+  });
+
+  tabs.forEach(function (link) {
     link.addEventListener('click', function (e) {
       e.preventDefault();
-      var pane = document.querySelector(link.getAttribute('href'));
-      if (!pane) return;
-      links.forEach(function (a) {
-        var on = a === link;
-        a.classList.toggle('active', on);
-        a.setAttribute('aria-selected', on ? 'true' : 'false');
-      });
-      document.querySelectorAll('.tab-content .tab-pane').forEach(function (p) {
-        p.classList.toggle('active', p === pane);
-      });
+      activate(link, false);
+    });
+    link.addEventListener('keydown', function (e) {
+      var i = tabs.indexOf(link);
+      var n = null;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') n = tabs[(i + 1) % tabs.length];
+      else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') n = tabs[(i - 1 + tabs.length) % tabs.length];
+      else if (e.key === 'Home') n = tabs[0];
+      else if (e.key === 'End') n = tabs[tabs.length - 1];
+      if (n) {
+        e.preventDefault();
+        activate(n, true);
+      }
     });
   });
+
+  // Sinkronkan status awal (markup hanya punya class active)
+  var initial = tabs[0];
+  for (var i = 0; i < tabs.length; i++) if (tabs[i].classList.contains('active')) initial = tabs[i];
+  activate(initial, false);
 })();
 
 // Scroll lock saat navbar mobile open — prevents address bar hide/show → no viewport jump
