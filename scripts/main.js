@@ -310,30 +310,32 @@ document.querySelectorAll('.form-control').forEach(function (input) {
   function checkScrollSpy() {
     var scrollY = window.pageYOffset || document.documentElement.scrollTop;
     var vpHeight = window.innerHeight;
-    var navHeight = 80;
-    var checkPoint = scrollY + navHeight + (vpHeight * 0.25);
-
-    // Cek jika sudah mentok di paling bawah halaman
-    if ((scrollY + vpHeight) >= (document.documentElement.scrollHeight - 60)) {
-      if (sectionMap.length) {
-        setActive(sectionMap[sectionMap.length - 1].link);
-        return;
-      }
-    }
+    var navHeight = 90;
+    var triggerY = navHeight + (vpHeight * 0.25);
 
     var current = null;
     for (var i = 0; i < sectionMap.length; i++) {
       var s = sectionMap[i];
-      var top = s.target.offsetTop;
-      if (top <= checkPoint) {
+      var rect = s.target.getBoundingClientRect();
+      if (rect.top <= triggerY && rect.bottom > navHeight) {
         current = s.link;
       }
     }
 
+    var isAtBottom = (scrollY + vpHeight) >= (document.documentElement.scrollHeight - 40);
+    if (isAtBottom && sectionMap.length) {
+      var lastRect = sectionMap[sectionMap.length - 1].target.getBoundingClientRect();
+      if (lastRect.top < vpHeight * 0.7) {
+        current = sectionMap[sectionMap.length - 1].link;
+      }
+    }
+
+    if (!current && scrollY < 200 && sectionMap.length) {
+      current = sectionMap[0].link;
+    }
+
     if (current && current !== activeLink) {
       setActive(current);
-    } else if (!current && scrollY < 200 && sectionMap.length) {
-      setActive(sectionMap[0].link);
     }
   }
 
