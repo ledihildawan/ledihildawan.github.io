@@ -12,11 +12,43 @@ img{max-width:100%;height:auto}.page-header{background-color:rgb(233,236,239);po
 .cc-tech-chip{display:inline-flex;align-items:center;gap:5px;padding:3px 8px;font-size:0.8rem;border-radius:4px;background:rgba(68,94,147,0.1);color:var(--lh-ink);font-weight:500}
 .cc-ico{width:14px;height:14px;flex-shrink:0;display:inline-block;vertical-align:middle}
 
-/* Mobile Navbar Sliding Drawer & Choreographed Centered Close Button */
+/* Mobile Navbar Sliding Drawer & Exact Centered Close Button */
 @media (max-width:991px){
   html body.sidebar-collapse .navbar{z-index:1045 !important;}
   
-  /* Navbar header translates and fades out so it does not drag awkwardly across the screen */
+  /* Navbar container must be position: static so fixed children align to viewport */
+  html body.sidebar-collapse .navbar > .container{
+    position: static !important;
+  }
+  
+  /* navbar-collapse must align to viewport right: 0 */
+  html body.sidebar-collapse .navbar .navbar-collapse{
+    box-sizing: border-box !important;
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    left: auto !important;
+    width: min(300px, 85vw) !important;
+    height: 100dvh !important;
+    max-height: 100% !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    z-index: 1040 !important;
+    background: linear-gradient(180deg, rgba(30,42,70,0.96) 0%, rgba(18,22,34,0.98) 100%) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    box-shadow: -6px 0 28px rgba(0,0,0,0.45) !important;
+    border-left: 1px solid rgba(255,255,255,0.08) !important;
+    padding: 70px 10px 30px 10px !important;
+    transform: translate3d(min(300px, 85vw), 0px, 0px) !important;
+    transition: transform 0.35s cubic-bezier(0.22,1,0.36,1) !important;
+  }
+  html.nav-open body.sidebar-collapse .navbar .navbar-collapse{
+    transform: translate3d(0px, 0px, 0px) !important;
+    transition-delay: 0s !important;
+  }
+  
+  /* navbar-translate must NOT have transform so it doesn't break position:fixed on children */
   html body.sidebar-collapse .navbar .navbar-translate{
     width:100% !important;
     position:relative !important;
@@ -26,11 +58,11 @@ img{max-width:100%;height:auto}.page-header{background-color:rgb(233,236,239);po
     justify-content:space-between !important;
     pointer-events:auto !important;
     opacity:1 !important;
-    transform:translate3d(0px,0px,0px) !important;
-    transition:transform 0.35s cubic-bezier(0.22,1,0.36,1),opacity 0.25s ease !important;
+    transform:none !important;
+    transition:opacity 0.25s ease !important;
   }
   html.nav-open body.sidebar-collapse .navbar .navbar-translate{
-    transform:translate3d(calc(-1 * min(300px,85vw)),0px,0px) !important;
+    transform:none !important;
     opacity:0 !important;
     pointer-events:none !important;
   }
@@ -55,15 +87,16 @@ img{max-width:100%;height:auto}.page-header{background-color:rgb(233,236,239);po
     pointer-events:auto !important;
     touch-action:manipulation !important;
     opacity:1 !important;
-    transition:opacity 0.2s ease !important;
+    transform:none !important;
   }
   
   /* When Menu is Open: Toggler is fixed EXACTLY in the center of the left overlay area */
   html.nav-open body.sidebar-collapse .navbar .navbar-toggler{
     position:fixed !important;
     top:18px !important;
-    left:calc((100vw - min(300px,85vw) - 44px) / 2) !important;
+    left:calc((100% - min(300px, 85vw) - 44px) / 2) !important;
     right:auto !important;
+    bottom:auto !important;
     margin:0 !important;
     transform:none !important;
     z-index:1060 !important;
@@ -108,7 +141,6 @@ img{max-width:100%;height:auto}.page-header{background-color:rgb(233,236,239);po
     transform:translateY(-8px) rotate(-45deg) !important;
   }
   
-  html body.sidebar-collapse .navbar .navbar-collapse{z-index:1040 !important;}
   html body.sidebar-collapse #bodyClick{z-index:1030 !important;}
 }
 
