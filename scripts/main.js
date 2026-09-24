@@ -7,7 +7,10 @@ var navMenu = { visible: 0, toggle: null };
 function navMenuClose() {
   document.documentElement.classList.remove('nav-open');
   navMenu.visible = 0;
-  if (navMenu.toggle) navMenu.toggle.classList.remove('toggled');
+  if (navMenu.toggle) {
+    navMenu.toggle.classList.remove('toggled');
+    navMenu.toggle.setAttribute('aria-expanded', 'false');
+  }
   var bc = document.getElementById('bodyClick');
   if (bc) {
     bc.classList.add('is-closing');
@@ -23,6 +26,7 @@ document.addEventListener('click', function (e) {
   var old = document.getElementById('bodyClick');
   if (old) old.parentNode.removeChild(old);
   btn.classList.add('toggled');
+  btn.setAttribute('aria-expanded', 'true');
   var bc = document.createElement('div');
   bc.id = 'bodyClick';
   bc.addEventListener('click', navMenuClose);
@@ -109,14 +113,41 @@ document.querySelectorAll('.form-control').forEach(function (input) {
   input.addEventListener('blur', function () { parent.classList.remove('input-group-focus'); });
 });
 
-// ===== Tab portofolio (pengganti Bootstrap tab plugin) =====
-// Pola WAI-ARIA: roving tabindex + navigasi panah (selection follows focus)
+// ===== Tab portofolio (dengan Sliding Indicator Glider) =====
+// Pola WAI-ARIA: roving tabindex + navigasi panah + sliding indicator GPU-accelerated
 (function () {
   var tabs = Array.prototype.slice.call(document.querySelectorAll('a[data-toggle="tab"]'));
   if (!tabs.length) return;
   var panes = tabs.map(function (t) { return document.querySelector(t.getAttribute('href')); });
+  var container = tabs[0].closest('.nav-pills');
+  if (!container) return;
+
+  var hasFinePointer = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  // Buat elemen glider background
+  var glider = document.createElement('span');
+  glider.className = 'tab-glider';
+  container.appendChild(glider);
+  container.classList.add('has-glider');
+
+  var currentActive = tabs[0];
+
+  function updateGlider(targetEl) {
+    if (!targetEl || !glider) return;
+    var left = targetEl.offsetLeft;
+    var top = targetEl.offsetTop;
+    var width = targetEl.offsetWidth;
+    var height = targetEl.offsetHeight;
+    glider.style.transform = 'translate3d(' + left + 'px, ' + top + 'px, 0)';
+    glider.style.width = width + 'px';
+    glider.style.height = height + 'px';
+    if (!glider.classList.contains('is-ready')) {
+      requestAnimationFrame(function () { glider.classList.add('is-ready'); });
+    }
+  }
 
   function activate(link, focus) {
+    currentActive = link;
     tabs.forEach(function (a, i) {
       var on = a === link;
       a.classList.toggle('active', on);
@@ -124,6 +155,7 @@ document.querySelectorAll('.form-control').forEach(function (input) {
       a.tabIndex = on ? 0 : -1;
       if (panes[i]) panes[i].classList.toggle('active', on);
     });
+    updateGlider(link);
     if (focus) link.focus();
   }
 
@@ -141,6 +173,7 @@ document.querySelectorAll('.form-control').forEach(function (input) {
       e.preventDefault();
       activate(link, false);
     });
+
     link.addEventListener('keydown', function (e) {
       var i = tabs.indexOf(link);
       var n = null;
@@ -153,12 +186,180 @@ document.querySelectorAll('.form-control').forEach(function (input) {
         activate(n, true);
       }
     });
+
+    // Hover slide preview (hanya pada device dengan mouse/trackpad presisi)
+    if (hasFinePointer) {
+      link.addEventListener('mouseenter', function () {
+        updateGlider(link);
+      });
+    }
   });
 
-  // Sinkronkan status awal (markup hanya punya class active)
+  if (hasFinePointer) {
+    container.addEventListener('mouseleave', function () {
+      if (currentActive) updateGlider(currentActive);
+    });
+  }
+
+  // Sinkronkan status awal (markup punya class active)
   var initial = tabs[0];
-  for (var i = 0; i < tabs.length; i++) if (tabs[i].classList.contains('active')) initial = tabs[i];
+  for (var i = 0; i < tabs.length; i++) {
+    if (tabs[i].classList.contains('active')) initial = tabs[i];
+  }
   activate(initial, false);
+
+  // Recalculate saat resize / rotasi layar
+  window.addEventListener('resize', function () {
+    if (currentActive) updateGlider(currentActive);
+  });
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(function () {
+      if (currentActive) updateGlider(currentActive);
+    }).observe(container);
+  }
+})();
+
+// ===== Navbar Desktop Glider + ScrollSpy =====
+(function () {
+  var navNav = document.querySelector('.navbar-expand-lg .navbar-nav');
+  if (!navNav) return;
+
+  var links = Array.prototype.slice.call(navNav.querySelectorAll('.nav-link.smooth-scroll'));
+  if (!links.length) return;
+
+  var hasFinePointer = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  // Buat elemen glider
+  var glider = document.createElement('span');
+  glider.className = 'nav-glider';
+  navNav.appendChild(glider);
+
+  var activeLink = null;
+  var isHovering = false;
+
+  function isDesktop() {
+    return window.innerWidth >= 992;
+  }
+
+  function updateGlider(targetEl) {
+    if (!targetEl || !isDesktop()) {
+      glider.classList.remove('is-ready');
+      return;
+    }
+    var left = targetEl.offsetLeft;
+    var top = targetEl.offsetTop + targetEl.offsetHeight / 2;
+    var width = targetEl.offsetWidth;
+    var height = Math.max(34, targetEl.offsetHeight - 8);
+
+    glider.style.transform = 'translate3d(' + left + 'px, ' + top + 'px, 0) translateY(-50%)';
+    glider.style.width = width + 'px';
+    glider.style.height = height + 'px';
+    if (!glider.classList.contains('is-ready')) {
+      requestAnimationFrame(function () { glider.classList.add('is-ready'); });
+    }
+  }
+
+  function setActive(link) {
+    activeLink = link;
+    links.forEach(function (l) {
+      var on = l === link;
+      l.classList.toggle('active', on);
+      var parent = l.closest('.nav-item');
+      if (parent) parent.classList.toggle('active', on);
+    });
+    if (!isHovering) {
+      updateGlider(link);
+    }
+  }
+
+  // Hover slide preview pada navbar desktop
+  if (hasFinePointer) {
+    links.forEach(function (link) {
+      link.addEventListener('mouseenter', function () {
+        if (!isDesktop()) return;
+        isHovering = true;
+        updateGlider(link);
+      });
+    });
+
+    navNav.addEventListener('mouseleave', function () {
+      if (!isDesktop()) return;
+      isHovering = false;
+      if (activeLink) {
+        updateGlider(activeLink);
+      } else {
+        glider.classList.remove('is-ready');
+      }
+    });
+  }
+
+  // Klik link langsung update active & glider
+  links.forEach(function (link) {
+    link.addEventListener('click', function () {
+      setActive(link);
+    });
+  });
+
+  // ScrollSpy: sinkronkan active link dengan posisi section yang sedang dibaca
+  var sectionMap = links.map(function (link) {
+    var hash = link.hash;
+    var target = hash ? document.querySelector(hash) : null;
+    return { link: link, target: target };
+  }).filter(function (item) { return item.target !== null; });
+
+  function checkScrollSpy() {
+    var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+    var vpHeight = window.innerHeight;
+    var navHeight = 80;
+    var checkPoint = scrollY + navHeight + (vpHeight * 0.25);
+
+    // Cek jika sudah mentok di paling bawah halaman
+    if ((scrollY + vpHeight) >= (document.documentElement.scrollHeight - 60)) {
+      if (sectionMap.length) {
+        setActive(sectionMap[sectionMap.length - 1].link);
+        return;
+      }
+    }
+
+    var current = null;
+    for (var i = 0; i < sectionMap.length; i++) {
+      var s = sectionMap[i];
+      var top = s.target.offsetTop;
+      if (top <= checkPoint) {
+        current = s.link;
+      }
+    }
+
+    if (current && current !== activeLink) {
+      setActive(current);
+    } else if (!current && scrollY < 200 && sectionMap.length) {
+      setActive(sectionMap[0].link);
+    }
+  }
+
+  var spyTicking = false;
+  window.addEventListener('scroll', function () {
+    if (spyTicking) return;
+    spyTicking = true;
+    requestAnimationFrame(function () {
+      checkScrollSpy();
+      spyTicking = false;
+    });
+  }, { passive: true });
+
+  window.addEventListener('resize', function () {
+    if (isDesktop() && activeLink) {
+      updateGlider(activeLink);
+    } else {
+      glider.classList.remove('is-ready');
+    }
+  });
+
+  // Inisialisasi awal
+  setTimeout(function () {
+    checkScrollSpy();
+    if (!activeLink && sectionMap.length) setActive(sectionMap[0].link);
+  }, 100);
 })();
 
 // Scroll lock saat navbar mobile open — prevents address bar hide/show → no viewport jump
