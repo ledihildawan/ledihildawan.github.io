@@ -226,15 +226,25 @@ if ('IntersectionObserver' in window) {
 
 // ===== Tooltips vanilla (pengganti Bootstrap tooltip + Popper) =====
 // Render di <body> agar tidak terpotong overflow:hidden hero; warna brand
-// via class cc-<net>-tip. Placement: top.
+// via class cc-<net>-tip. Placement: top. Animasi smooth via CSS fade + transform.
 (function () {
   var tipEl = null;
+  var hideTimer = null;
   function hide() {
-    if (tipEl) { tipEl.parentNode.removeChild(tipEl); tipEl = null; }
+    if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+    if (tipEl) {
+      var current = tipEl;
+      current.classList.remove('show');
+      hideTimer = setTimeout(function () {
+        if (current && current.parentNode) { current.parentNode.removeChild(current); }
+        if (tipEl === current) tipEl = null;
+      }, 200);
+    }
   }
   function show(el) {
-    hide();
-    var title = el.getAttribute('title');
+    if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+    if (tipEl && tipEl.parentNode) { tipEl.parentNode.removeChild(tipEl); tipEl = null; }
+    var title = el.getAttribute('data-tooltip-title');
     if (!title) return;
     var net = (el.className.match(/cc-(github|linkedin|twitter|instagram|threads)/) || [])[1];
     tipEl = document.createElement('div');
@@ -251,13 +261,17 @@ if ('IntersectionObserver' in window) {
     tipEl.appendChild(inner);
     document.body.appendChild(tipEl);
     var r = el.getBoundingClientRect();
-    tipEl.style.top = (r.top + window.pageYOffset - tipEl.offsetHeight) + 'px';
+    tipEl.style.top = (r.top + window.pageYOffset - tipEl.offsetHeight - 4) + 'px';
     tipEl.style.left = (r.left + window.scrollX + r.width / 2) + 'px';
-    tipEl.style.transform = 'translateX(-50%)';
-    tipEl.classList.add('show');
+    requestAnimationFrame(function () {
+      if (tipEl) tipEl.classList.add('show');
+    });
   }
-  document.querySelectorAll('[data-toggle="tooltip"], [rel="tooltip"]').forEach(function (el) {
-    if (!el.getAttribute('title')) return;
+  document.querySelectorAll('[data-toggle="tooltip"], [rel="tooltip"], [data-tooltip-title], [title]').forEach(function (el) {
+    var title = el.getAttribute('data-tooltip-title') || el.getAttribute('title') || el.getAttribute('data-original-title');
+    if (!title) return;
+    el.setAttribute('data-tooltip-title', title);
+    el.removeAttribute('title');
     el.addEventListener('mouseenter', function () { show(el); });
     el.addEventListener('mouseleave', hide);
     el.addEventListener('focus', function () { show(el); });
@@ -313,12 +327,12 @@ if ('IntersectionObserver' in window) {
 
   function showError(msg) {
     errEl.textContent = msg;
-    errEl.style.display = 'block';
+    errEl.classList.add('is-visible');
     input.style.borderColor = '#B3261E';
     input.setAttribute('aria-invalid', 'true');
   }
   function clearError() {
-    errEl.style.display = 'none';
+    errEl.classList.remove('is-visible');
     input.removeAttribute('aria-invalid');
     input.style.borderColor = '';
   }
