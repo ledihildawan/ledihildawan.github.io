@@ -297,10 +297,18 @@ document.querySelectorAll('.form-control').forEach(function (input) {
     });
   }
 
-  // Klik link langsung update active & glider
+  var isManualScrolling = false;
+  var manualScrollTimer = null;
+
+  // Klik link langsung update active & glider serta kunci ScrollSpy selama animasi scroll
   links.forEach(function (link) {
     link.addEventListener('click', function () {
       setActive(link);
+      isManualScrolling = true;
+      if (manualScrollTimer) clearTimeout(manualScrollTimer);
+      manualScrollTimer = setTimeout(function () {
+        isManualScrolling = false;
+      }, 800);
     });
   });
 
@@ -312,6 +320,8 @@ document.querySelectorAll('.form-control').forEach(function (input) {
   }).filter(function (item) { return item.target !== null; });
 
   function checkScrollSpy() {
+    if (isManualScrolling) return;
+
     var scrollY = window.pageYOffset || document.documentElement.scrollTop;
     var vpHeight = window.innerHeight;
     var navHeight = 90;
@@ -345,6 +355,7 @@ document.querySelectorAll('.form-control').forEach(function (input) {
 
   var spyTicking = false;
   window.addEventListener('scroll', function () {
+    if (isManualScrolling) return;
     if (spyTicking) return;
     spyTicking = true;
     requestAnimationFrame(function () {
