@@ -12,16 +12,18 @@ img{max-width:100%;height:auto}.page-header{background-color:rgb(233,236,239);po
 .cc-tech-chip{display:inline-flex;align-items:center;gap:5px;padding:3px 8px;font-size:0.8rem;border-radius:4px;background:rgba(68,94,147,0.1);color:var(--lh-ink);font-weight:500}
 .cc-ico{width:14px;height:14px;flex-shrink:0;display:inline-block;vertical-align:middle}
 
-/* Mobile Navbar Sliding Drawer & Exact Centered Close Button */
+/* Mobile Navbar Sliding Drawer & Choreographed Motion */
 @media (max-width:991px){
-  html body.sidebar-collapse .navbar{z-index:1045 !important;}
+  html body.sidebar-collapse .navbar{
+    z-index: 1045 !important;
+  }
   
-  /* Navbar container must be position: static so fixed children align to viewport */
+  /* Navbar container static on mobile */
   html body.sidebar-collapse .navbar > .container{
     position: static !important;
   }
   
-  /* navbar-collapse must align to viewport right: 0 */
+  /* 1. Drawer: slides in from right (0.35s) */
   html body.sidebar-collapse .navbar .navbar-collapse{
     box-sizing: border-box !important;
     position: fixed !important;
@@ -48,103 +50,101 @@ img{max-width:100%;height:auto}.page-header{background-color:rgb(233,236,239);po
     transition-delay: 0s !important;
   }
   
-  /* navbar-translate must NOT have transform so it doesn't break position:fixed on children */
+  /* 2. Navbar Brand: fades out and shifts slightly when opened */
+  html body.sidebar-collapse .navbar .navbar-brand{
+    opacity: 1 !important;
+    transform: translate3d(0px, 0px, 0px) !important;
+    transition: opacity 0.25s ease, transform 0.35s cubic-bezier(0.22,1,0.36,1) !important;
+  }
+  html.nav-open body.sidebar-collapse .navbar .navbar-brand{
+    opacity: 0 !important;
+    transform: translate3d(-20px, 0px, 0px) !important;
+    pointer-events: none !important;
+  }
+  
+  /* 3. Navbar Translate: clean flex container */
   html body.sidebar-collapse .navbar .navbar-translate{
-    width:100% !important;
-    position:relative !important;
-    z-index:1035 !important;
-    display:flex !important;
-    align-items:center !important;
-    justify-content:space-between !important;
-    pointer-events:auto !important;
-    opacity:1 !important;
-    transform:none !important;
-    transition:opacity 0.25s ease !important;
-  }
-  html.nav-open body.sidebar-collapse .navbar .navbar-translate{
-    transform:none !important;
-    opacity:0 !important;
-    pointer-events:none !important;
+    width: 100% !important;
+    position: relative !important;
+    z-index: 1035 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    pointer-events: auto !important;
+    transform: none !important;
   }
   
-  /* Base Toggler Button */
+  /* 4. Toggler Button: glides smoothly from right to center of left overlay */
   html body.sidebar-collapse .navbar .navbar-toggler{
-    position:relative !important;
-    display:inline-flex !important;
-    align-items:center !important;
-    justify-content:center !important;
-    width:44px !important;
-    height:44px !important;
-    min-width:44px !important;
-    min-height:44px !important;
-    padding:0 !important;
-    margin:0 !important;
-    border:none !important;
-    outline:none !important;
-    background:transparent !important;
-    cursor:pointer !important;
-    z-index:1055 !important;
-    pointer-events:auto !important;
-    touch-action:manipulation !important;
-    opacity:1 !important;
-    transform:none !important;
+    position: fixed !important;
+    top: 10px !important;
+    left: calc(100% - 16px - 44px) !important;
+    right: auto !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    outline: none !important;
+    background: transparent !important;
+    cursor: pointer !important;
+    z-index: 1055 !important;
+    pointer-events: auto !important;
+    touch-action: manipulation !important;
+    transform: none !important;
+    transition: left 0.35s cubic-bezier(0.22,1,0.36,1), top 0.35s cubic-bezier(0.22,1,0.36,1) !important;
   }
   
-  /* When Menu is Open: Toggler is fixed EXACTLY in the center of the left overlay area */
+  /* When Menu is Open: glides to exact horizontal center of left overlay */
   html.nav-open body.sidebar-collapse .navbar .navbar-toggler{
-    position:fixed !important;
-    top:18px !important;
-    left:calc((100% - min(300px, 85vw) - 44px) / 2) !important;
-    right:auto !important;
-    bottom:auto !important;
-    margin:0 !important;
-    transform:none !important;
-    z-index:1060 !important;
-    pointer-events:auto !important;
-    opacity:1 !important;
-    animation:cc-btn-pop 0.25s cubic-bezier(0.22,1,0.36,1) 0.35s backwards !important;
+    top: 18px !important;
+    left: calc((100% - min(300px, 85vw) - 44px) / 2) !important;
+    z-index: 1060 !important;
   }
 
-  /* Hamburger bars base */
+  /* 5. Hamburger Bars: stay as 3 bars during translation, then morph into X with 0.35s delay */
   html body.sidebar-collapse .navbar .navbar-toggler .navbar-toggler-bar{
-    position:absolute !important;
-    left:10px !important;
-    width:24px !important;
-    height:2px !important;
-    border-radius:2px !important;
-    background-color:#ffffff !important;
-    transform-origin:50% 50% !important;
-    animation:none !important;
-    -webkit-animation:none !important;
-    transition:transform 0.25s cubic-bezier(0.22,1,0.36,1),opacity 0.2s ease,background-color 0.2s ease !important;
+    position: absolute !important;
+    left: 10px !important;
+    width: 24px !important;
+    height: 2px !important;
+    border-radius: 2px !important;
+    background-color: #ffffff !important;
+    transform-origin: 50% 50% !important;
+    animation: none !important;
+    -webkit-animation: none !important;
+    transition: transform 0.25s cubic-bezier(0.22,1,0.36,1) 0s, opacity 0.2s ease 0s, background-color 0.2s ease 0s !important;
   }
   html body.sidebar-collapse .navbar:not(.navbar-transparent) .navbar-toggler:not(.toggled) .navbar-toggler-bar{
-    background-color:var(--lh-ink,#2C2C2C) !important;
+    background-color: var(--lh-ink, #2C2C2C) !important;
   }
-  html body.sidebar-collapse .navbar .navbar-toggler .bar1{top:13px !important;}
-  html body.sidebar-collapse .navbar .navbar-toggler .bar2{top:21px !important;}
-  html body.sidebar-collapse .navbar .navbar-toggler .bar3{top:29px !important;}
+  html body.sidebar-collapse .navbar .navbar-toggler .bar1{ top: 13px !important; transform: translateY(0) rotate(0deg) !important; }
+  html body.sidebar-collapse .navbar .navbar-toggler .bar2{ top: 21px !important; opacity: 1 !important; transform: scaleX(1) !important; }
+  html body.sidebar-collapse .navbar .navbar-toggler .bar3{ top: 29px !important; transform: translateY(0) rotate(0deg) !important; }
   
-  /* Morph into X: ONLY triggered with delay after the menu sliding animation completes (0.35s) */
+  /* Morph into X: ONLY after 0.35s slide animation completes */
   html.nav-open body.sidebar-collapse .navbar .navbar-toggler .navbar-toggler-bar{
-    background-color:#ffffff !important;
-    transition:transform 0.25s cubic-bezier(0.22,1,0.36,1) 0.35s,opacity 0.2s ease 0.35s,background-color 0.2s ease 0.35s !important;
+    background-color: #ffffff !important;
+    transition: transform 0.25s cubic-bezier(0.22,1,0.36,1) 0.35s, opacity 0.2s ease 0.35s, background-color 0.2s ease 0.35s !important;
   }
   html.nav-open body.sidebar-collapse .navbar .navbar-toggler .bar1{
-    transform:translateY(8px) rotate(45deg) !important;
+    transform: translateY(8px) rotate(45deg) !important;
   }
   html.nav-open body.sidebar-collapse .navbar .navbar-toggler .bar2{
-    opacity:0 !important;
-    transform:scaleX(0) !important;
+    opacity: 0 !important;
+    transform: scaleX(0) !important;
   }
   html.nav-open body.sidebar-collapse .navbar .navbar-toggler .bar3{
-    transform:translateY(-8px) rotate(-45deg) !important;
+    transform: translateY(-8px) rotate(-45deg) !important;
   }
   
-  html body.sidebar-collapse #bodyClick{z-index:1030 !important;}
-}
-
-@keyframes cc-btn-pop{
-  0%{opacity:0;transform:scale(0.8)}
-  100%{opacity:1;transform:scale(1)}
+  /* 6. Scrim Overlay */
+  html body.sidebar-collapse #bodyClick{
+    z-index: 1030 !important;
+  }
 }
