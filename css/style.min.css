@@ -491,10 +491,10 @@ html.nav-open .navbar.navbar-hidden {
   justify-content: center !important;
   padding: 0 !important;
   margin: 0 !important;
-  width: 48px !important;
-  height: 48px !important;
-  min-width: 48px !important;
-  min-height: 48px !important;
+  width: 3.6rem !important;
+  height: 3.6rem !important;
+  min-width: 3.6rem !important;
+  min-height: 3.6rem !important;
   border-radius: 50% !important;
   position: relative !important;
   overflow: hidden !important;
