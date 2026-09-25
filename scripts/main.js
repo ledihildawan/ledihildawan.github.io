@@ -134,10 +134,12 @@ document.querySelectorAll('.form-control').forEach(function (input) {
 
   function updateGlider(targetEl) {
     if (!targetEl || !glider) return;
-    var left = targetEl.offsetLeft;
-    var top = targetEl.offsetTop;
-    var width = targetEl.offsetWidth;
-    var height = targetEl.offsetHeight;
+    var containerRect = container.getBoundingClientRect();
+    var targetRect = targetEl.getBoundingClientRect();
+    var left = targetRect.left - containerRect.left;
+    var top = targetRect.top - containerRect.top;
+    var width = targetRect.width;
+    var height = targetRect.height;
     glider.style.transform = 'translate3d(' + left + 'px, ' + top + 'px, 0)';
     glider.style.width = width + 'px';
     glider.style.height = height + 'px';
@@ -246,10 +248,12 @@ document.querySelectorAll('.form-control').forEach(function (input) {
       glider.classList.remove('is-ready');
       return;
     }
-    var left = targetEl.offsetLeft;
-    var top = targetEl.offsetTop + targetEl.offsetHeight / 2;
-    var width = targetEl.offsetWidth;
-    var height = Math.max(34, targetEl.offsetHeight - 8);
+    var navRect = navNav.getBoundingClientRect();
+    var targetRect = targetEl.getBoundingClientRect();
+    var left = targetRect.left - navRect.left;
+    var top = targetRect.top - navRect.top + targetRect.height / 2;
+    var width = targetRect.width;
+    var height = Math.max(34, targetRect.height - 6);
 
     glider.style.transform = 'translate3d(' + left + 'px, ' + top + 'px, 0) translateY(-50%)';
     glider.style.width = width + 'px';
