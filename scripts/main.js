@@ -196,11 +196,13 @@ document.querySelectorAll('.form-control').forEach(function (input) {
   function updateGlider(targetEl) {
     if (!targetEl || !glider) return;
     var item = targetEl.closest('.nav-item') || targetEl;
-    var left = item.offsetLeft + (item.offsetWidth - 60) / 2;
-    var top = item.offsetTop + (item.offsetHeight - 60) / 2;
+    var left = item.offsetLeft;
+    var top = item.offsetTop;
+    var width = targetEl.offsetWidth || 60;
+    var height = targetEl.offsetHeight || 60;
     glider.style.transform = 'translate3d(' + left + 'px, ' + top + 'px, 0)';
-    glider.style.width = '60px';
-    glider.style.height = '60px';
+    glider.style.width = width + 'px';
+    glider.style.height = height + 'px';
     if (!glider.classList.contains('is-ready')) {
       requestAnimationFrame(function () { glider.classList.add('is-ready'); });
     }
@@ -308,7 +310,7 @@ document.querySelectorAll('.form-control').forEach(function (input) {
     }
     var left = targetEl.offsetLeft;
     var width = targetEl.offsetWidth;
-    var height = Math.max(34, targetEl.offsetHeight - 6);
+    var height = 36;
     var top = targetEl.offsetTop + (targetEl.offsetHeight - height) / 2;
 
     glider.style.transform = 'translate3d(' + left + 'px, ' + top + 'px, 0)';
