@@ -373,19 +373,11 @@ document.querySelectorAll('.form-control').forEach(function (input) {
   var scrollPosition = 0;
 
   function lockScroll() {
-    scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-    document.body.style.overflow = 'hidden';
-    document.body.style.position = 'fixed';
-    document.body.style.width = '100%';
-    document.body.style.top = '-' + scrollPosition + 'px';
+    document.documentElement.classList.add('scroll-locked');
   }
 
   function unlockScroll() {
-    document.body.style.overflow = '';
-    document.body.style.position = '';
-    document.body.style.width = '';
-    document.body.style.top = '';
-    window.scrollTo(0, scrollPosition);
+    document.documentElement.classList.remove('scroll-locked');
   }
 
   // Use MutationObserver to watch nav-open class on <html>
