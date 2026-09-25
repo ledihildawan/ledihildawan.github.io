@@ -195,15 +195,12 @@ document.querySelectorAll('.form-control').forEach(function (input) {
 
   function updateGlider(targetEl) {
     if (!targetEl || !glider) return;
-    var containerRect = container.getBoundingClientRect();
-    var targetRect = targetEl.getBoundingClientRect();
-    var left = targetRect.left - containerRect.left;
-    var top = targetRect.top - containerRect.top;
-    var width = targetRect.width;
-    var height = targetRect.height;
+    var item = targetEl.closest('.nav-item') || targetEl;
+    var left = item.offsetLeft + (item.offsetWidth - 60) / 2;
+    var top = item.offsetTop + (item.offsetHeight - 60) / 2;
     glider.style.transform = 'translate3d(' + left + 'px, ' + top + 'px, 0)';
-    glider.style.width = width + 'px';
-    glider.style.height = height + 'px';
+    glider.style.width = '60px';
+    glider.style.height = '60px';
     if (!glider.classList.contains('is-ready')) {
       requestAnimationFrame(function () { glider.classList.add('is-ready'); });
     }
@@ -309,14 +306,12 @@ document.querySelectorAll('.form-control').forEach(function (input) {
       glider.classList.remove('is-ready');
       return;
     }
-    var navRect = navNav.getBoundingClientRect();
-    var targetRect = targetEl.getBoundingClientRect();
-    var left = targetRect.left - navRect.left;
-    var top = targetRect.top - navRect.top + targetRect.height / 2;
-    var width = targetRect.width;
-    var height = Math.max(34, targetRect.height - 6);
+    var left = targetEl.offsetLeft;
+    var width = targetEl.offsetWidth;
+    var height = Math.max(34, targetEl.offsetHeight - 6);
+    var top = targetEl.offsetTop + (targetEl.offsetHeight - height) / 2;
 
-    glider.style.transform = 'translate3d(' + left + 'px, ' + top + 'px, 0) translateY(-50%)';
+    glider.style.transform = 'translate3d(' + left + 'px, ' + top + 'px, 0)';
     glider.style.width = width + 'px';
     glider.style.height = height + 'px';
     if (!glider.classList.contains('is-ready')) {
@@ -379,41 +374,31 @@ document.querySelectorAll('.form-control').forEach(function (input) {
     var target = hash ? document.querySelector(hash) : null;
     return { link: link, target: target };
   }).filter(function (item) { return item.target !== null; });
-
   function checkScrollSpy() {
     if (isManualScrolling) return;
 
-    var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+    var scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
     var vpHeight = window.innerHeight;
-    var navHeight = 90;
-    var triggerY = navHeight + (vpHeight * 0.25);
+    var triggerY = 160;
 
-    var current = null;
+    var current = sectionMap.length ? sectionMap[0].link : null;
     for (var i = 0; i < sectionMap.length; i++) {
       var s = sectionMap[i];
       var rect = s.target.getBoundingClientRect();
-      if (rect.top <= triggerY && rect.bottom > navHeight) {
+      if (rect.top <= triggerY) {
         current = s.link;
       }
     }
 
     var isAtBottom = (scrollY + vpHeight) >= (document.documentElement.scrollHeight - 40);
     if (isAtBottom && sectionMap.length) {
-      var lastRect = sectionMap[sectionMap.length - 1].target.getBoundingClientRect();
-      if (lastRect.top < vpHeight * 0.7) {
-        current = sectionMap[sectionMap.length - 1].link;
-      }
-    }
-
-    if (!current && scrollY < 200 && sectionMap.length) {
-      current = sectionMap[0].link;
+      current = sectionMap[sectionMap.length - 1].link;
     }
 
     if (current && current !== activeLink) {
       setActive(current);
     }
   }
-
   var spyTicking = false;
   window.addEventListener('scroll', function () {
     if (isManualScrolling) return;

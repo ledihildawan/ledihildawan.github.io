@@ -251,7 +251,7 @@ html.nav-open {
   pointer-events: none !important;
   z-index: 1 !important;
   opacity: 0 !important;
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), width 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease !important;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), width 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.15s ease !important;
   will-change: transform, width !important;
 }
 .tab-glider.is-ready {
