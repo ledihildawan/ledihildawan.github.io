@@ -83,26 +83,87 @@ document.querySelectorAll('.navbar-collapse a').forEach(function (a) {
   });
 });
 
-// ===== Navbar transparan saat scroll (color-on-scroll, pengganti now-ui-kit) =====
+// ===== Smart Navbar: Hide on scroll down, show on scroll up, color-on-scroll =====
 (function () {
-  var navbar = document.querySelector('.navbar[color-on-scroll]');
+  var navbar = document.querySelector('.navbar');
   if (!navbar) return;
-  var dist = parseInt(navbar.getAttribute('color-on-scroll'), 10) || 500;
-  var transparent = true, ticking = false;
-  function check() {
+  var dist = parseInt(navbar.getAttribute('color-on-scroll'), 10) || 400;
+  var lastScrollTop = 0;
+  var delta = 6;
+  var topThreshold = 50;
+  var isTransparent = true;
+  var isHidden = false;
+  var ticking = false;
+
+  function updateNavbar() {
     ticking = false;
-    if (window.pageYOffset > dist) {
-      if (transparent) { transparent = false; navbar.classList.remove('navbar-transparent'); }
-    } else if (!transparent) {
-      transparent = true; navbar.classList.add('navbar-transparent');
+    var currentScroll = window.pageYOffset || document.documentElement.scrollTop || 0;
+
+    // Toggle background transparan vs solid berdasarkan jarak scroll dari hero
+    if (currentScroll > dist) {
+      if (isTransparent) {
+        isTransparent = false;
+        navbar.classList.remove('navbar-transparent');
+      }
+    } else {
+      if (!isTransparent) {
+        isTransparent = true;
+        navbar.classList.add('navbar-transparent');
+      }
+    }
+
+    // Jangan sembunyikan navbar jika menu mobile (drawer) sedang terbuka
+    if (document.documentElement.classList.contains('nav-open')) {
+      if (isHidden) {
+        isHidden = false;
+        navbar.classList.remove('navbar-hidden');
+      }
+      lastScrollTop = currentScroll;
+      return;
+    }
+
+    // Abaikan efek rubber-band / bounce (iOS / macOS)
+    if (currentScroll < 0) return;
+    var maxScroll = (document.documentElement.scrollHeight || document.body.scrollHeight) - window.innerHeight;
+    if (currentScroll > maxScroll) return;
+
+    // Selalu tampilkan navbar ketika berada di area paling atas (hero / top)
+    if (currentScroll <= topThreshold) {
+      if (isHidden) {
+        isHidden = false;
+        navbar.classList.remove('navbar-hidden');
+      }
+      lastScrollTop = currentScroll;
+      return;
+    }
+
+    // Cek arah scroll dengan batas toleransi delta
+    if (Math.abs(currentScroll - lastScrollTop) > delta) {
+      if (currentScroll > lastScrollTop) {
+        // Scroll ke bawah -> sembunyikan navbar
+        if (!isHidden) {
+          isHidden = true;
+          navbar.classList.add('navbar-hidden');
+        }
+      } else {
+        // Scroll ke atas -> tampilkan navbar
+        if (isHidden) {
+          isHidden = false;
+          navbar.classList.remove('navbar-hidden');
+        }
+      }
+      lastScrollTop = currentScroll;
     }
   }
+
   window.addEventListener('scroll', function () {
     if (ticking) return;
     ticking = true;
-    requestAnimationFrame(check);
+    requestAnimationFrame(updateNavbar);
   }, { passive: true });
-  check();
+
+  lastScrollTop = window.pageYOffset || document.documentElement.scrollTop || 0;
+  updateNavbar();
 })();
 
 // ===== Highlight input-group saat fokus (pengganti now-ui-kit) =====

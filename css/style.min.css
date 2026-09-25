@@ -433,3 +433,22 @@ html.nav-open {
 }
 [data-theme="dark"] .cc-project-avatar{background:#2a2a32;border-color:#191817;color:#ECEAE4}
 [data-theme="dark"] .cc-project-avatar:hover,[data-theme="dark"] .cc-project-avatar.is-active{background:var(--lh-accent-soft,#4F6FD2);border-color:#191817;color:#fff}
+
+/* ===== Smart Hide/Show Navbar on Scroll ===== */
+.navbar {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1), padding 0.35s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  will-change: transform;
+}
+.navbar.navbar-hidden {
+  transform: translate3d(0, -100%, 0) !important;
+  pointer-events: none !important;
+}
+html.nav-open .navbar.navbar-hidden {
+  transform: translate3d(0, 0, 0) !important;
+  pointer-events: auto !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .navbar {
+    transition: none !important;
+  }
+}
