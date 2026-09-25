@@ -427,36 +427,6 @@ document.querySelectorAll('.form-control').forEach(function (input) {
   }, 100);
 })();
 
-// Scroll lock saat navbar mobile open — prevents address bar hide/show → no viewport jump
-(function () {
-  var scrollPosition = 0;
-
-  function lockScroll() {
-    document.documentElement.classList.add('scroll-locked');
-  }
-
-  function unlockScroll() {
-    document.documentElement.classList.remove('scroll-locked');
-  }
-
-  // Use MutationObserver to watch nav-open class on <html>
-  if (typeof MutationObserver !== 'undefined') {
-    var observer = new MutationObserver(function (mutations) {
-      mutations.forEach(function (mutation) {
-        if (mutation.attributeName === 'class') {
-          var html = document.documentElement;
-          if (html.classList.contains('nav-open')) {
-            lockScroll();
-          } else {
-            unlockScroll();
-          }
-        }
-      });
-    });
-    observer.observe(document.documentElement, { attributes: true });
-  }
-})();
-
 // Lazy load background images
 if ('IntersectionObserver' in window) {
   var lazyBgObserver = new IntersectionObserver(function(entries, observer) {
