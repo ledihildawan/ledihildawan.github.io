@@ -12,10 +12,10 @@
 @import './primitives/popover.css';
 
 /* 3. Layouts Shell */
-@import './layouts/header.css';
 @import './layouts/footer.css';
 
 /* 4. Patterns & Sections (Co-located UI) */
+@import './patterns/navbar/navbar.css';
 @import './patterns/hero/hero.css';
 @import './patterns/about/about.css';
 @import './patterns/experience/experience.css';
