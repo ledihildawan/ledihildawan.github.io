@@ -1,0 +1,5 @@
+/* Reset & Zero-CLS Scroll Lock */
+html.scroll-locked,
+html.nav-open {
+  overflow: hidden !important;
+}

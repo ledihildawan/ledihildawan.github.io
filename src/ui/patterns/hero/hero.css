@@ -1,0 +1,176 @@
+/* Hero Profile Avatar, Cover & Social Buttons */
+
+/* 1. Profile Avatar: Crisp Minimalist Portrait */
+.cc-profile-image {
+  width: 170px !important;
+  height: 170px !important;
+  margin: 0 auto 16px auto !important;
+  border-radius: 50% !important;
+  display: block !important;
+  position: relative !important;
+}
+.cc-profile-image a {
+  display: block !important;
+  position: relative !important;
+  border-radius: 50% !important;
+}
+.cc-profile-image a::before {
+  display: none !important;
+}
+.cc-profile-image img {
+  width: 170px !important;
+  height: 170px !important;
+  object-fit: cover !important;
+  border-radius: 50% !important;
+  border: 3px solid rgba(255, 255, 255, 0.85) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.22) !important;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease !important;
+  transform: none !important;
+}
+.cc-profile-image a:hover img {
+  border-color: #ffffff !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.32) !important;
+  transform: none !important;
+}
+
+/* 1. Social Header Buttons: 100% Subpixel Flex Centering & Smooth Brand Gradients */
+.button-container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+}
+
+.btn.btn-round.btn-icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 3.6rem !important;
+  height: 3.6rem !important;
+  min-width: 3.6rem !important;
+  min-height: 3.6rem !important;
+  border-radius: 50% !important;
+  position: relative !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  transition:
+    border-color 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.btn.btn-round.btn-icon svg,
+.btn.btn-round.btn-icon .svg-icon {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+  margin: 0 auto !important;
+  width: 20px !important;
+  height: 20px !important;
+  display: block !important;
+  z-index: 2 !important;
+  color: #ffffff !important;
+  transition: color 0.2s ease !important;
+}
+
+.btn.btn-round.btn-icon::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  border-radius: inherit !important;
+  z-index: 1 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.btn-icon.cc-instagram::before {
+  background: radial-gradient(
+    circle farthest-corner at 28% 100%,
+    #fcd177 0%,
+    #f58529 25%,
+    #dd2a7b 50%,
+    #8134af 75%,
+    #515bd4 100%
+  ) !important;
+}
+.btn-icon.cc-instagram:hover,
+.btn-icon.cc-instagram:focus-visible {
+  border-color: rgba(221, 42, 123, 0.6) !important;
+  box-shadow: 0 4px 20px rgba(221, 42, 123, 0.38) !important;
+}
+
+.btn-icon.cc-linkedin::before {
+  background: linear-gradient(135deg, #00a0dc 0%, #0077b5 50%, #004182 100%) !important;
+}
+.btn-icon.cc-linkedin:hover,
+.btn-icon.cc-linkedin:focus-visible {
+  border-color: rgba(0, 119, 181, 0.6) !important;
+  box-shadow: 0 4px 20px rgba(0, 119, 181, 0.38) !important;
+}
+
+.btn-icon.cc-github::before {
+  background: linear-gradient(135deg, #161b22 0%, #24292e 50%, #0d1117 100%) !important;
+}
+.btn-icon.cc-github:hover,
+.btn-icon.cc-github:focus-visible {
+  border-color: rgba(255, 255, 255, 0.38) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45) !important;
+}
+
+.btn-icon.cc-twitter::before {
+  background: linear-gradient(135deg, #000000 0%, #15202b 100%) !important;
+}
+.btn-icon.cc-twitter:hover,
+.btn-icon.cc-twitter:focus-visible {
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45) !important;
+}
+
+.btn-icon.cc-threads::before {
+  background: radial-gradient(circle at 10% 20%, #181818 0%, #000000 55%, #2b1055 100%) !important;
+}
+.btn-icon.cc-threads:hover,
+.btn-icon.cc-threads:focus-visible {
+  border-color: rgba(130, 80, 220, 0.5) !important;
+  box-shadow: 0 4px 20px rgba(43, 16, 85, 0.45) !important;
+}
+
+.btn-icon.cc-instagram:hover::before,
+.btn-icon.cc-instagram:focus-visible::before,
+.btn-icon.cc-linkedin:hover::before,
+.btn-icon.cc-linkedin:focus-visible::before,
+.btn-icon.cc-github:hover::before,
+.btn-icon.cc-github:focus-visible::before,
+.btn-icon.cc-twitter:hover::before,
+.btn-icon.cc-twitter:focus-visible::before,
+.btn-icon.cc-threads:hover::before,
+.btn-icon.cc-threads:focus-visible::before {
+  opacity: 1 !important;
+}
+
+/* 7. Circles & Pill Capsules */
+.cc-profile-image,
+.cc-profile-image a,
+.cc-profile-image img,
+.cc-project-avatar {
+  border-radius: 50% !important;
+}
+
+.nav-glider {
+  border-radius: var(--lh-radius-full, 9999px) !important;
+}
+
+.tab-glider,
+.nav-pills .nav-link {
+  border-radius: 50% !important;
+}

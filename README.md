@@ -1,63 +1,78 @@
-# ledihildawan.github.io
+# Ledi Hildawan - Portfolio Website
 
-My personal portfolio site, live at [ledihildawan.github.io](https://ledihildawan.github.io/).
-Started from a free TemplateFlip theme and heavily customized since. This repo is just
-for my own use.
+Situs portofolio pribadi yang aktif di [ledihildawan.github.io](https://ledihildawan.github.io/).
+Dibangun di atas fondasi tema *Creative CV* dari [TemplateFlip](https://templateflip.com/) dan telah dimodernisasi sepenuhnya menggunakan runtime **Bun**, arsitektur **Vite 8** (Rolldown + LightningCSS), serta metodologi **Co-located Component UI**.
 
-## Running it locally
+---
+
+## 🚀 Memulai Proyek (Development dengan Bun)
+
+Pastikan telah menginstal [Bun](https://bun.sh/) (versi 1.2+ / latest).
 
 ```bash
+# Clone repositori
 git clone https://github.com/ledihildawan/ledihildawan.github.io.git
 cd ledihildawan.github.io
-python -m http.server 8000
+
+# Install dependensi
+bun install
+
+# Jalankan server lokal (Hot Module Replacement aktif di port 3000)
+bun run dev
 ```
 
-Then open http://localhost:8000. There is no build step. To publish, push to `master`
-and GitHub Pages picks it up in a minute or two.
+Buka `http://localhost:3000` di browser.
 
-## Things worth knowing before editing
+### 🛠️ Script yang Tersedia
+- `bun run dev` : Menjalankan development server lokal dengan HMR instan.
+- `bun run build` : Mengompilasi kode ke folder `dist/` untuk produksi (Rolldown & LightningCSS).
+- `bun run preview` : Menjalankan preview server lokal untuk hasil build `dist/`.
+- `bun run lint` : Menjalankan ESLint v9 Flat Config.
+- `bun run lint:fix` : Memperbaiki otomatis issue ESLint.
+- `bun run format` : Memformat seluruh kode sumber HTML, CSS, dan JS dengan Prettier.
 
-**Colors** — all colors are CSS variables in `:root` (inline critical CSS in [index.html](index.html)),
-prefixed `--lh-`. Change a variable, and the site follows. Dark mode overrides live in the
-`@media (prefers-color-scheme: dark)` block below it.
+---
 
-Main ones:
+## 📁 Struktur Arsitektur Proyek
 
-| Variable | Light | Used for |
-|---|---|---|
-| `--lh-surface` | `#FFFFFF` | Page background, cards |
-| `--lh-base` | `#F0EFEB` | Navbar, avatar pulse |
-| `--lh-primary` | `#F0EEE9` | Buttons, year strips |
-| `--lh-ink` | `#2C2C2C` | Text, borders, shadows |
-| `--lh-link` / `--lh-accent` | `#2D4DB6` | Links, active states, focus (WCAG AAA) |
+Proyek ini menggunakan pola **Co-located UI (HTML + CSS + JS)** di dalam `src/ui/`:
 
-**Contact form** — sends through Formspree. The form ID is in the `action` attribute in
-[index.html](index.html) and referenced again in [scripts/main.js](scripts/main.js).
+```text
+ledihildawan.github.io/
+├── .github/workflows/
+│   └── deploy.yml            # CI/CD otomatis build & deploy via Bun ke GitHub Pages
+├── public/                   # Asset statis murni (favicon, data, font WOFF2)
+│   ├── data/
+│   └── fonts/
+├── src/
+│   ├── assets/               # Gambar (WebP) dan SVG ikon proyek
+│   └── ui/                   # Arsitektur Komponen Terpadu
+│       ├── index.css         # Master CSS bundle orchestrator
+│       ├── index.js          # Master JS ESM entry point
+│       ├── base/             # Reset & grid dasar
+│       ├── layouts/          # Meta/Head, Navbar (Header), dan Footer
+│       ├── patterns/         # Feature sections (Hero, About, Exp, Portfolio, Contact)
+│       └── primitives/       # Tooltips, Popovers, Smooth-scroll, Buttons, Cards
+├── index.html                # Root entry template
+├── LICENSE-free.txt          # Lisensi asli tema TemplateFlip
+├── bun.lockb / bun.lock      # Bun lockfile
+├── package.json
+└── vite.config.js
+```
 
-**Spam filtering** — visitors' emails are checked against [data/disposable_email_domains.json](data/disposable_email_domains.json)
-(125k throwaway domains). The file loads only when someone focuses the email field.
+---
 
-**Backgrounds** — hero and contact map images have light and dark versions
-(`*-light.webp`, `*-dark.webp`) in [images/](images). They're picked by system preference.
+## 🎨 Detail Teknis & Panduan Kustomisasi
 
-**Editing content** — it's all in [index.html](index.html). Find the text, change it, done.
+- **Warna & Desain Token:** Menggunakan CSS custom properties `--lh-*` pada tema terang dan gelap (`@media (prefers-color-scheme: dark)`).
+- **Form Kontak:** Terhubung melalui layanan Formspree pada komponen `src/ui/patterns/contact/contact-box.html`.
+- **Anti-Spam Filter:** Domain email pengunjung divalidasi terhadap daftar disposable domains di `public/data/disposable_email_domains.txt`.
+- **Asset Hashing & Cache Busting:** Vite secara otomatis memberikan hash unik pada nama file build produksi.
 
-**Gotchas:**
+---
 
-- Bump the `?ver=` query when changing CSS or JS files, otherwise browsers serve the cached one
-- [css/style.min.css](css/style.min.css) loads after the inline styles and contains duplicate `!important` rules
-  from the original theme — sometimes an override needs `html body` in front of the selector
-- All site JavaScript is vanilla, in [scripts/main.js](scripts/main.js) — no jQuery/Bootstrap runtime
+## 📄 Lisensi & Kredit
 
-## Docs in this repo
-
-- [README.txt](README.txt) — the original template documentation
-- [LICENSE-free.txt](LICENSE-free.txt) — the template license
-
-## Credits
-
-Design by [TemplateFlip](https://templateflip.com), customized by
-[Ledi Hildawan](https://www.instagram.com/ledihildawan/).
-
-`© Creative CV. Seluruh hak cipta dilindungi.` — that line belongs to the template and stays.
-The free license means personal use only: no client websites, no removing the credit link.
+- **Desain Awal:** [TemplateFlip](https://templateflip.com) (*Creative CV v1.1.0*).
+- **Kustomisasi & Pembaruan:** [Ledi Hildawan](https://www.instagram.com/ledihildawan/).
+- **Ketentuan Lisensi:** Rincian lisensi penggunaan bebas non-komersial tersedia di file [LICENSE-free.txt](LICENSE-free.txt).

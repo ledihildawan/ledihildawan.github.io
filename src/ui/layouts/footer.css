@@ -1,0 +1,23 @@
+/* Footer, Credits & Footer Social Icons */
+
+/* 8. Footer Social Icons */
+.footer .cc-github:hover .icon-fill,
+.footer .cc-github:focus .icon-fill {
+  fill: url(#gh-grad) !important;
+}
+.footer .cc-linkedin:hover .icon-fill,
+.footer .cc-linkedin:focus .icon-fill {
+  fill: url(#li-grad) !important;
+}
+.footer .cc-twitter:hover .icon-fill,
+.footer .cc-twitter:focus .icon-fill {
+  fill: url(#tw-grad) !important;
+}
+.footer .cc-instagram:hover .icon-fill,
+.footer .cc-instagram:focus .icon-fill {
+  fill: url(#ig-grad) !important;
+}
+.footer .cc-threads:hover .icon-fill,
+.footer .cc-threads:focus .icon-fill {
+  fill: url(#th-grad) !important;
+}

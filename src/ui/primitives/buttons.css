@@ -1,0 +1,40 @@
+/* Button Micro-Press, Concentric Radii & Controls */
+
+/* 2. Tactile Micro-Press on Buttons & Icons */
+.btn.btn-round.btn-icon:hover,
+.footer .btn-link:hover,
+.cc-mode-btn:hover {
+  transform: none !important;
+  opacity: 1 !important;
+}
+.btn:active,
+.btn-hero-secondary:active,
+.btn.btn-round.btn-icon:active,
+.footer .btn-link:active,
+.cc-mode-btn:active {
+  transform: none !important;
+  opacity: 0.88 !important;
+}
+
+/* 2. Interactive Buttons & Form Controls */
+.btn:not(.btn-round),
+.btn-hero-secondary {
+  border-radius: var(--lh-radius-md, 8px) !important;
+}
+
+.form-control,
+.input-group {
+  border-radius: var(--lh-radius-md, 8px) !important;
+}
+
+.input-group-addon {
+  border-radius: var(--lh-radius-md, 8px) 0 0 var(--lh-radius-md, 8px) !important;
+}
+
+.input-group .form-control {
+  border-radius: 0 var(--lh-radius-md, 8px) var(--lh-radius-md, 8px) 0 !important;
+}
+
+textarea.form-control {
+  border-radius: var(--lh-radius-md, 8px) !important;
+}

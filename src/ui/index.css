@@ -1,0 +1,23 @@
+/* ==========================================================================
+   MASTER CSS ENTRY POINT (Vite 8 & LightningCSS Bundler)
+   ========================================================================== */
+
+/* 1. Base & Global Styles */
+@import './base/reset.css';
+@import './base/grid.css';
+
+/* 2. Primitives (Shared Micro UI) */
+@import './primitives/buttons.css';
+@import './primitives/cards.css';
+@import './primitives/popover.css';
+
+/* 3. Layouts Shell */
+@import './layouts/header.css';
+@import './layouts/footer.css';
+
+/* 4. Patterns & Sections (Co-located UI) */
+@import './patterns/hero/hero.css';
+@import './patterns/about/about.css';
+@import './patterns/experience/experience.css';
+@import './patterns/portfolio/portfolio.css';
+@import './patterns/contact/contact.css';

@@ -1,0 +1,42 @@
+/* Unified Chronicle Surface & Elevation */
+
+/* 3. Cards: Unified Chronicle Surface & Subtle Ambient Hover */
+.card {
+  border: 1px solid rgba(128, 128, 128, 0.14) !important;
+  border-radius: 12px !important;
+  background-color: var(--lh-surface) !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04) !important;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease !important;
+  margin-bottom: 24px !important;
+  overflow: hidden !important;
+  transform: none !important;
+}
+.cc-education .card:hover,
+.cc-experience .card:hover {
+  border-color: rgba(68, 94, 147, 0.35) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06) !important;
+  transform: none !important;
+}
+.card .col-md-3.bg-primary {
+  background-color: rgba(68, 94, 147, 0.06) !important;
+  border-right: 1px solid rgba(128, 128, 128, 0.1) !important;
+}
+
+/* 3. Cards & Concentric Inner Background Hierarchy */
+.card {
+  border-radius: var(--lh-radius-lg, 12px) !important;
+  overflow: hidden !important;
+}
+
+@media (min-width: 768px) {
+  .card .col-md-3.bg-primary {
+    border-radius: calc(var(--lh-radius-lg, 12px) - 1px) 0 0 calc(var(--lh-radius-lg, 12px) - 1px) !important;
+  }
+}
+@media (max-width: 767px) {
+  .card .col-md-3.bg-primary {
+    border-radius: calc(var(--lh-radius-lg, 12px) - 1px) calc(var(--lh-radius-lg, 12px) - 1px) 0 0 !important;
+  }
+}

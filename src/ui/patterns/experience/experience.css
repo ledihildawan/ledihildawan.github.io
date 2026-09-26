@@ -1,0 +1,129 @@
+/* Experience Timeline, Chips & Bullets */
+.cc-exp-top-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+.cc-exp-top-header .cc-inst {
+  margin: 0;
+}
+.cc-exp-date {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--lh-ink);
+  opacity: 0.78;
+  white-space: nowrap;
+}
+.cc-exp-bullets {
+  list-style: none;
+  padding-left: 0;
+  margin: 12px 0 14px 0;
+}
+.cc-exp-bullets li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 8px;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--lh-ink);
+}
+.cc-exp-bullets li::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 9px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--lh-accent);
+}
+.cc-experience-meta {
+  margin-top: 12px;
+  padding-top: 0;
+  border-top: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.cc-meta-row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.cc-meta-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--lh-ink);
+  opacity: 0.75;
+  min-width: 54px;
+  flex-shrink: 0;
+}
+.cc-meta-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  flex: 1 1 auto;
+}
+.cc-shipped-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  border-radius: 6px;
+  background: rgba(128, 128, 128, 0.08);
+  border: 1px solid rgba(128, 128, 128, 0.18);
+  color: var(--lh-ink);
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.cc-shipped-chip:hover {
+  background: rgba(128, 128, 128, 0.15);
+  border-color: var(--lh-accent);
+  transform: none !important;
+}
+.cc-tech-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  background: rgba(68, 94, 147, 0.1);
+  color: var(--lh-ink);
+  font-weight: 500;
+}
+.cc-ico {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* 6. Chips, Badges & Logos */
+.cc-shipped-chip {
+  border-radius: var(--lh-radius-sm, 6px) !important;
+}
+
+.cc-tech-chip {
+  border-radius: var(--lh-radius-xs, 4px) !important;
+}
+
+.cc-inst-logo {
+  border-radius: var(--lh-radius-sm, 6px) !important;
+}
+
+.tooltip-inner {
+  border-radius: var(--lh-radius-sm, 6px) !important;
+}

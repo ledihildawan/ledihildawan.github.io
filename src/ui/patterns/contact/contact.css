@@ -1,0 +1,8 @@
+/* Contact Section & Form Styling */
+.cc-contact .card {
+  overflow: hidden;
+}
+.cc-contact-information {
+  background-size: cover;
+  background-position: center center;
+}
