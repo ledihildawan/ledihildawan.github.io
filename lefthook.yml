@@ -1,0 +1,19 @@
+# Lefthook Git Hooks Configuration
+# https://github.com/evilmartians/lefthook
+
+pre-commit:
+  parallel: true
+  commands:
+    format:
+      glob: '*.{html,css,js,json,md,yml}'
+      run: bunx prettier --write {staged_files}
+      stage_fixed: true
+    lint:
+      glob: '*.{js,mjs,cjs}'
+      run: bunx eslint {staged_files}
+
+pre-push:
+  parallel: false
+  commands:
+    build:
+      run: bun run build

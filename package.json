@@ -9,12 +9,14 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "format": "prettier --write \"src/**/*.{html,css,js}\" \"index.html\" \"vite.config.js\" \"eslint.config.js\""
+    "format": "prettier --write \"src/**/*.{html,css,js}\" \"index.html\" \"vite.config.js\" \"eslint.config.js\"",
+    "prepare": "lefthook install"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "eslint": "^10.11.0",
     "globals": "^17.12.0",
+    "lefthook": "^2.1.14",
     "prettier": "^3.9.9",
     "vite": "^8.0.0",
     "vite-plugin-html": "^3.2.2"
