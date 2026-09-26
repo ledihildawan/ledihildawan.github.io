@@ -6,3 +6,51 @@
   background-size: cover;
   background-position: center center;
 }
+
+.cc-mode-toggle {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.cc-mode-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--lh-ink);
+  cursor: pointer;
+  opacity: 0.65;
+  outline: none;
+  transition:
+    opacity 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+
+  &:hover,
+  &[aria-pressed='true'] {
+    opacity: 1 !important;
+    color: var(--lh-ink) !important;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--lh-accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+.cc-mode-sep {
+  color: var(--lh-ink);
+  opacity: 0.65;
+  user-select: none;
+  font-weight: 600;
+}
+
+.cc-wa {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 4px 0;
+}

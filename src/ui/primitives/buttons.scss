@@ -17,6 +17,12 @@
 }
 
 /* 2. Interactive Buttons & Form Controls */
+.btn {
+  font-family: inherit;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em;
+}
+
 .btn:not(.btn-round),
 .btn-hero-secondary {
   border-radius: var(--lh-radius-md, 8px) !important;
@@ -37,4 +43,66 @@
 
 textarea.form-control {
   border-radius: var(--lh-radius-md, 8px) !important;
+}
+
+/* 3. Primary Button (Brand Accent, Accessible Contrast & Unified Light/Dark Style) */
+.btn-primary:not(.btn-hero-secondary) {
+  background-color: var(--lh-accent, #2d4db6) !important;
+  border: 1px solid var(--lh-accent, #2d4db6) !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(45, 77, 182, 0.22) !important;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    color 0.2s ease,
+    transform 0.15s ease !important;
+
+  &:hover,
+  &:focus {
+    background-color: var(--lh-accent-strong, #1e3a8a) !important;
+    border-color: var(--lh-accent-strong, #1e3a8a) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(45, 77, 182, 0.35) !important;
+  }
+
+  &:active {
+    background-color: var(--lh-accent-strong, #1e3a8a) !important;
+    border-color: var(--lh-accent-strong, #1e3a8a) !important;
+    color: #ffffff !important;
+    box-shadow: 0 1px 4px rgba(45, 77, 182, 0.2) !important;
+    transform: scale(0.98) !important;
+  }
+
+  &:disabled,
+  &.disabled {
+    opacity: 0.6 !important;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+  }
+}
+
+.dark-mode .btn-primary:not(.btn-hero-secondary) {
+  background-color: var(--lh-accent, #2d4db6) !important;
+  border-color: var(--lh-accent, #2d4db6) !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35) !important;
+
+  &:hover,
+  &:focus {
+    background-color: var(--lh-accent-soft, #4f6fd2) !important;
+    border-color: var(--lh-accent-soft, #4f6fd2) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 16px rgba(79, 111, 210, 0.35) !important;
+  }
+
+  &:active {
+    background-color: var(--lh-accent-strong, #1e3a8a) !important;
+    border-color: var(--lh-accent-strong, #1e3a8a) !important;
+    color: #ffffff !important;
+  }
 }

@@ -40,13 +40,8 @@
   .navbar.bg-primary:not(.navbar-transparent) .nav-glider {
     background-color: rgba(68, 94, 147, 0.15) !important;
   }
-  [data-theme='dark'] .navbar.bg-primary:not(.navbar-transparent) .nav-glider {
+  .dark-mode .navbar.bg-primary:not(.navbar-transparent) .nav-glider {
     background-color: rgba(255, 255, 255, 0.12) !important;
-  }
-  @media (prefers-color-scheme: dark) {
-    .navbar.bg-primary:not(.navbar-transparent) .nav-glider {
-      background-color: rgba(255, 255, 255, 0.12) !important;
-    }
   }
 }
 

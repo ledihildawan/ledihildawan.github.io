@@ -1,39 +1,12 @@
 <div class="card-body">
   <p class="mb-0"><strong>Lokasi</strong></p>
   <p class="pb-2">Jakarta Barat,Jakarta,Indonesia</p>
-  <p class="mb-0" style="display: flex; gap: 8px; align-items: center">
-    <button
-      type="button"
-      data-mode="tel"
-      class="cc-mode-btn"
-      style="
-        background: none;
-        border: none;
-        padding: 0;
-        font: inherit;
-        font-weight: 700;
-        cursor: pointer;
-        opacity: 0.7;
-        outline: none;
-      "
-    >
+  <p class="mb-0 cc-mode-toggle">
+    <button type="button" data-mode="tel" class="cc-mode-btn" aria-label="Mode panggilan telepon">
       Ponsel
     </button>
-    <span aria-hidden="true" style="opacity: 0.7">/</span>
-    <button
-      type="button"
-      data-mode="wa"
-      class="cc-mode-btn"
-      style="
-        background: none;
-        border: none;
-        padding: 0;
-        font: inherit;
-        font-weight: 700;
-        cursor: pointer;
-        outline: none;
-      "
-    >
+    <span class="cc-mode-sep" aria-hidden="true">/</span>
+    <button type="button" data-mode="wa" class="cc-mode-btn" aria-label="Mode chat WhatsApp">
       WhatsApp
     </button>
   </p>
@@ -44,7 +17,6 @@
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat WhatsApp +62 851-6161-8197"
-      style="display: inline-flex; align-items: center; min-height: 28px; padding: 4px 0"
     >
       <svg
         aria-hidden="true"
