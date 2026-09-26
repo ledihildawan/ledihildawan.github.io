@@ -168,10 +168,12 @@ export function initHeader() {
         glider.classList.remove('is-ready');
         return;
       }
-      var left = targetEl.offsetLeft;
+      var navItem = targetEl.closest('.nav-item');
+      if (!navItem) return;
+      var left = navItem.offsetLeft;
       var width = targetEl.offsetWidth;
       var height = 36;
-      var top = targetEl.offsetTop + (targetEl.offsetHeight - height) / 2;
+      var top = navItem.offsetTop + (navItem.offsetHeight - height) / 2;
 
       glider.style.transform = 'translate3d(' + left + 'px, ' + top + 'px, 0)';
       glider.style.width = width + 'px';
@@ -224,6 +226,7 @@ export function initHeader() {
     links.forEach(function (link) {
       link.addEventListener('click', function () {
         setActive(link);
+        isHovering = false;
         isManualScrolling = true;
         if (manualScrollTimer) clearTimeout(manualScrollTimer);
         manualScrollTimer = setTimeout(function () {
