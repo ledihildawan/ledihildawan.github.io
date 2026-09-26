@@ -4,28 +4,24 @@
 
 // 1. Foundation & Mixins (DRY Tokens)
 @use './base/mixins' as *;
-@use './base/tokens';
 @use './base/reset';
-@use './base/fa-icons';
-@use './base/print';
-@use './base/typography';
-@use './base/framework';
-@use './base/utilities';
-@use './base/sections';
-@use './base/gallery';
-@use './base/interactions';
-@use './base/dark-mode';
-@use './base/social-icons';
+@use './base/grid'; // Original monolith (foundation)
 
-// 2. Primitives (Micro Components)
+// 2. Extracted Standalone Files
+@use './base/fonts'; // @font-face Poppins
+@use './base/print'; // @media print
+@use './base/animations'; // @keyframes
+@use './base/reduced-motion'; // @media (prefers-reduced-motion)
+
+// 3. Primitives (Micro Components)
 @use './primitives/buttons';
 @use './primitives/cards';
 @use './primitives/popover';
 
-// 3. Layouts Shell
+// 4. Layouts Shell
 @use './layouts/footer';
 
-// 4. Feature Patterns (Co-located Triad)
+// 5. Feature Patterns (Co-located Triad)
 @use './patterns/navbar/navbar';
 @use './patterns/hero/hero';
 @use './patterns/about/about';
