@@ -5,7 +5,7 @@ pre-commit:
   parallel: true
   commands:
     format:
-      glob: '*.{html,css,js,json,md,yml}'
+      glob: '*.{html,css,scss,js,json,md,yml}'
       run: bunx prettier --write {staged_files}
       stage_fixed: true
     lint:

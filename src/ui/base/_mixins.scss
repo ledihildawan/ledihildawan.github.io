@@ -1,0 +1,83 @@
+// ==========================================================================
+// DESIGN SYSTEM TOKENS & MIXINS (SCSS DRY FOUNDATION)
+// ==========================================================================
+
+// 1. Color Palette Tokens
+$color-surface: var(--lh-surface, #ffffff);
+$color-base: var(--lh-base, #f0efeb);
+$color-primary: var(--lh-primary, #f0eee9);
+$color-ink: var(--lh-ink, #2c2c2c);
+$color-accent: var(--lh-accent, #2d4db6);
+$color-link: var(--lh-link, #2d4db6);
+
+// 2. Mathematical Border Radius Tokens (R_inner = R_outer - Padding)
+$radius-xs: var(--lh-radius-xs, 4px);
+$radius-sm: var(--lh-radius-sm, 6px);
+$radius-md: var(--lh-radius-md, 8px);
+$radius-lg: var(--lh-radius-lg, 12px);
+$radius-xl: var(--lh-radius-xl, 16px);
+$radius-full: 9999px;
+
+// 3. Elevation & Transition Tokens
+$transition-fast: 0.2s ease;
+$transition-base: 0.25s ease;
+$transition-smooth: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+// ==========================================================================
+// REUSABLE SCSS MIXINS (DRY)
+// ==========================================================================
+
+// Flex Center Helper
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Interactive Micro-Press Tactile Feedback
+@mixin interactive-press {
+  transition:
+    transform $transition-fast,
+    opacity $transition-fast,
+    box-shadow $transition-fast;
+
+  &:hover {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  &:active {
+    transform: scale(0.98) !important;
+    opacity: 0.88 !important;
+  }
+}
+
+// Surface Elevation Card Mixin
+@mixin surface-card($radius: $radius-lg, $border-color: rgba(128, 128, 128, 0.14)) {
+  border: 1px solid $border-color !important;
+  border-radius: $radius !important;
+  background-color: $color-surface !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04) !important;
+  transition:
+    border-color $transition-base,
+    box-shadow $transition-base !important;
+  overflow: hidden !important;
+
+  &:hover {
+    border-color: rgba(68, 94, 147, 0.35) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06) !important;
+  }
+}
+
+// Responsive Media Query Helpers
+@mixin mobile {
+  @media (max-width: 991px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: 992px) {
+    @content;
+  }
+}

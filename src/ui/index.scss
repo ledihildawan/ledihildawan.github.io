@@ -1,0 +1,24 @@
+// ==========================================================================
+// MASTER SCSS ENTRY POINT (Vite 8 & Sass-Embedded Compiler)
+// ==========================================================================
+
+// 1. Foundation & Mixins (DRY Tokens)
+@use './base/mixins' as *;
+@use './base/reset';
+@use './base/grid';
+
+// 2. Primitives (Micro Components)
+@use './primitives/buttons';
+@use './primitives/cards';
+@use './primitives/popover';
+
+// 3. Layouts Shell
+@use './layouts/footer';
+
+// 4. Feature Patterns (Co-located Triad)
+@use './patterns/navbar/navbar';
+@use './patterns/hero/hero';
+@use './patterns/about/about';
+@use './patterns/experience/experience';
+@use './patterns/portfolio/portfolio';
+@use './patterns/contact/contact';
