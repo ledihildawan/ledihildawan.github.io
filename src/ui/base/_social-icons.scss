@@ -1,0 +1,185 @@
+/* ==========================================================================
+   SOCIAL ICON BUTTONS & FOOTER ICON HOVERS
+   ========================================================================== */
+
+// ---------------------------------------------------------------------------
+// SOCIAL BUTTON ICONS
+// ---------------------------------------------------------------------------
+
+.btn-icon .svg-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+}
+
+.btn.btn-icon.cc-github:hover {
+  border-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.btn.btn-icon.cc-github:hover svg,
+.btn.btn-icon.cc-linkedin:hover svg,
+.btn.btn-icon.cc-twitter:hover svg,
+.btn.btn-icon.cc-instagram:hover svg,
+.btn.btn-icon.cc-threads:hover svg {
+  color: #ffffff;
+}
+
+.btn.btn-icon.cc-linkedin:hover {
+  border-color: rgba(0, 119, 181, 0.6) !important;
+}
+
+.btn.btn-icon.cc-twitter:hover {
+  border-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.btn.btn-icon.cc-instagram:hover {
+  border-color: rgba(221, 42, 123, 0.6) !important;
+}
+
+.btn.btn-icon.cc-threads:hover {
+  border-color: rgba(130, 80, 220, 0.5) !important;
+}
+
+.btn-icon:not(.btn-footer) svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.btn.btn-icon:not(.btn-footer) svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+// ---------------------------------------------------------------------------
+// FOOTER SOCIAL ICON HOVERS
+// ---------------------------------------------------------------------------
+
+.footer .cc-github:hover svg {
+  color: #24292f;
+}
+
+.footer .cc-twitter:hover svg {
+  color: #000;
+}
+
+.footer .cc-instagram:hover svg {
+  color: #dd2a7b;
+}
+
+.footer .cc-linkedin:hover svg {
+  color: #0077b5;
+}
+
+// Threads
+.cc-threads svg {
+  width: 1.6em;
+  height: 1.6em;
+  vertical-align: middle;
+}
+
+.footer .cc-threads:hover svg {
+  color: #2b1055;
+}
+
+// Threads icon-fill gradient (from grid.scss)
+html body .footer .cc-threads:hover .icon-fill,
+html body .footer .cc-threads:focus .icon-fill {
+  fill: url(#th-grad) !important;
+}
+
+// ---------------------------------------------------------------------------
+// SVG ICONS
+// ---------------------------------------------------------------------------
+
+.svg-icon {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  fill: currentColor;
+}
+
+.footer .svg-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.svg-tab {
+  width: 26px;
+  height: 26px;
+  display: inline-block;
+  vertical-align: middle;
+  fill: currentColor;
+}
+
+.nav-pills .nav-item .nav-link .svg-tab {
+  margin-top: 17px;
+}
+
+.input-group-addon .svg-form {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  fill: currentColor;
+}
+
+// ---------------------------------------------------------------------------
+// EXPERIENCE HEADER
+// ---------------------------------------------------------------------------
+
+.cc-experience .cc-experience-header {
+  padding-top: 60px;
+  padding-right: 0px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  text-transform: uppercase;
+}
+
+.cc-education .cc-education-header {
+  padding-top: 60px;
+  padding-right: 0px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+}
+
+// Card experience/education category
+.cc-experience .card-body .category,
+.cc-education .card-body .category {
+  text-align: left !important;
+  margin-top: 5px !important;
+  margin-bottom: 15px !important;
+}
+
+// ---------------------------------------------------------------------------
+// INSTAGRAM LOGO
+// ---------------------------------------------------------------------------
+
+.cc-inst {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cc-inst-logo {
+  border-radius: 6px;
+  object-fit: contain;
+  flex: 0 0 auto;
+  background: #ffffff;
+  padding: 2px;
+}
+
+.cc-inst a {
+  min-width: 0;
+}

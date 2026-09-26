@@ -1,0 +1,29 @@
+/* ==========================================================================
+   PRINT STYLES
+   ========================================================================== */
+
+@media print {
+  *,
+  ::after,
+  ::before {
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+  img,
+  tr {
+    break-inside: avoid;
+  }
+  h2,
+  h3,
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+  .navbar {
+    display: none;
+  }
+}

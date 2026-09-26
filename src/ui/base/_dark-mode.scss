@@ -1,0 +1,194 @@
+/* ==========================================================================
+   DARK MODE
+   ========================================================================== */
+
+.dark-mode {
+  // Missing: navbar bg-primary override
+  .navbar.bg-primary:not(.navbar-transparent) {
+    background-color: rgba(25, 24, 23, 0.96) !important;
+  }
+
+  .navbar.bg-primary:not(.navbar-transparent) .nav-link,
+  .navbar.bg-primary:not(.navbar-transparent) .navbar-brand {
+    color: var(--lh-ink) !important;
+  }
+
+  .navbar.bg-primary:not(.navbar-transparent) .nav-glider {
+    background-color: var(--lh-ink) !important;
+  }
+
+  // Missing: dark-mode navbar active nav-link
+  .navbar.bg-primary:not(.navbar-transparent) .navbar-nav .nav-item.active .nav-link,
+  .navbar.bg-primary:not(.navbar-transparent) .navbar-nav .nav-link.active {
+    color: #ffffff !important;
+  }
+
+  // Missing: navbar toggler bar
+  .navbar.bg-primary:not(.navbar-transparent) .navbar-toggler-bar {
+    background-color: var(--lh-ink) !important;
+  }
+  .card {
+    background-color: var(--lh-base) !important;
+    color: var(--lh-ink) !important;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3) !important;
+  }
+
+  .card .col-md-3.bg-primary {
+    background-color: var(--lh-base) !important;
+  }
+
+  .cc-porfolio-image.img-raised {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4) !important;
+  }
+
+  .nav-pills .nav-link:not(.active) {
+    color: var(--lh-ink-muted) !important;
+  }
+
+  html.dark-mode body .page-header {
+    background-image: url('/src/assets/images/background-dark-mobile.webp') !important;
+  }
+
+  @media (min-width: 768px) {
+    html.dark-mode body .page-header {
+      background-image: url('/src/assets/images/background-dark.webp') !important;
+    }
+  }
+
+  #contact .cc-contact-information {
+    background-image: url('/src/assets/images/map-dark.webp') !important;
+  }
+
+  .navbar.bg-primary:not(.navbar-transparent) {
+    background-color: rgba(25, 24, 23, 0.96) !important;
+  }
+
+  .navbar.bg-primary:not(.navbar-transparent) .nav-link,
+  .navbar.bg-primary:not(.navbar-transparent) .navbar-brand {
+    color: var(--lh-ink) !important;
+  }
+
+  .navbar.bg-primary:not(.navbar-transparent) .nav-glider {
+    background-color: var(--lh-ink) !important;
+  }
+
+  .cc-experience .category,
+  .cc-education .category {
+    color: var(--lh-ink-muted) !important;
+  }
+
+  .form-control {
+    color: var(--lh-ink) !important;
+    border: 1px solid #3a3833 !important;
+    background-color: transparent !important;
+  }
+
+  .form-control::placeholder {
+    color: var(--lh-ink-muted) !important;
+  }
+
+  .cc-mode-btn {
+    color: var(--lh-ink) !important;
+  }
+
+  .navbar.bg-primary:not(.navbar-transparent) .navbar-toggler-bar {
+    background-color: var(--lh-ink) !important;
+  }
+
+  button {
+    color: var(--lh-ink);
+  }
+
+  .footer a:not(.btn) {
+    color: var(--lh-link) !important;
+  }
+
+  .form-control:focus {
+    border-color: var(--lh-accent) !important;
+    color: var(--lh-ink) !important;
+  }
+
+  .input-group .form-control {
+    border-left: 0px !important;
+  }
+
+  .input-group-addon {
+    border: 1px solid #3a3833 !important;
+    border-right: 0px !important;
+    color: var(--lh-ink-muted) !important;
+    background-color: transparent !important;
+  }
+
+  .input-group-addon svg {
+    color: var(--lh-ink-muted) !important;
+  }
+
+  .input-group.input-group-focus .input-group-addon {
+    border-color: var(--lh-accent) !important;
+    color: var(--lh-accent) !important;
+  }
+
+  .input-group.input-group-focus .input-group-addon svg {
+    color: var(--lh-accent) !important;
+  }
+
+  a.credit,
+  a:not(.btn) {
+    color: var(--lh-link) !important;
+  }
+
+  .footer ul li a {
+    color: var(--lh-ink-muted) !important;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .h1,
+  .h2,
+  .h3,
+  .h4,
+  .h5,
+  .h6 {
+    color: var(--lh-ink);
+  }
+
+  .footer .cc-github:hover svg {
+    color: #a8a8a8 !important;
+  }
+
+  .footer .cc-linkedin:hover svg {
+    color: #70b5f9 !important;
+  }
+
+  .footer .cc-twitter:hover svg {
+    color: #a8a8a8 !important;
+  }
+
+  .footer .cc-instagram:hover svg {
+    color: #a0a0e8 !important;
+  }
+
+  .footer .cc-threads:hover svg {
+    color: #b0b0b0 !important;
+  }
+
+  .footer .cc-youtube:hover svg {
+    color: #f40000 !important;
+  }
+
+  .footer .cc-facebook:hover svg {
+    color: #70b5f9 !important;
+  }
+
+  .footer .cc-mail:hover svg {
+    color: #a8a8a8 !important;
+  }
+
+  .footer .cc-whatsapp:hover svg {
+    color: #6abf40 !important;
+  }
+}

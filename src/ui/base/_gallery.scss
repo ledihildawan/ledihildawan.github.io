@@ -1,0 +1,121 @@
+/* ==========================================================================
+   GALLERY & PORTFOLIO IMAGE EFFECTS
+   ========================================================================== */
+
+.cc-porfolio-image figure {
+  border-radius: 0.1875rem;
+}
+
+.cc-porfolio-image figure img,
+.cc-porfolio-image figure figcaption {
+  border-radius: 0.1875rem;
+}
+
+.cc-porfolio-image.img-raised {
+  border-radius: 0.1875rem;
+}
+
+.gallery .cc-porfolio-image figure {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.gallery .cc-porfolio-image figure img {
+  position: relative;
+  display: block;
+  max-width: 100%;
+  opacity: 1;
+}
+
+.gallery .cc-porfolio-image figure figcaption {
+  position: absolute;
+  color: rgb(255, 255, 255);
+  backface-visibility: hidden;
+}
+
+.gallery .cc-porfolio-image figure figcaption,
+.gallery .cc-porfolio-image figure figcaption > a {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+.gallery .cc-porfolio-image figure .h4,
+.gallery .cc-porfolio-image figure p {
+  margin: 0px;
+}
+
+.gallery figure.cc-effect figcaption::before,
+.gallery figure.cc-effect figcaption::after {
+  position: absolute;
+  content: '';
+  opacity: 0;
+}
+
+.gallery figure.cc-effect figcaption::before {
+  display: none;
+}
+
+.gallery figure.cc-effect figcaption::after {
+  display: none;
+}
+
+.gallery figure.cc-effect .h4 {
+  margin: 0 0 4px 0;
+}
+
+@media (max-width: 480px) {
+  .gallery figure.cc-effect .h4 {
+    font-size: 14px;
+  }
+}
+
+.gallery figure.cc-effect p {
+  margin: 0;
+}
+
+.gallery figure.cc-effect img,
+.gallery figure.cc-effect .h4 {
+  transform: none;
+}
+
+.gallery figure.cc-effect img,
+.gallery figure.cc-effect figcaption::before,
+.gallery figure.cc-effect figcaption::after,
+.gallery figure.cc-effect p {
+  transition:
+    opacity 0.35s,
+    transform 0.35s;
+}
+
+.gallery figure.cc-effect:hover img {
+  opacity: 1;
+  transform: none !important;
+}
+
+.gallery figure.cc-effect:hover figcaption::before,
+.gallery figure.cc-effect:hover figcaption::after {
+  display: none;
+}
+
+.gallery figure.cc-effect:hover figcaption::before {
+  background: rgba(27, 23, 23, 0.5);
+}
+
+.gallery figure.cc-effect:hover .h4,
+.gallery figure.cc-effect:hover p,
+.gallery figure.cc-effect:hover button {
+  opacity: 1;
+  transform: none !important;
+  color: rgb(255, 255, 255);
+}
+
+.gallery figure.cc-effect:hover figcaption::after,
+.gallery figure.cc-effect:hover .h4,
+.gallery figure.cc-effect:hover p,
+.gallery figure.cc-effect:hover img {
+  transition-delay: 0.15s;
+}

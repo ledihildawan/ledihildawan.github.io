@@ -4,8 +4,18 @@
 
 // 1. Foundation & Mixins (DRY Tokens)
 @use './base/mixins' as *;
+@use './base/tokens';
 @use './base/reset';
-@use './base/grid';
+@use './base/fa-icons';
+@use './base/print';
+@use './base/typography';
+@use './base/framework';
+@use './base/utilities';
+@use './base/sections';
+@use './base/gallery';
+@use './base/interactions';
+@use './base/dark-mode';
+@use './base/social-icons';
 
 // 2. Primitives (Micro Components)
 @use './primitives/buttons';

@@ -1,0 +1,56 @@
+/* ==========================================================================
+   CSS CUSTOM PROPERTIES (Design Tokens)
+   ========================================================================== */
+
+:root {
+  // Color Palette
+  --lh-white: #ffffff;
+  --lh-ivory: #f0efeb;
+  --lh-ivory-warm: #f0eee9;
+  --lh-ivory-dark: #e4e2dc;
+  --lh-charcoal: #2c2c2c;
+  --lh-charcoal-deep: #1f1f1f;
+  --lh-ink-muted: #595550;
+  --lh-indigo: #2d4db6;
+  --lh-indigo-deep: #1e3a8a;
+  --lh-indigo-soft: #4f6fd2;
+
+  // Semantic Tokens
+  --lh-surface: var(--lh-white);
+  --lh-base: var(--lh-ivory);
+  --lh-primary: var(--lh-ivory-warm);
+  --lh-primary-hover: var(--lh-ivory-dark);
+  --lh-ink: var(--lh-charcoal);
+  --lh-ink-strong: var(--lh-charcoal-deep);
+  --lh-accent: var(--lh-indigo);
+  --lh-accent-strong: var(--lh-indigo-deep);
+  --lh-accent-soft: var(--lh-indigo-soft);
+  --lh-link: var(--lh-indigo);
+
+  // Border Radius
+  --lh-radius-xs: 4px;
+  --lh-radius-sm: 6px;
+  --lh-radius-md: 8px;
+  --lh-radius-lg: 12px;
+  --lh-radius-xl: 16px;
+  --lh-radius-full: 9999px;
+
+  // Easing
+  --lh-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --lh-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --lh-dur-fast: 0.15s;
+  --lh-dur-med: 0.3s;
+
+  // Color Scheme
+  color-scheme: light dark;
+}
+
+// Dark Mode Tokens
+.dark-mode {
+  --lh-surface: #191817;
+  --lh-base: #2a2825;
+  --lh-ink: #eceae4;
+  --lh-ink-strong: #ffffff;
+  --lh-link: var(--lh-accent-soft);
+  --lh-ink-muted: #a8a5a0;
+}

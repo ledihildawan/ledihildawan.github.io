@@ -1,0 +1,392 @@
+/* ==========================================================================
+   INTERACTIONS: Tooltips, Animations, Transitions & Scrollbar
+   ========================================================================== */
+
+// ---------------------------------------------------------------------------
+// TOOLTIPS
+// ---------------------------------------------------------------------------
+
+.tooltip {
+  position: absolute;
+  z-index: 1070;
+  display: block;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.45;
+  opacity: 0;
+  transform: translate(-50%, 0);
+  pointer-events: none;
+  transition:
+    opacity 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.2s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.tooltip.show {
+  opacity: 0.95 !important;
+  transform: translate(-50%, 0) !important;
+}
+
+.tooltip-inner {
+  max-width: 200px;
+  padding: 3px 8px;
+  color: #fff;
+  text-align: center;
+  background-color: #000;
+  border-radius: 0.25rem;
+}
+
+.tooltip .arrow {
+  position: absolute;
+  display: block;
+  width: 0.8rem;
+  height: 0.4rem;
+}
+
+.tooltip .arrow::before {
+  position: absolute;
+  content: '';
+  border-color: transparent;
+  border-style: solid;
+}
+
+.bs-tooltip-top {
+  padding: 0.4rem 0;
+}
+
+.bs-tooltip-top .arrow {
+  bottom: 0;
+}
+
+.bs-tooltip-top .arrow::before {
+  top: 0;
+  border-width: 0.4rem 0.4rem 0;
+  border-top-color: #000;
+}
+
+// Social icon tooltips
+.tooltip.cc-github-tip .tooltip-inner {
+  background-color: #24292f;
+}
+.tooltip.cc-github-tip .arrow::before {
+  border-top-color: #24292f;
+}
+
+.tooltip.cc-linkedin-tip .tooltip-inner {
+  background-color: #0a66c2;
+}
+.tooltip.cc-linkedin-tip .arrow::before {
+  border-top-color: #0a66c2;
+}
+
+.tooltip.cc-twitter-tip .tooltip-inner {
+  background-color: #000;
+}
+.tooltip.cc-twitter-tip .arrow::before {
+  border-top-color: #000;
+}
+
+.tooltip.cc-instagram-tip .tooltip-inner {
+  background: radial-gradient(
+    circle farthest-corner at 28% 100%,
+    #fcd177 0%,
+    #f58529 25%,
+    #dd2a7b 50%,
+    #8134af 75%,
+    #515bd4 100%
+  );
+}
+.tooltip.cc-instagram-tip .arrow::before {
+  border-top-color: #dd2a7b;
+}
+
+.tooltip.cc-threads-tip .tooltip-inner {
+  background-color: #000;
+}
+.tooltip.cc-threads-tip .arrow::before {
+  border-top-color: #000;
+}
+
+// ---------------------------------------------------------------------------
+// SCROLLBAR
+// ---------------------------------------------------------------------------
+
+html {
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+}
+
+// ---------------------------------------------------------------------------
+// BUTTON INTERACTIONS
+// ---------------------------------------------------------------------------
+
+.btn,
+.btn-hero-secondary,
+.btn-round,
+.btn-icon,
+.cc-mode-btn,
+.footer .btn-link {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn {
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease !important;
+}
+
+.btn:focus {
+  outline: 0px !important;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--lh-accent);
+  outline-offset: 2px;
+}
+
+.btn:focus,
+.btn.focus,
+.btn-primary:focus,
+.btn-primary.focus {
+  box-shadow: 0 0 0 3px rgba(63, 84, 166, 0.32) !important;
+}
+
+.btn:active,
+.navbar .navbar-nav > a.btn:active {
+  transform: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important;
+}
+
+.btn.disabled,
+.btn:disabled {
+  transform: none !important;
+  box-shadow: none !important;
+  opacity: 0.5;
+}
+
+.btn-hero-secondary {
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease !important;
+}
+
+.btn-hero-secondary:active {
+  transform: none;
+}
+
+.btn-hero-secondary {
+  background-color: transparent !important;
+  border: 1px solid #a8a8a8 !important;
+  color: #a8a8a8 !important;
+}
+
+.btn-hero-secondary:hover,
+.btn-hero-secondary:focus {
+  background-color: rgba(168, 168, 168, 0.18) !important;
+  border-color: #d9d9d9 !important;
+  color: #d9d9d9 !important;
+  transform: none !important;
+}
+
+.btn.btn-round.btn-icon {
+  transition:
+    background 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease !important;
+}
+
+.btn.btn-round.btn-icon:active {
+  transform: none;
+}
+
+.footer .btn-link {
+  transition:
+    color 0.15s ease,
+    opacity 0.15s ease !important;
+}
+
+.footer .btn-link:active {
+  transform: none;
+}
+
+.cc-mode-btn {
+  min-width: 28px;
+  min-height: 28px;
+  transition:
+    opacity 0.2s var(--lh-ease-out),
+    transform 0.15s var(--lh-ease-out) !important;
+}
+
+.cc-mode-btn:active {
+  transform: none;
+}
+
+// ---------------------------------------------------------------------------
+// CARD INTERACTIONS
+// ---------------------------------------------------------------------------
+
+.card {
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+// ---------------------------------------------------------------------------
+// FORM INTERACTIONS
+// ---------------------------------------------------------------------------
+
+.form-control {
+  transition:
+    border-color 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.25s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.form-control:focus {
+  border-color: var(--lh-accent);
+  box-shadow: none;
+  color: var(--lh-ink);
+  outline: 0px !important;
+}
+
+.input-group .form-control {
+  border-left: 0px !important;
+}
+
+.input-group.input-group-focus .input-group-addon {
+  border-color: var(--lh-accent);
+  border-right: 0px !important;
+  color: var(--lh-accent);
+}
+
+.input-group.input-group-focus .input-group-addon svg {
+  color: var(--lh-accent);
+}
+
+.input-group-addon {
+  transition:
+    border-color 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.25s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.form-group .input-group-addon + .form-control,
+.form-group .input-group-addon ~ .form-control,
+.input-group .input-group-addon + .form-control,
+.input-group .input-group-addon ~ .form-control {
+  padding: 10px 19px 11px 16px;
+}
+
+.form-error {
+  color: #b3261e;
+  font-size: 0.8rem;
+  opacity: 0;
+  display: none;
+  margin-top: 4px;
+}
+
+.form-error.is-visible {
+  opacity: 1;
+  display: block;
+}
+
+// ---------------------------------------------------------------------------
+// NAVBAR INTERACTIONS
+// ---------------------------------------------------------------------------
+
+.navbar {
+  transition:
+    background-color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    padding 0.35s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.navbar .nav-link {
+  transition:
+    color 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.2s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+// ---------------------------------------------------------------------------
+// NAV PILLS INTERACTIONS
+// ---------------------------------------------------------------------------
+
+.nav-pills {
+  position: relative;
+  isolation: isolate;
+}
+
+.tab-glider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  background-color: var(--lh-accent, #2d4db6);
+  box-shadow: 0 4px 14px rgba(44, 44, 44, 0.18);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transform: translate3d(0, 0, 0);
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    width 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.25s ease;
+  will-change: transform, width;
+}
+
+.tab-glider.is-ready {
+  opacity: 1;
+}
+
+.nav-pills .nav-item {
+  position: relative;
+  z-index: 2;
+}
+
+.nav-pills .nav-item .nav-link {
+  position: relative;
+  z-index: 2;
+  transform: none !important;
+  background-color: rgba(222, 221, 216, 0.3) !important;
+  transition:
+    background-color 0.25s var(--lh-ease-out),
+    color 0.25s var(--lh-ease-out),
+    box-shadow 0.25s var(--lh-ease-out) !important;
+}
+
+.nav-pills.has-glider .nav-item .nav-link.active,
+.nav-pills.has-glider .nav-item .nav-link.active:hover,
+.nav-pills.has-glider .nav-item .nav-link.active:focus {
+  background-color: transparent !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+.nav-pills.has-glider .nav-item .nav-link:not(.active) {
+  background-color: rgba(222, 221, 216, 0.3) !important;
+  color: #b5b2ac !important;
+}
+
+// ---------------------------------------------------------------------------
+// REDUCED MOTION
+// ---------------------------------------------------------------------------
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after,
+  html body,
+  html body * {
+    animation: none !important;
+    transition: none !important;
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0s !important;
+    scroll-behavior: auto !important;
+  }
+}

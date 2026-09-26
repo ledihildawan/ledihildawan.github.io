@@ -1,0 +1,47 @@
+/* ==========================================================================
+   FONT AWESOME ICON BASE & GLYPH OVERRIDES
+   ========================================================================== */
+
+.fa {
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  font-size-adjust: none;
+  font-language-override: normal;
+  font-kerning: auto;
+  font-optical-sizing: auto;
+  font-feature-settings: normal;
+  font-variation-settings: normal;
+  font-weight: normal;
+  font-stretch: normal;
+  line-height: 1;
+  font-family: FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+.fa-github::before {
+  content: '';
+}
+.fa-linkedin::before {
+  content: '';
+}
+.fa-twitter::before {
+  content: '';
+}
+.fa-instagram::before {
+  content: '��';
+}
+.fa-envelope::before {
+  content: '';
+}
+.fa-laptop::before {
+  content: '';
+}
+.fa-picture-o::before {
+  content: '';
+}
+.fa-camera::before {
+  content: '';
+}
