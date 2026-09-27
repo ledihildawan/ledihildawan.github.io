@@ -15,7 +15,14 @@
   border-radius: 50% !important;
 }
 .cc-profile-image a::before {
-  display: none !important;
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  border-radius: 50% !important;
+  border: 3px solid var(--lh-accent-soft, #4f6fd2) !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  animation: cc-avatar-pulse 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite !important;
 }
 .cc-profile-image img {
   width: 170px !important;
@@ -24,6 +31,8 @@
   border-radius: 50% !important;
   border: 3px solid rgba(255, 255, 255, 0.85) !important;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.22) !important;
+  position: relative !important;
+  z-index: 1 !important;
   transition:
     border-color 0.25s ease,
     box-shadow 0.25s ease !important;
