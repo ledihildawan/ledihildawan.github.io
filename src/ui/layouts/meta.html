@@ -26,40 +26,21 @@
   content="Portofolio dan profil profesional Ledi Hildawan,Software Engineer."
 />
 <link rel="icon" href="favicon.ico" sizes="any" />
-<link rel="apple-touch-icon" href="/src/assets/images/apple-touch-icon.png" />
-<!-- Critical CSS:above-the-fold styles -->
-<link
-  rel="preload"
-  href="/src/assets/images/background-light-mobile.webp"
-  as="image"
-  type="image/webp"
-  media="(prefers-color-scheme:light) and (max-width:767px)"
-  fetchpriority="high"
-/>
-<link
-  rel="preload"
-  href="/src/assets/images/background-light.webp"
-  as="image"
-  type="image/webp"
-  media="(prefers-color-scheme:light) and (min-width:768px)"
-  fetchpriority="high"
-/>
-<link
-  rel="preload"
-  href="/src/assets/images/background-dark-mobile.webp"
-  as="image"
-  type="image/webp"
-  media="(prefers-color-scheme:dark) and (max-width:767px)"
-  fetchpriority="high"
-/>
-<link
-  rel="preload"
-  href="/src/assets/images/background-dark.webp"
-  as="image"
-  type="image/webp"
-  media="(prefers-color-scheme:dark) and (min-width:768px)"
-  fetchpriority="high"
-/>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<script>
+  // Set tema sebelum CSS dievaluasi - cegah FOUC dan mencegah fetch
+  // background light di dark mode (sebaliknya). Rule background di CSS
+  // sudah di-scope html:not(.dark-mode) / html.dark-mode, jadi begitu
+  // class terpasang di sini, browser hanya fetch background tema aktif.
+  // Sinkron dengan primitives/theme-toggle.js (key 'lh-theme').
+  (function () {
+    try {
+      var t = localStorage.getItem('lh-theme');
+      if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      if (t === 'dark') document.documentElement.classList.add('dark-mode');
+    } catch (e) {}
+  })();
+</script>
 <link rel="preload" href="/src/assets/images/profile.webp" as="image" />
 <link rel="preload" href="/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/poppins-600.woff2" as="font" type="font/woff2" crossorigin />

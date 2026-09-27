@@ -818,7 +818,9 @@ a.credit {
   margin-bottom: 15px !important;
 }
 @media (min-width: 768px) {
-  .page-header {
+  /* scope :not(.dark-mode): tanpa ini selector match sesaat sebelum JS
+     memasang class tema -> browser fetch 257KB background light di dark mode */
+  html:not(.dark-mode) .page-header {
     background-image: url('/src/assets/images/background-light.webp') !important;
   }
 }
