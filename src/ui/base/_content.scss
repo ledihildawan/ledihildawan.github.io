@@ -1,0 +1,21 @@
+/* ==========================================================================
+   CONTENT TYPOGRAPHY
+   ========================================================================== */
+
+.title {
+  font-weight: 700;
+}
+
+.title + .category {
+  margin-top: -25px;
+}
+
+.content-center .title + .category {
+  margin-top: 2px;
+}
+
+.category {
+  text-transform: uppercase;
+  font-weight: 700;
+  color: rgb(154, 154, 154);
+}

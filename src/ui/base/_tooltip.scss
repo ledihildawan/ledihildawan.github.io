@@ -1,0 +1,101 @@
+/* ==========================================================================
+   TOOLTIP COMPONENT
+   ========================================================================== */
+
+.tooltip {
+  position: absolute;
+  z-index: 1070;
+  display: block;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.45;
+  opacity: 0;
+}
+
+.tooltip.show {
+  opacity: 0.9;
+}
+
+.tooltip-inner {
+  max-width: 200px;
+  padding: 3px 8px;
+  color: #fff;
+  text-align: center;
+  background-color: #000;
+  border-radius: 0.25rem;
+}
+
+.tooltip .arrow {
+  position: absolute;
+  display: block;
+  width: 0.8rem;
+  height: 0.4rem;
+}
+
+.tooltip .arrow::before {
+  position: absolute;
+  content: '';
+  border-color: transparent;
+  border-style: solid;
+}
+
+.bs-tooltip-top {
+  padding: 0.4rem 0;
+}
+
+.bs-tooltip-top .arrow {
+  bottom: 0;
+}
+
+.bs-tooltip-top .arrow::before {
+  top: 0;
+  border-width: 0.4rem 0.4rem 0;
+  border-top-color: #000;
+}
+
+.tooltip.cc-github-tip .tooltip-inner {
+  background-color: #24292f;
+}
+
+.tooltip.cc-github-tip .arrow::before {
+  border-top-color: #24292f;
+}
+
+.tooltip.cc-linkedin-tip .tooltip-inner {
+  background-color: #0a66c2;
+}
+
+.tooltip.cc-linkedin-tip .arrow::before {
+  border-top-color: #0a66c2;
+}
+
+.tooltip.cc-twitter-tip .tooltip-inner {
+  background-color: #000;
+}
+
+.tooltip.cc-twitter-tip .arrow::before {
+  border-top-color: #000;
+}
+
+.tooltip.cc-instagram-tip .tooltip-inner {
+  background: radial-gradient(
+    circle farthest-corner at 28% 100%,
+    #fcd177 0%,
+    #f58529 25%,
+    #dd2a7b 50%,
+    #8134af 75%,
+    #515bd4 100%
+  );
+}
+
+.tooltip.cc-instagram-tip .arrow::before {
+  border-top-color: #dd2a7b;
+}
+
+.tooltip.cc-threads-tip .tooltip-inner {
+  background-color: #000;
+}
+
+.tooltip.cc-threads-tip .arrow::before {
+  border-top-color: #000;
+}

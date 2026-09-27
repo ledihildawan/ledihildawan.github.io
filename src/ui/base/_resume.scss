@@ -1,0 +1,22 @@
+/* ==========================================================================
+   EXPERIENCE & EDUCATION COMPONENT
+   ========================================================================== */
+
+.cc-experience-header {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  padding: 24px 0 !important;
+}
+
+.cc-experience-header p,
+.cc-education-header p {
+  color: var(--lh-ink) !important;
+}
+
+.cc-experience-header p {
+  margin: 0;
+  text-align: center;
+  line-height: 1.5;
+}

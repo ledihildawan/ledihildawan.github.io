@@ -1,0 +1,31 @@
+/* ==========================================================================
+   BASE ELEMENT RESETS
+   ========================================================================== */
+
+p {
+  margin-top: 0px;
+  margin-bottom: 1rem;
+}
+
+dl,
+ol,
+ul {
+  margin-top: 0px;
+  margin-bottom: 1rem;
+}
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+a {
+  color: rgb(0, 123, 255);
+  text-decoration: none;
+  background-color: transparent;
+}
+
+a:hover {
+  color: rgb(0, 86, 179);
+  text-decoration: underline;
+}

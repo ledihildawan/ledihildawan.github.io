@@ -1,0 +1,35 @@
+/* ==========================================================================
+   FOOTER BASE
+   ========================================================================== */
+
+.footer {
+  padding: 48px 0px;
+}
+
+.footer ul {
+  margin-bottom: 0px;
+  padding: 0px;
+  list-style: none;
+}
+
+.footer ul li {
+  display: inline-block;
+}
+
+.footer ul li a {
+  color: inherit;
+  padding: 0.5rem;
+  font-size: 0.8571em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.footer ul li a:hover {
+  text-decoration: none;
+}
+
+.footer::after {
+  display: table;
+  clear: both;
+  content: ' ';
+}

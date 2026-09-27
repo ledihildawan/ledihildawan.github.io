@@ -1,0 +1,16 @@
+/* ==========================================================================
+   MEDIA: IMAGES & SVG
+   ========================================================================== */
+
+figure {
+  margin: 0px 0px 1rem;
+}
+
+img {
+  vertical-align: middle;
+  border-style: none;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}

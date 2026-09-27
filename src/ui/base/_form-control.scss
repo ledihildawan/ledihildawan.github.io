@@ -1,0 +1,42 @@
+/* ==========================================================================
+   FORM CONTROL
+   ========================================================================== */
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.25;
+  color: var(--lh-ink, #2c2c2c);
+  background-color: var(--lh-surface, #ffffff);
+  background-image: none;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+  transition:
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+  color: rgb(73, 80, 87);
+  background-color: rgb(255, 255, 255);
+  border-color: rgb(128, 189, 255);
+  outline: 0px;
+}
+
+.form-control::placeholder {
+  color: rgb(134, 142, 150);
+  opacity: 1;
+}
+
+.form-control:disabled,
+.form-control[readonly] {
+  background-color: rgb(233, 236, 239);
+  opacity: 1;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}

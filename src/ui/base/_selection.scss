@@ -1,0 +1,13 @@
+/* ==========================================================================
+   TEXT SELECTION STYLES
+   ========================================================================== */
+
+::selection {
+  background: #3f54a6;
+  color: #ffffff;
+}
+
+.dark-mode ::selection {
+  background: var(--lh-accent);
+  color: #ffffff;
+}

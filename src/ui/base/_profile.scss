@@ -1,0 +1,22 @@
+/* ==========================================================================
+   PROFILE COMPONENT
+   ========================================================================== */
+
+.cc-profile-image {
+  width: 180px;
+  height: 180px;
+  margin: 0px auto;
+  border-radius: 50%;
+  display: block;
+}
+
+.cc-profile-image a {
+  display: block;
+}
+
+.cc-profile-image img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+}

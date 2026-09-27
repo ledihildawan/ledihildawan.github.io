@@ -1,27 +1,73 @@
 // ==========================================================================
 // MASTER SCSS ENTRY POINT (Vite 8 & Sass-Embedded Compiler)
 // ==========================================================================
+//
+// CASCADE ORDER (low → high priority):
+//   1. SCSS foundation (no CSS output)
+//   2. Tokens & fonts (no cascade dependency)
+//   3. Resets (element-level, lowest priority)
+//   4. Base typography & media
+//   5. Component bases  ← MUST be before grid.scss so grid overrides win
+//   6. Utilities
+//   7. grid.scss monolith (cascade-dependent framework overrides)
+//   8. Independent at-rules (print, animations, a11y)
+//   9. Primitives → Layouts → Patterns (highest priority)
+// ==========================================================================
 
-// 1. Foundation & Mixins (DRY Tokens)
+// 1. SCSS Foundation (DRY, no CSS output)
 @use './base/mixins' as *;
-@use './base/reset';
-@use './base/grid'; // Original monolith (foundation)
 
-// 2. Extracted Standalone Files
+// 2. Design Tokens & Fonts
+@use './base/tokens'; // :root CSS custom properties
 @use './base/fonts'; // @font-face Poppins
-@use './base/print'; // @media print
+
+// 3. Resets (element-level)
+@use './base/reset'; // scroll-lock
+@use './base/html-reset'; // html box-sizing, display block
+@use './base/form-resets'; // button, input, select, textarea resets
+@use './base/base-elements'; // p, dl, ol, ul, b, strong, a
+@use './base/headings'; // h1-h6, .h1-.h6
+
+// 4. Base Typography & Media
+@use './base/media'; // figure, img, svg
+@use './base/content'; // .title, .category
+@use './base/scrollbar'; // html scrollbar
+
+// 5. Component Bases (before grid.scss — grid overrides must win cascade)
+@use './base/page-header'; // .page-header, .content-center
+@use './base/profile'; // .cc-profile-image
+@use './base/social-icons'; // .cc-inst
+@use './base/resume'; // .cc-experience-header
+@use './base/portfolio-image'; // .cc-porfolio-image
+@use './base/profile-page'; // .profile-page
+@use './base/gallery'; // .gallery effects
+@use './base/tooltip'; // .tooltip
+@use './base/footer-base'; // .footer base
+@use './base/form-control'; // .form-control, .form-group
+@use './base/fa-icons'; // .fa icons
+
+// 6. Utilities (override component bases)
+@use './base/utilities-text'; // .text-white, .text-center, .text-muted
+@use './base/smooth-scroll'; // .smooth-scroll, .img-raised
+
+// 7. Monolith (cascade-dependent framework overrides)
+@use './base/grid';
+
+// 8. Independent At-Rules (no cascade conflict)
 @use './base/animations'; // @keyframes
 @use './base/reduced-motion'; // @media (prefers-reduced-motion)
+@use './base/selection'; // ::selection
+@use './base/print'; // @media print
 
-// 3. Primitives (Micro Components)
+// 9. Primitives (Micro Components)
 @use './primitives/buttons';
 @use './primitives/cards';
 @use './primitives/popover';
 
-// 4. Layouts Shell
+// 10. Layouts Shell
 @use './layouts/footer';
 
-// 5. Feature Patterns (Co-located Triad)
+// 11. Feature Patterns (Co-located Triad)
 @use './patterns/navbar/navbar';
 @use './patterns/hero/hero';
 @use './patterns/about/about';

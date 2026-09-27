@@ -1,0 +1,33 @@
+/* ==========================================================================
+   PAGE HEADER COMPONENT
+   ========================================================================== */
+
+.page-header {
+  background-color: rgb(233, 236, 239);
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header-img {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.page-header-small {
+  min-height: 50dvh !important;
+}
+
+.content-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  z-index: 3;
+}

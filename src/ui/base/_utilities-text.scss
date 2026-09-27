@@ -1,0 +1,19 @@
+/* ==========================================================================
+   TEXT UTILITIES
+   ========================================================================== */
+
+.text-white {
+  color: rgb(255, 255, 255) !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-uppercase {
+  text-transform: uppercase !important;
+}
+
+.text-muted {
+  color: var(--lh-ink-muted, rgb(89, 85, 80)) !important;
+}
