@@ -1240,24 +1240,7 @@ html body.sidebar-collapse .navbar .navbar-toggler.toggled .bar3 {
   }
 }
 // tab-glider extracted to ./tab-glider (loaded after grid)
-.tooltip {
-  position: absolute;
-  z-index: 1070;
-  display: block;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.45;
-  opacity: 0;
-  transform: translate(-50%, 0);
-  pointer-events: none;
-  transition:
-    opacity 0.2s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
-    transform 0.2s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
-}
-.tooltip.show {
-  opacity: 0.95 !important;
-  transform: translate(-50%, 0) !important;
-}
+// .tooltip rules live in ./tooltip (loaded before grid)
 .card {
   transition:
     transform 0.3s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),

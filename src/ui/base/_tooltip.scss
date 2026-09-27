@@ -1,5 +1,7 @@
 /* ==========================================================================
-   TOOLTIP COMPONENT
+   TOOLTIP COMPONENT — satu-satunya definisi struktural .tooltip.
+   (duplikat lama di grid.scss & popover.scss sudah dihapus;
+   nilai = gabungan efektif sebelum konsolidasi)
    ========================================================================== */
 
 .tooltip {
@@ -10,10 +12,23 @@
   font-weight: 400;
   line-height: 1.45;
   opacity: 0;
+  transform: translate(-50%, 0) !important;
+  pointer-events: none;
+  /* drop-shadow di parent: shadow dihitung dari bentuk gabungan box+arrow,
+     jadi tidak putus di sambungan arrow (border-trick tak punya box-shadow).
+     left/top ditransisi agar tooltip meluncur mulus saat retarget antar
+     ikon (pola glider); kemunculan pertama tak ikut animasi karena posisi
+     diset sebelum render */
+  filter: drop-shadow(0 4px 10px rgba(44, 44, 44, 0.25)) !important;
+  transition:
+    opacity 0.2s ease,
+    left 0.22s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    top 0.22s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
 }
 
 .tooltip.show {
-  opacity: 0.9;
+  opacity: 0.95 !important;
+  transform: translate(-50%, 0) !important;
 }
 
 .tooltip-inner {

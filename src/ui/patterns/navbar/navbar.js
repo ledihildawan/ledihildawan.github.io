@@ -1,4 +1,5 @@
 import { createGlider } from '../../primitives/glider.js';
+import { hasFinePointer, isDesktop } from '../../primitives/media.js';
 
 export function initHeader() {
   // 1. Mobile Menu Drawer
@@ -150,18 +151,13 @@ export function initHeader() {
     var links = Array.prototype.slice.call(navNav.querySelectorAll('.nav-link.smooth-scroll'));
     if (!links.length) return;
 
-    var hasFinePointer =
-      window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    var finePointer = hasFinePointer();
 
     // Buat elemen glider via komponen base
     var gliderComp = createGlider(navNav, 'nav-glider');
 
     var activeLink = null;
     var isHovering = false;
-
-    function isDesktop() {
-      return window.innerWidth >= 992;
-    }
 
     function updateGlider(targetEl) {
       if (!targetEl || !isDesktop()) {
@@ -193,7 +189,7 @@ export function initHeader() {
     }
 
     // Hover slide preview pada navbar desktop
-    if (hasFinePointer) {
+    if (finePointer) {
       links.forEach(function (link) {
         link.addEventListener('mouseenter', function () {
           if (!isDesktop()) return;

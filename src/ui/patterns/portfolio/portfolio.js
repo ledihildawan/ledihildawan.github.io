@@ -1,4 +1,5 @@
 import { createGlider } from '../../primitives/glider.js';
+import { hasFinePointer } from '../../primitives/media.js';
 
 export function initPortfolioTabs() {
   // ===== Filter + Sort portofolio (dengan Sliding Indicator Glider) =====
@@ -178,8 +179,7 @@ export function initPortfolioTabs() {
     // Effek hover: glider mengikuti chip yang di-hover, kembali ke chip
     // aktif saat mouse keluar dari SELURUH grup chip (pola navbar) —
     // menyusur gap antar chip tidak memicu lompatan
-    var canHover =
-      window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    var canHover = hasFinePointer();
     var isHovering = false;
     if (canHover && container) {
       for (var h = 0; h < chips.length; h++) {
