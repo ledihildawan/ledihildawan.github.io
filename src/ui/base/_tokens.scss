@@ -36,7 +36,7 @@
   --lh-radius-full: 9999px;
 
   // Easing
-  --lh-ease-out: var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1));
+  --lh-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --lh-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
   --lh-dur-fast: 0.15s;
   --lh-dur-med: 0.3s;
