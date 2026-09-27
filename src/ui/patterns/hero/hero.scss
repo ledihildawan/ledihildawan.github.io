@@ -17,29 +17,35 @@
 .cc-profile-image a::before {
   content: '' !important;
   position: absolute !important;
-  inset: 0 !important;
+  inset: -12px !important;
   border-radius: 50% !important;
-  border: 3px solid var(--lh-accent-soft, #4f6fd2) !important;
+  border: 10px solid rgba(63, 84, 166, 0.6) !important;
+  box-shadow:
+    0 0 28px rgba(63, 84, 166, 0.45),
+    inset 0 0 18px rgba(63, 84, 166, 0.25) !important;
   z-index: 0 !important;
   pointer-events: none !important;
-  animation: cc-avatar-pulse 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite !important;
+  /* opacity TANPA !important — opacity:0 !important akan mengalahkan keyframes pulsate */
+  opacity: 0;
+  animation: pulsate 1.6s ease-out infinite !important;
+}
+.cc-profile-image a:hover::before {
+  animation: none !important;
+  opacity: 0 !important;
 }
 .cc-profile-image img {
   width: 170px !important;
   height: 170px !important;
   object-fit: cover !important;
   border-radius: 50% !important;
-  border: 3px solid rgba(255, 255, 255, 0.85) !important;
+  border: none !important;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.22) !important;
   position: relative !important;
   z-index: 1 !important;
-  transition:
-    border-color 0.25s ease,
-    box-shadow 0.25s ease !important;
+  transition: box-shadow 0.25s ease !important;
   transform: none !important;
 }
 .cc-profile-image a:hover img {
-  border-color: #ffffff !important;
   box-shadow: 0 12px 36px rgba(0, 0, 0, 0.32) !important;
   transform: none !important;
 }
