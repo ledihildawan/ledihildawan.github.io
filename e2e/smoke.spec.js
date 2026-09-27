@@ -9,7 +9,6 @@ test.describe('Glider', () => {
     await expect(glider).toHaveClass(/is-ready/, { timeout: 5000 });
 
     const links = page.locator('.navbar .nav-link.smooth-scroll');
-    const first = links.first();
     const last = links.last();
     const before = await glider.evaluate((g) => g.getBoundingClientRect().left);
 
