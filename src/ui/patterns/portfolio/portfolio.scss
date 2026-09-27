@@ -148,11 +148,6 @@ to {
   gap: 8px !important;
 }
 
-.portfolio-sort .sort-label {
-  font-size: 0.8571em !important;
-  color: var(--lh-ink-muted, #595550) !important;
-}
-
 .portfolio-sort select {
   font-family: inherit !important;
   font-size: 0.8571em !important;
@@ -183,4 +178,22 @@ to {
 .dark-mode .portfolio-sort select {
   background-color: rgba(255, 255, 255, 0.06) !important;
   color: var(--lh-ink, #eceae4) !important;
+}
+
+/* 6. Featured badge — penanda karya unggulan (data-featured="true") */
+.portfolio-item[data-featured='true'] figure.cc-effect::after {
+  content: '★ Featured' !important;
+  position: absolute !important;
+  top: 14px !important;
+  right: 14px !important;
+  z-index: 3 !important;
+  background: var(--lh-accent, #2d4db6) !important;
+  color: #ffffff !important;
+  font-size: 0.7142em !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.5px !important;
+  text-transform: uppercase !important;
+  padding: 5px 12px !important;
+  border-radius: 999px !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28) !important;
 }

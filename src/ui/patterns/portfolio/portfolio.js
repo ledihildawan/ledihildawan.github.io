@@ -49,21 +49,27 @@ export function initPortfolioTabs() {
 
     function applySort() {
       if (!sortSelect) return;
-      var mode = sortSelect.value;
+      var mode = sortSelect.value || 'recent';
       var items = Array.prototype.slice.call(row.querySelectorAll('[data-title]'));
-      if (mode === 'default') {
-        items.sort(function (a, b) {
-          return +a.getAttribute('data-order') - +b.getAttribute('data-order');
-        });
-      } else {
-        var mult = mode === 'za' ? -1 : 1;
-        items.sort(function (a, b) {
-          return (
-            mult * a.getAttribute('data-title').localeCompare(b.getAttribute('data-title'), 'id')
-          );
-        });
+      var byOrderAsc = function (a, b) {
+        return +a.getAttribute('data-order') - +b.getAttribute('data-order');
+      };
+      var byOrderDesc = function (a, b) {
+        return +b.getAttribute('data-order') - +a.getAttribute('data-order');
+      };
+      var byMode = mode === 'popular' ? byOrderAsc : byOrderDesc;
+      // Pinned: item featured SELALU teratas (dalam mode sort apa pun),
+      // sisanya diurutkan mengikuti mode yang dipilih
+      var featured = [];
+      var rest = [];
+      for (var s = 0; s < items.length; s++) {
+        if (items[s].getAttribute('data-featured') === 'true') featured.push(items[s]);
+        else rest.push(items[s]);
       }
-      for (var k = 0; k < items.length; k++) row.appendChild(items[k]);
+      featured.sort(byMode);
+      rest.sort(byMode);
+      var ordered = featured.concat(rest);
+      for (var k = 0; k < ordered.length; k++) row.appendChild(ordered[k]);
     }
 
     for (var c = 0; c < chips.length; c++) {
