@@ -114,14 +114,6 @@ export function initPortfolioTabs() {
         if (selected) updateSortGlider(selected);
       }
 
-      // is-hovering HANYA jika opsi yang disentuh bukan opsi terpilih —
-      // accent selected hilang saat hover ke lain, kembali saat hover/leave
-      function setHoverPreview(option) {
-        var selected = menu.querySelector('.is-selected');
-        if (option && option !== selected) menu.classList.add('is-hovering');
-        else menu.classList.remove('is-hovering');
-      }
-
       function openMenu() {
         menu.hidden = false;
         trigger.setAttribute('aria-expanded', 'true');
@@ -168,11 +160,9 @@ export function initPortfolioTabs() {
           selectOption(option);
         });
         option.addEventListener('mouseenter', function () {
-          setHoverPreview(option);
           updateSortGlider(option);
         });
         option.addEventListener('focus', function () {
-          setHoverPreview(option);
           updateSortGlider(option);
         });
         option.addEventListener('keydown', function (e) {
@@ -191,7 +181,6 @@ export function initPortfolioTabs() {
       });
 
       menu.addEventListener('mouseleave', function () {
-        setHoverPreview(null);
         gliderToSelected();
       });
 

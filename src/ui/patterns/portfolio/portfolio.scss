@@ -277,23 +277,8 @@ to {
   outline-offset: -2px !important;
 }
 
-.sort-option.is-selected {
-  color: var(--lh-accent, #2d4db6) !important;
-}
-
-/* Saat hover ke opsi lain: style accent milik opsi terpilih DIHILANGKAN
-   (jadi normal seperti opsi lain) — glider abu sudah jadi indikatornya */
-.sort-menu.is-hovering .sort-option.is-selected {
-  color: var(--lh-ink, #2c2c2c) !important;
-}
-
-.dark-mode .sort-option.is-selected {
-  color: var(--lh-accent-soft, #4f6fd2) !important;
-}
-
-.dark-mode .sort-menu.is-hovering .sort-option.is-selected {
-  color: var(--lh-ink, #eceae4) !important;
-}
+/* opsi terpilih tampil sama seperti lainnya — indikatornya HANYA glider
+   (pill yang pulang ke opsi terpilih, pola navbar) */
 
 .dark-mode .sort-trigger {
   background-color: rgba(255, 255, 255, 0.06) !important;
