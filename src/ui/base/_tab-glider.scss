@@ -1,0 +1,62 @@
+/* ==========================================================================
+   TAB GLIDER (pill slider) — custom nav-pills enhancement
+   ========================================================================== */
+
+.nav-pills {
+  position: relative;
+  isolation: isolate;
+}
+.tab-glider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  background-color: var(--lh-accent, #2d4db6);
+  box-shadow: 0 4px 14px rgba(44, 44, 44, 0.18);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transform: translate3d(0, 0, 0);
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    width 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.25s ease;
+  will-change: transform, width;
+}
+.tab-glider.is-ready {
+  opacity: 1;
+}
+.nav-pills .nav-item {
+  position: relative;
+  z-index: 2;
+}
+.nav-pills .nav-item .nav-link {
+  position: relative;
+  z-index: 2;
+  transform: none !important;
+  background-color: rgba(222, 221, 216, 0.3) !important;
+  transition:
+    background-color 0.25s var(--lh-ease-out),
+    color 0.25s var(--lh-ease-out),
+    box-shadow 0.25s var(--lh-ease-out) !important;
+}
+.nav-pills.has-glider .nav-item .nav-link.active,
+.nav-pills.has-glider .nav-item .nav-link.active:hover,
+.nav-pills.has-glider .nav-item .nav-link.active:focus {
+  background-color: transparent !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+.nav-pills.has-glider .nav-item .nav-link:not(.active) {
+  background-color: rgba(222, 221, 216, 0.3) !important;
+  color: #b5b2ac !important;
+}
+.tab-content > .tab-pane {
+  display: none;
+}
+.tab-content > .tab-pane.active,
+.tab-content > .active {
+  display: block !important;
+}

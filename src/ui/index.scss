@@ -59,7 +59,13 @@
 //     overrides .btn/.navbar skin defined in grid, overridden by dark-mode etc.)
 @use './base/vendor';
 
-// 7c. Spacing & position utilities (MUST load after vendor:
+// 7c. Dark mode theme (.dark-mode scoped — after :root tokens so dark vars win)
+@use './base/dark-mode';
+
+// 7c-2. Tab glider (pill slider — overrides nav-pills skins in grid)
+@use './base/tab-glider';
+
+// 7d. Spacing & position utilities (MUST load after vendor:
 //     .fixed-top position:fixed must beat vendor .navbar position:relative)
 @use './base/spacing'; // .fixed-top, .mt-*, .mb-*, .pb-*, .mr-auto
 
