@@ -55,8 +55,9 @@
 // 7. Monolith (cascade-dependent framework overrides)
 @use './base/framework-overrides';
 
-// 7b. Vendor framework (MUST load after grid — cascade position significant:
-//     overrides .btn/.navbar skin defined in grid, overridden by dark-mode etc.)
+// 7b. Vendor framework (MUST load after framework-overrides — cascade
+//     position significant: overrides .btn/.navbar skin defined there,
+//     overridden by dark-mode etc.)
 @use './base/vendor';
 
 // 7c. Dark mode theme (.dark-mode scoped — after :root tokens so dark vars win)
@@ -66,8 +67,7 @@
 //     .fixed-top position:fixed must beat vendor .navbar position:relative)
 @use './base/spacing'; // .fixed-top, .mt-*, .mb-*, .pb-*, .mr-auto
 
-// 8. Independent At-Rules (override tertinggi — HARUS setelah patterns:
-//    reduced-motion harus bisa mematikan animasi !important milik patterns)
+// 8. Keyframes (tidak sensitif cascade; pemakainya di patterns di bawah)
 @use './base/animations'; // @keyframes
 
 // 9. Primitives (Micro Components)
