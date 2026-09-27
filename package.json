@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write \"src/**/*.{html,css,scss,js}\" \"index.html\" \"vite.config.js\" \"eslint.config.js\"",
-    "prepare": "lefthook install"
+    "prepare": "lefthook install",
+    "test:e2e": "playwright test"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

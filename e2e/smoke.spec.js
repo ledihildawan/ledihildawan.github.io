@@ -1,0 +1,147 @@
+import { test, expect } from '@playwright/test';
+
+// Smoke test perilaku kunci yang sudah dipoles — mencegah regresi.
+
+test.describe('Glider', () => {
+  test('navbar: glider siap dan meluncur mengikuti hover', async ({ page }) => {
+    await page.goto('/');
+    const glider = page.locator('.nav-glider');
+    await expect(glider).toHaveClass(/is-ready/, { timeout: 5000 });
+
+    const links = page.locator('.navbar .nav-link.smooth-scroll');
+    const first = links.first();
+    const last = links.last();
+    const before = await glider.evaluate((g) => g.getBoundingClientRect().left);
+
+    await last.hover();
+    await page.waitForTimeout(500);
+    const after = await glider.evaluate((g) => g.getBoundingClientRect().left);
+    expect(Math.abs(after - before)).toBeGreaterThan(50); // pindah posisi nyata
+
+    // pulang ke aktif saat mouse keluar navbar
+    await page.mouse.move(10, 500);
+    await page.waitForTimeout(500);
+    const settled = await glider.evaluate((g) => g.getBoundingClientRect().left);
+    expect(Math.abs(settled - before)).toBeLessThan(5);
+  });
+
+  test('chip kategori: tab-glider aktif dan slide antar chip', async ({ page }) => {
+    await page.goto('/');
+    const chips = page.locator('.filter-chip');
+    await chips.first().scrollIntoViewIfNeeded();
+    const glider = page.locator('.tab-glider');
+    await expect(glider).toHaveClass(/is-ready/, { timeout: 5000 });
+
+    const before = await glider.evaluate((g) => g.getBoundingClientRect().left);
+    await chips.nth(1).hover();
+    await page.waitForTimeout(500);
+    const after = await glider.evaluate((g) => g.getBoundingClientRect().left);
+    expect(Math.abs(after - before)).toBeGreaterThan(20);
+  });
+});
+
+test.describe('Tooltip sosial', () => {
+  test('muncul saat hover, retarget antar ikon, hilang saat keluar', async ({ page }) => {
+    await page.goto('/');
+    const gh = page.locator('.button-container .cc-github');
+    const tw = page.locator('.button-container .cc-twitter');
+    await gh.scrollIntoViewIfNeeded();
+
+    await gh.hover();
+    await expect(page.locator('.tooltip.show')).toHaveText('Ikuti saya di GitHub');
+
+    // retarget lintas gap: tetap 1 elemen, teks berganti
+    await tw.hover();
+    const tips = await page.locator('.tooltip').count();
+    expect(tips).toBe(1);
+    await expect(page.locator('.tooltip.show')).toHaveText('Ikuti saya di X');
+
+    // keluar -> hilang
+    await page.mouse.move(10, 500);
+    await page.waitForTimeout(600);
+    await expect(page.locator('.tooltip')).toHaveCount(0);
+  });
+});
+
+test.describe('Dropdown sort', () => {
+  test('pilih Popular: label berubah, buka ulang instan (glider langsung di posisi)', async ({
+    page,
+  }) => {
+    await page.goto('/');
+    const dropdown = page.locator('[data-sort-dropdown]');
+    await dropdown.scrollIntoViewIfNeeded();
+
+    await dropdown.locator('.sort-trigger').click();
+    await expect(dropdown.locator('.sort-menu')).toBeVisible();
+
+    await dropdown.locator(".sort-option[data-value='popular']").click();
+    await expect(page.locator('[data-sort-label]')).toHaveText('Popular shots');
+    await expect(dropdown.locator('.sort-menu')).toBeHidden();
+
+    // buka ulang: glider harus sudah di posisi Popular sejak frame pertama
+    await dropdown.locator('.sort-trigger').click();
+    await expect(dropdown.locator('.sort-menu')).toBeVisible();
+    const opt = dropdown.locator(".sort-option[data-value='popular']");
+    const glider = dropdown.locator('.sort-glider');
+    const optTop = await opt.evaluate((o) => o.getBoundingClientRect().top);
+    const gliderTop = await glider.evaluate((g) => g.getBoundingClientRect().top);
+    expect(Math.abs(gliderTop - optTop)).toBeLessThan(2);
+
+    // menu tidak memutar ulang animasi masuk
+    const anim = await dropdown
+      .locator('.sort-menu')
+      .evaluate((m) => getComputedStyle(m).animationName);
+    expect(anim).toBe('none');
+  });
+
+  test('Escape menutup menu', async ({ page }) => {
+    await page.goto('/');
+    const dropdown = page.locator('[data-sort-dropdown]');
+    await dropdown.scrollIntoViewIfNeeded();
+    await dropdown.locator('.sort-trigger').click();
+    await expect(dropdown.locator('.sort-menu')).toBeVisible();
+    await page.keyboard.press('Escape');
+    await expect(dropdown.locator('.sort-menu')).toBeHidden();
+  });
+});
+
+test.describe('Popover preview proyek', () => {
+  test('terbuka saat hover, tertutup saat keluar', async ({ page }) => {
+    await page.goto('/');
+    const chip = page
+      .locator('.cc-project-avatar[data-project-title], .cc-shipped-chip[data-project-title]')
+      .first();
+    await chip.scrollIntoViewIfNeeded();
+    await chip.hover();
+    await expect(page.locator('.cc-project-popover.is-visible')).toBeVisible({ timeout: 5000 });
+    await page.mouse.move(10, 100);
+    await page.waitForTimeout(500);
+    await expect(page.locator('.cc-project-popover.is-visible')).toHaveCount(0);
+  });
+});
+
+test.describe('Shadow snap tombol sosial', () => {
+  test('hover cepat antar tombol: tidak ada dua glow bersamaan', async ({ page }) => {
+    await page.goto('/');
+    const gh = page.locator('.button-container .cc-github');
+    const tw = page.locator('.button-container .cc-twitter');
+    await gh.scrollIntoViewIfNeeded();
+    await gh.hover();
+    await page.waitForTimeout(400); // pastikan glow gh stabil
+
+    await tw.hover();
+    // segera setelah pindah: gh harus snap ke rest (bukan masih glow)
+    const ghShadow = await gh.evaluate((el) => getComputedStyle(el).boxShadow);
+    expect(ghShadow).not.toContain('0px 4px 20px');
+  });
+});
+
+test.describe('Bebas error console', () => {
+  test('tidak ada page error', async ({ page }) => {
+    const errors = [];
+    page.on('pageerror', (e) => errors.push(e));
+    await page.goto('/');
+    await page.waitForTimeout(1000);
+    expect(errors).toEqual([]);
+  });
+});
