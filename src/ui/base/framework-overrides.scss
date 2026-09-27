@@ -127,7 +127,7 @@ img {
   outline: 0px !important;
 }
 // form-control rules extracted to ./form-control
-// vendor framework (btn, navs, navbar, card, collapse, input-group) -> ./vendor (loaded AFTER grid.scss)
+// vendor framework (btn, navs, navbar, card, collapse, input-group) -> ./vendor (loaded AFTER this file)
 .form-control {
   background-color: transparent;
   border: 1px solid rgb(227, 227, 227);

@@ -7,9 +7,9 @@
 //   2. Tokens & fonts (no cascade dependency)
 //   3. Resets (element-level, lowest priority)
 //   4. Base typography & media
-//   5. Component bases  ← MUST be before grid.scss so grid overrides win
+//   5. Component bases  <- MUST be before framework-overrides so overrides win
 //   6. Utilities
-//   7. grid.scss monolith (cascade-dependent framework overrides)
+//   7. framework-overrides.scss monolith (cascade-dependent framework overrides)
 //   8. Independent at-rules (print, animations, a11y)
 //   9. Primitives → Layouts → Patterns (highest priority)
 // ==========================================================================
@@ -34,7 +34,7 @@
 @use './base/content'; // .title, .category
 @use './base/scrollbar'; // html scrollbar
 
-// 5. Component Bases (before grid.scss — grid overrides must win cascade)
+// 5. Component Bases (before framework-overrides — overrides must win cascade)
 @use './base/page-header'; // .page-header, .content-center
 @use './base/profile'; // .cc-profile-image
 @use './base/social-icons'; // .cc-inst
@@ -53,7 +53,7 @@
 @use './base/smooth-scroll'; // .smooth-scroll, .img-raised
 
 // 7. Monolith (cascade-dependent framework overrides)
-@use './base/grid';
+@use './base/framework-overrides';
 
 // 7b. Vendor framework (MUST load after grid — cascade position significant:
 //     overrides .btn/.navbar skin defined in grid, overridden by dark-mode etc.)
