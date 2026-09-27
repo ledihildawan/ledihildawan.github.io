@@ -17,8 +17,8 @@
   transform: translate(-50%, 0);
   pointer-events: none;
   transition:
-    opacity 0.2s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.2s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    opacity 0.2s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    transform 0.2s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
 }
 
 .tooltip.show {
@@ -230,8 +230,8 @@ html {
 
 .card {
   transition:
-    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    transform 0.3s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    box-shadow 0.3s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1));
 }
 
 // ---------------------------------------------------------------------------
@@ -240,10 +240,10 @@ html {
 
 .form-control {
   transition:
-    border-color 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-    background-color 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-    color 0.25s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    border-color 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    box-shadow 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    background-color 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    color 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
 }
 
 .form-control:focus {
@@ -269,8 +269,8 @@ html {
 
 .input-group-addon {
   transition:
-    border-color 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-    color 0.25s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    border-color 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    color 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
 }
 
 .form-group .input-group-addon + .form-control,
@@ -299,15 +299,15 @@ html {
 
 .navbar {
   transition:
-    background-color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    padding 0.35s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    background-color 0.35s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    box-shadow 0.35s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    padding 0.35s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
 }
 
 .navbar .nav-link {
   transition:
-    color 0.2s cubic-bezier(0.22, 1, 0.36, 1),
-    background-color 0.2s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    color 0.2s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    background-color 0.2s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
 }
 
 // ---------------------------------------------------------------------------
@@ -320,27 +320,13 @@ html {
 }
 
 .tab-glider {
-  position: absolute;
-  top: 0;
-  left: 0;
+  /* struktur (position/transition/opacity) dari primitives/_glider.scss */
   width: 60px;
   height: 60px;
   border-radius: 30px;
-  background-color: rgb(154, 154, 154);
+  background-color: var(--lh-base, #f0efeb);
   box-shadow: 0 4px 14px rgba(44, 44, 44, 0.18);
-  pointer-events: none;
   z-index: 1;
-  opacity: 0;
-  transform: translate3d(0, 0, 0);
-  transition:
-    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    width 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.25s ease;
-  will-change: transform, width;
-}
-
-.tab-glider.is-ready {
-  opacity: 1;
 }
 
 .nav-pills .nav-item {

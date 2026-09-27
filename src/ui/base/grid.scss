@@ -936,8 +936,8 @@ html body.sidebar-collapse #bodyClick {
   background-color: rgba(10, 12, 18, 0.6) !important;
   backdrop-filter: blur(3px) !important;
   -webkit-backdrop-filter: blur(3px) !important;
-  animation: cc-scrim-in 0.3s cubic-bezier(0.22, 1, 0.36, 1) backwards !important;
-  transition: opacity 0.25s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  animation: cc-scrim-in 0.3s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) backwards !important;
+  transition: opacity 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
 }
 html body.sidebar-collapse #bodyClick.is-closing {
   opacity: 0 !important;
@@ -1043,7 +1043,7 @@ html body.sidebar-collapse .navbar .navbar-toggler.toggled .bar3 {
     box-shadow: -6px 0 28px rgba(0, 0, 0, 0.45) !important;
     border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
     padding: 70px 10px 30px 10px !important;
-    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    transition: transform 0.35s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
   }
   html body.sidebar-collapse .navbar-collapse::before {
     display: none !important;
@@ -1102,8 +1102,8 @@ html body.sidebar-collapse .navbar .navbar-toggler.toggled .bar3 {
     opacity: 0;
     transform: translate3d(0, 0, 0);
     transition:
-      transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
-      width 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.32s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+      width 0.32s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
       opacity 0.2s ease;
     will-change: transform, width;
   }
@@ -1119,7 +1119,7 @@ html body.sidebar-collapse .navbar .navbar-toggler.toggled .bar3 {
     border-radius: 18px;
     background-color: transparent !important;
     transition:
-      color 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+      color 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
       opacity 0.25s ease !important;
   }
   .navbar .navbar-nav .nav-item.active .nav-link,
@@ -1251,8 +1251,8 @@ html body.sidebar-collapse .navbar .navbar-toggler.toggled .bar3 {
   transform: translate(-50%, 0);
   pointer-events: none;
   transition:
-    opacity 0.2s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.2s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    opacity 0.2s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    transform 0.2s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
 }
 .tooltip.show {
   opacity: 0.95 !important;
@@ -1260,31 +1260,31 @@ html body.sidebar-collapse .navbar .navbar-toggler.toggled .bar3 {
 }
 .card {
   transition:
-    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    transform 0.3s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    box-shadow 0.3s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1));
 }
 .form-control {
   transition:
-    border-color 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-    background-color 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-    color 0.25s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    border-color 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    box-shadow 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    background-color 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    color 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
 }
 .input-group-addon {
   transition:
-    border-color 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-    color 0.25s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    border-color 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    color 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
 }
 // .form-error extracted to ./form-error
 .navbar {
   transition:
-    background-color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    padding 0.35s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    background-color 0.35s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    box-shadow 0.35s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    padding 0.35s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
 }
 .navbar .nav-link {
   transition:
-    color 0.2s cubic-bezier(0.22, 1, 0.36, 1),
-    background-color 0.2s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    color 0.2s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    background-color 0.2s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
 }
 // @media (prefers-reduced-motion) extracted to ./reduced-motion

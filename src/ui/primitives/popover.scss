@@ -319,10 +319,18 @@
   }
 }
 
-/* Tooltip: Crisp pure opacity without scale */
+/* Tooltip: fade opacity + slide antar target (pola glider navbar/chips).
+   left/top ditransisi agar tooltip meluncur mulus saat retarget antar ikon;
+   kemunculan pertama tidak ikut animasi karena posisi diset sebelum render */
 .tooltip {
   transform: translate(-50%, 0) !important;
-  transition: opacity 0.2s ease !important;
+  /* drop-shadow di parent: shadow dihitung dari bentuk gabungan box+arrow,
+     jadi tidak putus di sambungan arrow (border-trick tak punya box-shadow) */
+  filter: drop-shadow(0 4px 10px rgba(44, 44, 44, 0.25)) !important;
+  transition:
+    opacity 0.2s ease,
+    left 0.22s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    top 0.22s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
 }
 .tooltip.show {
   opacity: 0.95 !important;

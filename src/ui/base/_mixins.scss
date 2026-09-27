@@ -81,3 +81,16 @@ $transition-smooth: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     @content;
   }
 }
+
+// Social brand button (hero): gradient ::before + hover border/shadow khas brand.
+// Pemakai: patterns/hero/hero.scss (cc-instagram, cc-linkedin, ...)
+@mixin brand-social-btn($brand, $gradient, $border, $shadow) {
+  .btn-icon.cc-#{$brand}::before {
+    background: $gradient !important;
+  }
+  .btn-icon.cc-#{$brand}:hover,
+  .btn-icon.cc-#{$brand}:focus-visible {
+    border-color: $border !important;
+    box-shadow: $shadow !important;
+  }
+}

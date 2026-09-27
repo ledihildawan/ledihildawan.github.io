@@ -1,0 +1,28 @@
+/* ==========================================================================
+   Glider — struktur bersama indikator pill geser (nav-glider, tab-glider,
+   sort-glider). Digerakkan oleh primitives/glider.js via transform inline.
+   Skin (warna, radius, blur, shadow) tetap milik masing-masing pattern.
+   ========================================================================== */
+
+.nav-glider,
+.tab-glider,
+.sort-glider {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  opacity: 0;
+  will-change: transform, width, height;
+  transition:
+    transform var(--lh-dur-med) var(--lh-ease-out),
+    width var(--lh-dur-med) var(--lh-ease-out),
+    height var(--lh-dur-med) var(--lh-ease-out),
+    opacity var(--lh-dur-fast) ease;
+}
+
+.nav-glider.is-ready,
+.tab-glider.is-ready,
+.sort-glider.is-ready {
+  opacity: 1;
+}

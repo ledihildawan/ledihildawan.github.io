@@ -134,14 +134,13 @@ to {
   width: auto !important;
   height: auto !important;
   min-width: 0 !important;
-  /* gaya menu item navbar: uppercase, tracking lebar, background transparan */
+  /* teks normal, bukan gaya menu navbar */
   background: transparent !important;
   border: none !important;
   border-radius: 999px !important;
-  text-transform: uppercase !important;
-  font-size: 0.7142em !important;
-  font-weight: 400 !important;
-  letter-spacing: 1px !important;
+  font-size: 0.8571em !important;
+  font-weight: 600 !important;
+  letter-spacing: normal !important;
   line-height: 1.625rem !important;
   padding: 0.5rem 0.7rem !important;
   color: var(--lh-ink-muted, #595550) !important;
@@ -156,11 +155,11 @@ to {
 }
 
 .filter-chip.active {
-  color: #ffffff !important;
+  color: var(--lh-ink, #2c2c2c) !important;
 }
 
 /* Saat hover-preview ke chip lain: chip aktif tampil normal (muted)
-   seperti chip lainnya — pill indigo murni milik chip yang di-hover */
+   seperti chip lainnya — pill ivory murni milik chip yang di-hover */
 .filter-chips.is-hovering .filter-chip.active {
   color: var(--lh-ink-muted, #595550) !important;
 }
@@ -220,7 +219,7 @@ to {
   width: 18px !important;
   height: 18px !important;
   color: var(--lh-ink-muted, #595550) !important;
-  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  transition: transform 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
 }
 
 .sort-dropdown.is-open .sort-chevron {
@@ -241,7 +240,7 @@ to {
   border-radius: 12px !important;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.14) !important;
   overflow: hidden !important;
-  animation: sort-menu-in 0.18s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  animation: sort-menu-in 0.18s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
 }
 
 @keyframes sort-menu-in {
@@ -303,22 +302,12 @@ to {
   outline-color: var(--lh-ink, #eceae4) !important;
 }
 
-/* glider vertikal: slide mengikuti hover, pulang ke opsi terpilih */
+/* glider vertikal: slide mengikuti hover, pulang ke opsi terpilih.
+   struktur (position/transition/opacity) dari primitives/_glider.scss —
+   left/top/width/height diset inline oleh JS mengikuti geometri item */
 .sort-glider {
-  position: absolute !important;
-  /* left/top/width/height diset inline oleh JS mengikuti geometri item */
   border-radius: 8px !important;
   background-color: rgb(154, 154, 154) !important;
-  pointer-events: none !important;
-  opacity: 0 !important;
-  transition:
-    top 0.22s cubic-bezier(0.22, 1, 0.36, 1),
-    height 0.22s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.15s ease !important;
-}
-
-.sort-menu.is-glider-ready .sort-glider {
-  opacity: 1 !important;
 }
 
 /* Dark mode adjustments (urutan penting: base -> hover -> active) */
@@ -336,7 +325,7 @@ to {
 }
 
 .dark-mode .filter-chip.active {
-  color: #ffffff !important;
+  color: var(--lh-ink, #eceae4) !important;
 }
 
 .dark-mode .filter-chips.is-hovering .filter-chip.active {

@@ -1,3 +1,5 @@
+import { createGlider } from '../../primitives/glider.js';
+
 export function initPortfolioTabs() {
   // ===== Filter + Sort portofolio (dengan Sliding Indicator Glider) =====
   // Chip filter per kategori (tanpa "Semua") + urutkan berdasarkan judul.
@@ -10,26 +12,11 @@ export function initPortfolioTabs() {
     var container = chips[0].closest('.nav-pills');
     var currentSort = 'recent';
 
-    // Buat elemen glider background
-    var glider = null;
-    if (container) {
-      glider = document.createElement('span');
-      glider.className = 'tab-glider';
-      container.appendChild(glider);
-      container.classList.add('has-glider');
-    }
+    // Buat elemen glider background via komponen base
+    var gliderComp = container ? createGlider(container, 'tab-glider') : null;
 
     function updateGlider(targetEl) {
-      if (!glider || !targetEl) return;
-      glider.style.transform =
-        'translate3d(' + targetEl.offsetLeft + 'px, ' + targetEl.offsetTop + 'px, 0)';
-      glider.style.width = targetEl.offsetWidth + 'px';
-      glider.style.height = targetEl.offsetHeight + 'px';
-      if (!glider.classList.contains('is-ready')) {
-        requestAnimationFrame(function () {
-          glider.classList.add('is-ready');
-        });
-      }
+      if (gliderComp && targetEl) gliderComp.move(targetEl);
     }
 
     var activeChip = chips[0];
@@ -90,23 +77,15 @@ export function initPortfolioTabs() {
       var options = Array.prototype.slice.call(dropdown.querySelectorAll('.sort-option'));
 
       // glider vertikal: slide mengikuti hover, pulang ke opsi terpilih
-      var sortGlider = null;
+      var sortGliderComp = null;
       if (menu) {
-        sortGlider = document.createElement('span');
-        sortGlider.className = 'sort-glider';
-        menu.insertBefore(sortGlider, menu.firstChild);
+        sortGliderComp = createGlider(menu, 'sort-glider');
       }
 
       function updateSortGlider(option) {
-        if (!sortGlider || !option) return;
-        // geometri persis mengikuti item: delta rect terhadap menu
-        var m = menu.getBoundingClientRect();
-        var o = option.getBoundingClientRect();
-        sortGlider.style.top = Math.round(o.top - m.top - menu.clientTop) + 'px';
-        sortGlider.style.left = Math.round(o.left - m.left - menu.clientLeft) + 'px';
-        sortGlider.style.width = Math.round(o.width) + 'px';
-        sortGlider.style.height = Math.round(o.height) + 'px';
-        menu.classList.add('is-glider-ready');
+        // menu position:absolute → offsetParent opsi adalah menu,
+        // offset rect = geometri persis mengikuti item
+        if (sortGliderComp && option) sortGliderComp.move(option);
       }
 
       function gliderToSelected() {

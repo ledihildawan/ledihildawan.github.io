@@ -555,8 +555,8 @@ html body.sidebar-collapse #bodyClick {
   background-color: rgba(10, 12, 18, 0.6) !important;
   backdrop-filter: blur(3px) !important;
   -webkit-backdrop-filter: blur(3px) !important;
-  animation: cc-scrim-in 0.3s cubic-bezier(0.22, 1, 0.36, 1) backwards !important;
-  transition: opacity 0.25s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  animation: cc-scrim-in 0.3s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) backwards !important;
+  transition: opacity 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
 }
 
 html body.sidebar-collapse #bodyClick.is-closing {

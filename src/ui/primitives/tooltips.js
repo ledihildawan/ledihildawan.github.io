@@ -1,58 +1,53 @@
+import { createFloatingLayer } from './floating.js';
+
 export function initTooltips() {
   // ===== Tooltips vanilla (pengganti Bootstrap tooltip + Popper) =====
   // Render di <body> agar tidak terpotong overflow:hidden hero; warna brand
   // via class cc-<net>-tip. Placement: top. Animasi smooth via CSS fade + transform.
   (function () {
-    var tipEl = null;
-    var hideTimer = null;
-    function hide() {
-      if (hideTimer) {
-        clearTimeout(hideTimer);
-        hideTimer = null;
-      }
-      if (tipEl) {
-        var current = tipEl;
-        current.classList.remove('show');
-        hideTimer = setTimeout(function () {
-          if (current && current.parentNode) {
-            current.parentNode.removeChild(current);
-          }
-          if (tipEl === current) tipEl = null;
-        }, 200);
-      }
-    }
-    function show(el) {
-      if (hideTimer) {
-        clearTimeout(hideTimer);
-        hideTimer = null;
-      }
-      if (tipEl && tipEl.parentNode) {
-        tipEl.parentNode.removeChild(tipEl);
-        tipEl = null;
-      }
-      var title = el.getAttribute('data-tooltip-title');
-      if (!title) return;
-      var net = (el.className.match(/cc-(github|linkedin|twitter|instagram|threads)/) || [])[1];
-      tipEl = document.createElement('div');
-      tipEl.className = 'tooltip bs-tooltip-top' + (net ? ' cc-' + net + '-tip' : '');
-      tipEl.setAttribute('role', 'tooltip');
+    var TIP_FADE_MS = 200; // sinkron dengan transition opacity .tooltip di CSS
+    var TIP_GAP = 4; // jarak tooltip di atas ikon
+    var HIDE_GRACE_MS = 120; // grace period lintas gap antar ikon
+
+    var NETS = ['github', 'linkedin', 'twitter', 'instagram', 'threads'];
+
+    function buildTip() {
+      var tip = document.createElement('div');
+      tip.className = 'tooltip bs-tooltip-top';
+      tip.setAttribute('role', 'tooltip');
       var arrow = document.createElement('div');
       arrow.className = 'arrow';
       arrow.style.left = '50%';
       arrow.style.transform = 'translateX(-50%)';
       var inner = document.createElement('div');
       inner.className = 'tooltip-inner';
-      inner.textContent = title;
-      tipEl.appendChild(arrow);
-      tipEl.appendChild(inner);
-      document.body.appendChild(tipEl);
-      var r = el.getBoundingClientRect();
-      tipEl.style.top = r.top + window.pageYOffset - tipEl.offsetHeight - 4 + 'px';
-      tipEl.style.left = r.left + window.scrollX + r.width / 2 + 'px';
-      requestAnimationFrame(function () {
-        if (tipEl) tipEl.classList.add('show');
-      });
+      tip.appendChild(arrow);
+      tip.appendChild(inner);
+      return tip;
     }
+
+    var layer = createFloatingLayer({
+      build: buildTip,
+      removeAfterHide: TIP_FADE_MS,
+      visibleClass: 'show',
+      onScroll: 'hide',
+      position: function (target, tip) {
+        var title = target.getAttribute('data-tooltip-title');
+        var net = (target.className.match(/cc-(github|linkedin|twitter|instagram|threads)/) ||
+          [])[1];
+        // retarget di tempat: ganti warna brand + teks tanpa buang elemen —
+        // tooltip "menempel" mulus antar ikon (pola glider navbar/chips)
+        NETS.forEach(function (n) {
+          tip.classList.remove('cc-' + n + '-tip');
+        });
+        if (net) tip.classList.add('cc-' + net + '-tip');
+        tip.querySelector('.tooltip-inner').textContent = title || '';
+        var r = target.getBoundingClientRect();
+        tip.style.top = r.top + window.pageYOffset - tip.offsetHeight - TIP_GAP + 'px';
+        tip.style.left = r.left + window.scrollX + r.width / 2 + 'px';
+      },
+    });
+
     document
       .querySelectorAll('[data-toggle="tooltip"], [rel="tooltip"], [data-tooltip-title], [title]')
       .forEach(function (el) {
@@ -64,16 +59,19 @@ export function initTooltips() {
         el.setAttribute('data-tooltip-title', title);
         el.removeAttribute('title');
         el.addEventListener('mouseenter', function () {
-          show(el);
+          layer.show(el);
         });
-        el.addEventListener('mouseleave', hide);
+        // grace period: melintasi gap antar ikon tidak mematikan tooltip
+        el.addEventListener('mouseleave', function () {
+          layer.scheduleHide(HIDE_GRACE_MS);
+        });
         el.addEventListener('focus', function () {
-          show(el);
+          layer.show(el);
         });
-        el.addEventListener('blur', hide);
+        el.addEventListener('blur', function () {
+          layer.hide();
+        });
       });
-    window.addEventListener('scroll', hide, { passive: true });
-    window.addEventListener('resize', hide);
   })();
 
   // Validasi email form kontak: sintaks ketat + blocklist domain spam/disposable

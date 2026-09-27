@@ -1,3 +1,5 @@
+import { createFloatingLayer } from './floating.js';
+
 export function initPopovers() {
   // ===== Popover Preview Kontribusi Proyek (Experience Rich Hover & Tap) =====
   (function () {
@@ -58,12 +60,31 @@ export function initPopovers() {
     var accessBadge = popover.querySelector('.cc-popover-restricted-badge');
     var accessText = popover.querySelector('.cc-popover-access-text');
 
-    var currentChip = null;
     var showTimer = null;
-    var hideTimer = null;
 
-    function updatePosition(chip) {
+    // Floating layer base: lifecycle show/hide/grace period/dismiss
+    // terpusat di primitives/floating.js (scroll/resize = reposition,
+    // klik luar & Escape = tutup)
+    var layer = createFloatingLayer({
+      el: popover,
+      visibleClass: 'is-visible',
+      hideDelay: 200,
+      onShow: function () {
+        popover.setAttribute('aria-hidden', 'false');
+      },
+      onHide: function () {
+        popover.setAttribute('aria-hidden', 'true');
+      },
+      position: function (chip, pop) {
+        updatePosition(chip, pop);
+      },
+      dismissOutsideClick: true,
+      dismissEscape: true,
+    });
+
+    function updatePosition(chip, pop) {
       if (!chip) return;
+      popover = pop || popover;
       var rect = chip.getBoundingClientRect();
       var popWidth = popover.offsetWidth || 320;
       var popHeight = popover.offsetHeight || 340;
@@ -87,13 +108,11 @@ export function initPopovers() {
     }
 
     function show(chip) {
-      clearTimeout(hideTimer);
       clearTimeout(showTimer);
+      layer.cancelHide();
 
-      if (currentChip && currentChip !== chip) {
-        currentChip.classList.remove('is-active');
-      }
-      currentChip = chip;
+      var prev = layer.current();
+      if (prev && prev !== chip) prev.classList.remove('is-active');
       chip.classList.add('is-active');
 
       // Populate data
@@ -142,27 +161,20 @@ export function initPopovers() {
         accessText.textContent = access;
       }
 
-      popover.setAttribute('aria-hidden', 'false');
-      popover.classList.add('is-visible');
-      updatePosition(chip);
+      layer.show(chip);
     }
 
     function hide() {
-      clearTimeout(showTimer);
-      clearTimeout(hideTimer);
-      if (currentChip) {
-        currentChip.classList.remove('is-active');
-        currentChip = null;
-      }
-      popover.classList.remove('is-visible');
-      popover.setAttribute('aria-hidden', 'true');
+      var cur = layer.current();
+      if (cur) cur.classList.remove('is-active');
+      layer.hide();
     }
 
     // Event handlers per chip
     chips.forEach(function (chip) {
       // Hover desktop
       chip.addEventListener('mouseenter', function () {
-        clearTimeout(hideTimer);
+        layer.cancelHide();
         showTimer = setTimeout(function () {
           show(chip);
         }, 120);
@@ -170,15 +182,13 @@ export function initPopovers() {
 
       chip.addEventListener('mouseleave', function () {
         clearTimeout(showTimer);
-        hideTimer = setTimeout(function () {
-          hide();
-        }, 200);
+        layer.scheduleHide();
       });
 
       // Click / Tap toggle
       chip.addEventListener('click', function (e) {
         e.stopPropagation();
-        if (currentChip === chip && popover.classList.contains('is-visible')) {
+        if (layer.isOpen() && layer.current() === chip) {
           hide();
         } else {
           show(chip);
@@ -189,7 +199,7 @@ export function initPopovers() {
       chip.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          if (currentChip === chip && popover.classList.contains('is-visible')) {
+          if (layer.isOpen() && layer.current() === chip) {
             hide();
           } else {
             show(chip);
@@ -202,13 +212,11 @@ export function initPopovers() {
 
     // Keep open when mouse is over popover itself
     popover.addEventListener('mouseenter', function () {
-      clearTimeout(hideTimer);
+      layer.cancelHide();
     });
 
     popover.addEventListener('mouseleave', function () {
-      hideTimer = setTimeout(function () {
-        hide();
-      }, 200);
+      layer.scheduleHide();
     });
 
     // Close button
@@ -218,38 +226,5 @@ export function initPopovers() {
         hide();
       });
     }
-
-    // Global dismissals
-    document.addEventListener('click', function (e) {
-      if (!popover.contains(e.target)) {
-        hide();
-      }
-    });
-
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && popover.classList.contains('is-visible')) {
-        hide();
-      }
-    });
-
-    window.addEventListener(
-      'resize',
-      function () {
-        if (currentChip && popover.classList.contains('is-visible')) {
-          updatePosition(currentChip);
-        }
-      },
-      { passive: true }
-    );
-
-    window.addEventListener(
-      'scroll',
-      function () {
-        if (currentChip && popover.classList.contains('is-visible')) {
-          updatePosition(currentChip);
-        }
-      },
-      { passive: true }
-    );
   })();
 }

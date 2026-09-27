@@ -16,26 +16,13 @@
     transition: color 0.25s ease !important;
   }
   .nav-glider {
-    display: block !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
+    /* struktur (position/transition/opacity) dari primitives/_glider.scss */
     height: 36px !important;
     border-radius: 18px !important;
     background-color: rgba(255, 255, 255, 0.2) !important;
     backdrop-filter: blur(8px) !important;
     -webkit-backdrop-filter: blur(8px) !important;
-    pointer-events: none !important;
     z-index: 1 !important;
-    opacity: 0 !important;
-    transition:
-      transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-      width 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-      opacity 0.2s ease !important;
-    will-change: transform, width !important;
-  }
-  .nav-glider.is-ready {
-    opacity: 1 !important;
   }
   .navbar.bg-primary:not(.navbar-transparent) .nav-glider {
     background-color: rgba(68, 94, 147, 0.15) !important;
@@ -67,7 +54,7 @@
   left: 0 !important;
   /* width/height diset inline oleh portfolio.js — jangan hardcode di sini */
   border-radius: 999px !important;
-  background-color: rgb(154, 154, 154) !important;
+  background-color: var(--lh-base, #f0efeb) !important;
   box-shadow: 0 4px 14px rgba(44, 44, 44, 0.18) !important;
   pointer-events: none !important;
   z-index: 1 !important;
@@ -121,7 +108,7 @@
     border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
     padding: 70px 10px 30px 10px !important;
     transform: translate3d(min(300px, 85vw), 0px, 0px) !important;
-    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    transition: transform 0.35s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
   }
   html.nav-open body.sidebar-collapse .navbar .navbar-collapse {
     transform: translate3d(0px, 0px, 0px) !important;
@@ -132,7 +119,7 @@
     transform: translate3d(0px, 0px, 0px) !important;
     transition:
       opacity 0.25s ease,
-      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1) !important;
+      transform 0.35s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
   }
   html.nav-open body.sidebar-collapse .navbar .navbar-brand {
     opacity: 0 !important;
@@ -172,8 +159,8 @@
     touch-action: manipulation !important;
     transform: none !important;
     transition:
-      left 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-      top 0.35s cubic-bezier(0.22, 1, 0.36, 1) !important;
+      left 0.35s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+      top 0.35s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
   }
   html.nav-open body.sidebar-collapse .navbar .navbar-toggler {
     top: 18px !important;
@@ -191,7 +178,7 @@
     animation: none !important;
     -webkit-animation: none !important;
     transition:
-      transform 0.25s cubic-bezier(0.22, 1, 0.36, 1) 0s,
+      transform 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) 0s,
       opacity 0.2s ease 0s,
       background-color 0.2s ease 0s !important;
   }
@@ -219,7 +206,7 @@
   html.nav-open body.sidebar-collapse .navbar .navbar-toggler .navbar-toggler-bar {
     background-color: #ffffff !important;
     transition:
-      transform 0.25s cubic-bezier(0.22, 1, 0.36, 1) 0.35s,
+      transform 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) 0.35s,
       opacity 0.2s ease 0.35s,
       background-color 0.2s ease 0.35s !important;
   }
@@ -241,10 +228,10 @@
 /* ===== Smart Hide/Show Navbar on Scroll ===== */
 .navbar {
   transition:
-    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    background-color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    padding 0.35s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    transform 0.35s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    background-color 0.35s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    box-shadow 0.35s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    padding 0.35s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
   will-change: transform;
 }
 .navbar.navbar-hidden {

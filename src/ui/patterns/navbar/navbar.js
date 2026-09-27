@@ -1,3 +1,5 @@
+import { createGlider } from '../../primitives/glider.js';
+
 export function initHeader() {
   // 1. Mobile Menu Drawer
   // ===== Menu mobile: toggle nav-open + overlay #bodyClick (pengganti now-ui-kit) =====
@@ -151,10 +153,8 @@ export function initHeader() {
     var hasFinePointer =
       window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-    // Buat elemen glider
-    var glider = document.createElement('span');
-    glider.className = 'nav-glider';
-    navNav.appendChild(glider);
+    // Buat elemen glider via komponen base
+    var gliderComp = createGlider(navNav, 'nav-glider');
 
     var activeLink = null;
     var isHovering = false;
@@ -165,24 +165,18 @@ export function initHeader() {
 
     function updateGlider(targetEl) {
       if (!targetEl || !isDesktop()) {
-        glider.classList.remove('is-ready');
+        gliderComp.hide();
         return;
       }
       var navItem = targetEl.closest('.nav-item');
       if (!navItem) return;
-      var left = navItem.offsetLeft;
-      var width = targetEl.offsetWidth;
       var height = 36;
-      var top = navItem.offsetTop + (navItem.offsetHeight - height) / 2;
-
-      glider.style.transform = 'translate3d(' + left + 'px, ' + top + 'px, 0)';
-      glider.style.width = width + 'px';
-      glider.style.height = height + 'px';
-      if (!glider.classList.contains('is-ready')) {
-        requestAnimationFrame(function () {
-          glider.classList.add('is-ready');
-        });
-      }
+      gliderComp.move(targetEl, {
+        left: navItem.offsetLeft,
+        top: navItem.offsetTop + (navItem.offsetHeight - height) / 2,
+        width: targetEl.offsetWidth,
+        height: height,
+      });
     }
 
     function setActive(link) {
@@ -214,7 +208,7 @@ export function initHeader() {
         if (activeLink) {
           updateGlider(activeLink);
         } else {
-          glider.classList.remove('is-ready');
+          gliderComp.hide();
         }
       });
     }
@@ -289,7 +283,7 @@ export function initHeader() {
       if (isDesktop() && activeLink) {
         updateGlider(activeLink);
       } else {
-        glider.classList.remove('is-ready');
+        gliderComp.hide();
       }
     });
 
