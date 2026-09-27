@@ -14,7 +14,8 @@ textarea {
   touch-action: manipulation;
 }
 
-button:focus {
+/* outline hanya untuk fokus keyboard (:focus-visible), bukan klik mouse */
+button:focus-visible {
   outline: -webkit-focus-ring-color auto 5px;
 }
 

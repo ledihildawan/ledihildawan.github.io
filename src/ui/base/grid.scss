@@ -165,9 +165,9 @@ body,
 .card .col-md-3.bg-primary {
   background-color: #f0eee9 !important;
 }
-.nav-pills .nav-link.active,
-.nav-pills .nav-link.active:hover,
-.nav-pills .nav-link.active:focus,
+.nav-pills .nav-link.active:not(.filter-chip),
+.nav-pills .nav-link.active:not(.filter-chip):hover,
+.nav-pills .nav-link.active:not(.filter-chip):focus,
 .card .nav-pills .nav-link.active {
   background-color: var(--lh-accent) !important;
   color: #fff !important;
@@ -347,9 +347,9 @@ body {
 .nav-pills .nav-item .nav-link:hover {
   background-color: rgba(222, 222, 222, 0.3);
 }
-.nav-pills .nav-item .nav-link.active,
-.nav-pills .nav-item .nav-link.active:focus,
-.nav-pills .nav-item .nav-link.active:hover {
+.nav-pills .nav-item .nav-link.active:not(.filter-chip),
+.nav-pills .nav-item .nav-link.active:not(.filter-chip):focus,
+.nav-pills .nav-item .nav-link.active:not(.filter-chip):hover {
   background-color: rgb(154, 154, 154);
   color: rgb(255, 255, 255);
   box-shadow: 0 4px 14px rgba(44, 44, 44, 0.12);
@@ -364,9 +364,9 @@ body {
   font-size: 20px;
   line-height: 60px;
 }
-.nav-pills.nav-pills-primary .nav-item .nav-link.active,
-.nav-pills.nav-pills-primary .nav-item .nav-link.active:focus,
-.nav-pills.nav-pills-primary .nav-item .nav-link.active:hover {
+.nav-pills.nav-pills-primary .nav-item .nav-link.active:not(.filter-chip),
+.nav-pills.nav-pills-primary .nav-item .nav-link.active:not(.filter-chip):focus,
+.nav-pills.nav-pills-primary .nav-item .nav-link.active:not(.filter-chip):hover {
   background-color: rgb(68, 94, 147);
 }
 .nav-align-center {

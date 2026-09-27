@@ -127,19 +127,52 @@ to {
 }
 
 .filter-chips {
-  gap: 8px !important;
+  gap: 0 !important;
 }
 
 .filter-chip {
   width: auto !important;
   height: auto !important;
   min-width: 0 !important;
-  padding: 9px 20px !important;
+  /* gaya menu item navbar: uppercase, tracking lebar, background transparan */
+  background: transparent !important;
+  border: none !important;
   border-radius: 999px !important;
-  font-size: 0.8571em !important;
-  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  font-size: 0.7142em !important;
+  font-weight: 400 !important;
+  letter-spacing: 1px !important;
+  line-height: 1.625rem !important;
+  padding: 0.5rem 0.7rem !important;
+  color: var(--lh-ink-muted, #595550) !important;
   cursor: pointer !important;
   font-family: inherit !important;
+  transition: color 0.25s ease !important;
+}
+
+.filter-chip:hover,
+.filter-chip:focus-visible {
+  color: var(--lh-ink, #2c2c2c) !important;
+}
+
+.filter-chip.active {
+  color: #ffffff !important;
+}
+
+/* Saat hover-preview ke chip lain: chip aktif tampil normal (muted)
+   seperti chip lainnya — pill indigo murni milik chip yang di-hover */
+.filter-chips.is-hovering .filter-chip.active {
+  color: var(--lh-ink-muted, #595550) !important;
+}
+
+/* Pill indigo murni dari GLIDER — chip aktif tidak boleh punya
+   background sendiri, kalau tidak jadi dua pill saat hover ke chip lain */
+#portfolio .nav-pills .nav-item .nav-link.filter-chip.active,
+#portfolio .nav-pills .nav-item .nav-link.filter-chip.active:hover,
+#portfolio .nav-pills .nav-item .nav-link.filter-chip.active:focus,
+#portfolio .nav-pills .nav-item .nav-link.filter-chip.active:focus-visible {
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 .portfolio-sort {
@@ -169,9 +202,25 @@ to {
   outline: none !important;
 }
 
-/* Dark mode adjustments */
+/* Dark mode adjustments (urutan penting: base -> hover -> active) */
 .dark-mode .filter-chip {
-  background-color: rgba(255, 255, 255, 0.06) !important;
+  color: var(--lh-ink-muted, #a8a5a0) !important;
+}
+
+/* (0,4,0) dari .dark-mode .nav-pills .nav-link:not(.active) harus dikalahkan;
+   .dark-mode ada di <html> (di atas #portfolio), bukan di dalamnya */
+.dark-mode .filter-chip:hover,
+.dark-mode .filter-chip:focus-visible,
+.dark-mode #portfolio .filter-chip:hover,
+.dark-mode #portfolio .filter-chip:focus-visible {
+  color: var(--lh-ink, #eceae4) !important;
+}
+
+.dark-mode .filter-chip.active {
+  color: #ffffff !important;
+}
+
+.dark-mode .filter-chips.is-hovering .filter-chip.active {
   color: var(--lh-ink-muted, #a8a5a0) !important;
 }
 

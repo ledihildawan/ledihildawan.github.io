@@ -44,7 +44,7 @@ export function initPortfolioTabs() {
         chips[j].classList.toggle('active', isActive);
         chips[j].setAttribute('aria-pressed', isActive ? 'true' : 'false');
       }
-      updateGlider(activeChip);
+      if (!isHovering) updateGlider(activeChip);
     }
 
     function applySort() {
@@ -83,6 +83,32 @@ export function initPortfolioTabs() {
     }
 
     if (sortSelect) sortSelect.addEventListener('change', applySort);
+
+    // Effek hover: glider mengikuti chip yang di-hover, kembali ke chip
+    // aktif saat mouse keluar dari SELURUH grup chip (pola navbar) —
+    // menyusur gap antar chip tidak memicu lompatan
+    var canHover =
+      window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    var isHovering = false;
+    if (canHover && container) {
+      for (var h = 0; h < chips.length; h++) {
+        (function (chip) {
+          chip.addEventListener('mouseenter', function () {
+            isHovering = true;
+            updateGlider(chip);
+          });
+        })(chips[h]);
+      }
+      container.addEventListener('mouseenter', function () {
+        // selama hover-preview: chip aktif ditampilkan normal (muted)
+        container.classList.add('is-hovering');
+      });
+      container.addEventListener('mouseleave', function () {
+        isHovering = false;
+        container.classList.remove('is-hovering');
+        updateGlider(activeChip);
+      });
+    }
 
     window.addEventListener(
       'resize',
