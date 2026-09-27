@@ -19,9 +19,9 @@ $radius-xl: var(--lh-radius-xl, 16px);
 $radius-full: 9999px;
 
 // 3. Elevation & Transition Tokens
-$transition-fast: 0.2s ease;
-$transition-base: 0.25s ease;
-$transition-smooth: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-fast: var(--lh-dur-2) ease;
+$transition-base: var(--lh-dur-3) ease;
+$transition-smooth: var(--lh-dur-5) cubic-bezier(0.4, 0, 0.2, 1);
 
 // ==========================================================================
 // REUSABLE SCSS MIXINS (DRY)

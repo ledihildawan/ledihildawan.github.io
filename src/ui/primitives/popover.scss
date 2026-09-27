@@ -8,9 +8,9 @@
   -webkit-tap-highlight-color: transparent;
   outline-offset: 2px;
   transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
+    background var(--lh-dur-2) ease,
+    border-color var(--lh-dur-2) ease,
+    box-shadow var(--lh-dur-2) ease;
 }
 .cc-shipped-chip:focus-visible {
   outline: 2px solid var(--lh-accent, #2d4db6);
@@ -41,8 +41,8 @@
   pointer-events: none;
   transform: none !important;
   transition:
-    opacity 0.2s ease,
-    visibility 0.2s ease;
+    opacity var(--lh-dur-2) ease,
+    visibility var(--lh-dur-2) ease;
   overflow: hidden;
   font-family: inherit;
 }
@@ -100,7 +100,7 @@
   cursor: pointer;
   z-index: 2;
   transform: none !important;
-  transition: background 0.15s ease;
+  transition: background var(--lh-dur-1) ease;
 }
 .cc-popover-close:hover {
   background: rgba(0, 0, 0, 0.9);
@@ -217,8 +217,8 @@
   border-radius: 5px;
   background: rgba(45, 77, 182, 0.08);
   transition:
-    background-color 0.15s var(--lh-ease-out, ease),
-    color 0.15s var(--lh-ease-out, ease);
+    background-color var(--lh-dur-1) var(--lh-ease-out, ease),
+    color var(--lh-dur-1) var(--lh-ease-out, ease);
 }
 .cc-popover-link:hover {
   background: var(--lh-accent, #2d4db6);

@@ -13,7 +13,7 @@
     position: relative !important;
     z-index: 2 !important;
     background: transparent !important;
-    transition: color 0.25s ease !important;
+    transition: color var(--lh-dur-3) ease !important;
   }
   .nav-glider {
     /* struktur (position/transition/opacity) dari primitives/_glider.scss */
@@ -45,7 +45,7 @@
   z-index: 2 !important;
   background-color: transparent !important;
   box-shadow: none !important;
-  transition: color 0.25s ease !important;
+  transition: color var(--lh-dur-3) ease !important;
 }
 .tab-glider {
   display: block !important;
@@ -60,9 +60,9 @@
   z-index: 1 !important;
   opacity: 0 !important;
   transition:
-    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-    width 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 0.15s ease !important;
+    transform var(--lh-dur-3) cubic-bezier(0.16, 1, 0.3, 1),
+    width var(--lh-dur-3) cubic-bezier(0.16, 1, 0.3, 1),
+    opacity var(--lh-dur-1) ease !important;
   will-change: transform, width !important;
 }
 .tab-glider.is-ready {
@@ -108,7 +108,7 @@
     border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
     padding: 70px 10px 30px 10px !important;
     transform: translate3d(min(300px, 85vw), 0px, 0px) !important;
-    transition: transform 0.35s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
+    transition: transform var(--lh-dur-5) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
   }
   html.nav-open body.sidebar-collapse .navbar .navbar-collapse {
     transform: translate3d(0px, 0px, 0px) !important;
@@ -118,8 +118,8 @@
     opacity: 1 !important;
     transform: translate3d(0px, 0px, 0px) !important;
     transition:
-      opacity 0.25s ease,
-      transform 0.35s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
+      opacity var(--lh-dur-3) ease,
+      transform var(--lh-dur-5) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
   }
   html.nav-open body.sidebar-collapse .navbar .navbar-brand {
     opacity: 0 !important;
@@ -159,8 +159,8 @@
     touch-action: manipulation !important;
     transform: none !important;
     transition:
-      left 0.35s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
-      top 0.35s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
+      left var(--lh-dur-5) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+      top var(--lh-dur-5) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
   }
   html.nav-open body.sidebar-collapse .navbar .navbar-toggler {
     top: 18px !important;
@@ -178,9 +178,9 @@
     animation: none !important;
     -webkit-animation: none !important;
     transition:
-      transform 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) 0s,
-      opacity 0.2s ease 0s,
-      background-color 0.2s ease 0s !important;
+      transform var(--lh-dur-3) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) 0s,
+      opacity var(--lh-dur-2) ease 0s,
+      background-color var(--lh-dur-2) ease 0s !important;
   }
   html
     body.sidebar-collapse
@@ -206,9 +206,9 @@
   html.nav-open body.sidebar-collapse .navbar .navbar-toggler .navbar-toggler-bar {
     background-color: #ffffff !important;
     transition:
-      transform 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) 0.35s,
-      opacity 0.2s ease 0.35s,
-      background-color 0.2s ease 0.35s !important;
+      transform var(--lh-dur-3) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) var(--lh-dur-5),
+      opacity var(--lh-dur-2) ease var(--lh-dur-5),
+      background-color var(--lh-dur-2) ease var(--lh-dur-5) !important;
   }
   html.nav-open body.sidebar-collapse .navbar .navbar-toggler .bar1 {
     transform: translateY(8px) rotate(45deg) !important;
@@ -228,10 +228,10 @@
 /* ===== Smart Hide/Show Navbar on Scroll ===== */
 .navbar {
   transition:
-    transform 0.35s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
-    background-color 0.35s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
-    box-shadow 0.35s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
-    padding 0.35s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
+    transform var(--lh-dur-5) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    background-color var(--lh-dur-5) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    box-shadow var(--lh-dur-5) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    padding var(--lh-dur-5) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
   will-change: transform;
 }
 .navbar.navbar-hidden {

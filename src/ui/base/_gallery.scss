@@ -74,8 +74,8 @@
 .gallery figure.cc-effect figcaption::after,
 .gallery figure.cc-effect p {
   transition:
-    opacity 0.35s,
-    transform 0.35s;
+    opacity var(--lh-dur-5),
+    transform var(--lh-dur-5);
 }
 
 .gallery figure.cc-effect:hover img {
@@ -104,5 +104,5 @@
 .gallery figure.cc-effect:hover .h4,
 .gallery figure.cc-effect:hover p,
 .gallery figure.cc-effect:hover img {
-  transition-delay: 0.15s;
+  transition-delay: var(--lh-dur-1);
 }

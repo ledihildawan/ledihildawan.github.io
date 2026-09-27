@@ -38,6 +38,12 @@
   // Easing
   --lh-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --lh-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  // Durasi transisi (skala berjenjang; fast/med = alias lama, dipertahankan)
+  --lh-dur-1: 0.15s;
+  --lh-dur-2: 0.2s;
+  --lh-dur-3: 0.25s;
+  --lh-dur-4: 0.3s;
+  --lh-dur-5: 0.35s;
   --lh-dur-fast: 0.15s;
   --lh-dur-med: 0.3s;
 

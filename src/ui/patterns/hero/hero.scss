@@ -43,7 +43,7 @@
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.22) !important;
   position: relative !important;
   z-index: 1 !important;
-  transition: box-shadow 0.25s ease !important;
+  transition: box-shadow var(--lh-dur-3) ease !important;
   transform: none !important;
 }
 .cc-profile-image a:hover img {
@@ -80,8 +80,8 @@
      jadi tidak ada momen tanpa shadow saat pindah antar tombol */
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
   transition:
-    border-color 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
-    box-shadow 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
+    border-color var(--lh-dur-3) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    box-shadow var(--lh-dur-3) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
 }
 
 .btn.btn-round.btn-icon svg,
@@ -98,7 +98,7 @@
   display: block !important;
   z-index: 2 !important;
   color: #ffffff !important;
-  transition: color 0.2s ease !important;
+  transition: color var(--lh-dur-2) ease !important;
 }
 
 .btn.btn-round.btn-icon::before {
@@ -109,7 +109,7 @@
   z-index: 1 !important;
   opacity: 1 !important;
   pointer-events: none !important;
-  transition: opacity 0.3s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
+  transition: opacity var(--lh-dur-4) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
 }
 
 // 5 brand sosial: gradient + hover border/shadow — satu mixin, 5 pemanggilan
@@ -173,5 +173,5 @@
    transisi — glow langsung pindah, tanpa fase dua-glow. Border & ikon tetap
    halus. Hover pertama tetap fade-in normal. */
 .button-container.shadow-snap .btn.btn-round.btn-icon {
-  transition: border-color 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
+  transition: border-color var(--lh-dur-3) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
 }

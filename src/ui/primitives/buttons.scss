@@ -56,11 +56,11 @@ textarea.form-control {
   align-items: center;
   justify-content: center;
   transition:
-    background-color 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    color 0.2s ease,
-    transform 0.15s ease !important;
+    background-color var(--lh-dur-2) ease,
+    border-color var(--lh-dur-2) ease,
+    box-shadow var(--lh-dur-2) ease,
+    color var(--lh-dur-2) ease,
+    transform var(--lh-dur-1) ease !important;
 
   &:hover,
   &:focus {

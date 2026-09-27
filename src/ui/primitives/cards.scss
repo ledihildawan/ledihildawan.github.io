@@ -7,8 +7,8 @@
   background-color: var(--lh-surface) !important;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04) !important;
   transition:
-    border-color 0.25s ease,
-    box-shadow 0.25s ease !important;
+    border-color var(--lh-dur-3) ease,
+    box-shadow var(--lh-dur-3) ease !important;
   margin-bottom: 24px !important;
   overflow: hidden !important;
   transform: none !important;

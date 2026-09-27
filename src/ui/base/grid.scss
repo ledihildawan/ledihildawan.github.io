@@ -22,7 +22,7 @@ img {
   width: 100%;
   z-index: 1000;
   padding: 0.625rem 1rem;
-  transition: background-color 0.3s;
+  transition: background-color var(--lh-dur-4);
 }
 .navbar-brand {
   font-weight: 700;
@@ -94,7 +94,7 @@ img {
   font-size: 0.875rem;
   font-weight: 600;
   padding: 0.625rem 1.25rem;
-  transition: 0.2s;
+  transition: var(--lh-dur-2);
 }
 .btn-default {
   background-color: rgb(108, 117, 125);
@@ -136,9 +136,9 @@ img {
   line-height: normal;
   font-size: 0.8571em;
   transition:
-    color 0.3s ease-in-out,
-    border-color 0.3s ease-in-out,
-    background-color 0.3s ease-in-out;
+    color var(--lh-dur-4) ease-in-out,
+    border-color var(--lh-dur-4) ease-in-out,
+    background-color var(--lh-dur-4) ease-in-out;
   box-shadow: none;
 }
 form textarea.form-control {
@@ -250,8 +250,8 @@ html body .footer .cc-threads:focus .icon-fill {
   border-radius: 0px;
   color: var(--lh-ink-muted);
   transition:
-    color 0.3s ease-in-out,
-    border-color 0.3s ease-in-out;
+    color var(--lh-dur-4) ease-in-out,
+    border-color var(--lh-dur-4) ease-in-out;
 }
 .input-group-addon svg {
   color: var(--lh-ink-muted);
@@ -569,7 +569,7 @@ img {
   }
   .sidebar-collapse .navbar .navbar-toggler-bar.bar2 {
     width: 17px;
-    transition: width 0.2s var(--lh-ease-out, ease);
+    transition: width var(--lh-dur-2) var(--lh-ease-out, ease);
   }
   .sidebar-collapse .bar1,
   .sidebar-collapse .bar2,
@@ -640,8 +640,8 @@ img {
   padding: 0;
   margin: 0;
   transition:
-    border-color 0.15s ease,
-    box-shadow 0.15s ease !important;
+    border-color var(--lh-dur-1) ease,
+    box-shadow var(--lh-dur-1) ease !important;
 }
 .cc-profile-image a:hover img {
   transform: none;
@@ -936,8 +936,9 @@ html body.sidebar-collapse #bodyClick {
   background-color: rgba(10, 12, 18, 0.6) !important;
   backdrop-filter: blur(3px) !important;
   -webkit-backdrop-filter: blur(3px) !important;
-  animation: cc-scrim-in 0.3s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) backwards !important;
-  transition: opacity 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
+  animation: cc-scrim-in var(--lh-dur-4) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1))
+    backwards !important;
+  transition: opacity var(--lh-dur-3) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
 }
 html body.sidebar-collapse #bodyClick.is-closing {
   opacity: 0 !important;
@@ -976,9 +977,9 @@ html body.sidebar-collapse .navbar .navbar-toggler .navbar-toggler-bar {
   transform-origin: 50% 50% !important;
   animation: none !important;
   transition:
-    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 0.2s ease,
-    background-color 0.2s ease !important;
+    transform var(--lh-dur-3) cubic-bezier(0.4, 0, 0.2, 1),
+    opacity var(--lh-dur-2) ease,
+    background-color var(--lh-dur-2) ease !important;
 }
 html
   body.sidebar-collapse
@@ -1043,7 +1044,7 @@ html body.sidebar-collapse .navbar .navbar-toggler.toggled .bar3 {
     box-shadow: -6px 0 28px rgba(0, 0, 0, 0.45) !important;
     border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
     padding: 70px 10px 30px 10px !important;
-    transition: transform 0.35s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
+    transition: transform var(--lh-dur-5) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
   }
   html body.sidebar-collapse .navbar-collapse::before {
     display: none !important;
@@ -1065,8 +1066,8 @@ html body.sidebar-collapse .navbar .navbar-toggler.toggled .bar3 {
     letter-spacing: 0.8px !important;
     border-radius: 8px !important;
     transition:
-      background-color 0.2s ease,
-      color 0.2s ease !important;
+      background-color var(--lh-dur-2) ease,
+      color var(--lh-dur-2) ease !important;
   }
   .sidebar-collapse .navbar-collapse .navbar-nav .nav-link:hover,
   .sidebar-collapse .navbar-collapse .navbar-nav .nav-link:focus,
@@ -1104,7 +1105,7 @@ html body.sidebar-collapse .navbar .navbar-toggler.toggled .bar3 {
     transition:
       transform 0.32s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
       width 0.32s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
-      opacity 0.2s ease;
+      opacity var(--lh-dur-2) ease;
     will-change: transform, width;
   }
   .navbar.bg-primary:not(.navbar-transparent) .nav-glider {
@@ -1119,8 +1120,8 @@ html body.sidebar-collapse .navbar .navbar-toggler.toggled .bar3 {
     border-radius: 18px;
     background-color: transparent !important;
     transition:
-      color 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
-      opacity 0.25s ease !important;
+      color var(--lh-dur-3) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+      opacity var(--lh-dur-3) ease !important;
   }
   .navbar .navbar-nav .nav-item.active .nav-link,
   .navbar .navbar-nav .nav-link.active {
@@ -1149,34 +1150,34 @@ html body.sidebar-collapse .navbar .navbar-toggler.toggled .bar3 {
 }
 .btn {
   transition:
-    background-color 0.15s ease,
-    color 0.15s ease,
-    border-color 0.15s ease,
-    box-shadow 0.15s ease !important;
+    background-color var(--lh-dur-1) ease,
+    color var(--lh-dur-1) ease,
+    border-color var(--lh-dur-1) ease,
+    box-shadow var(--lh-dur-1) ease !important;
 }
 .btn-hero-secondary {
   transition:
-    background-color 0.15s ease,
-    border-color 0.15s ease,
-    color 0.15s ease !important;
+    background-color var(--lh-dur-1) ease,
+    border-color var(--lh-dur-1) ease,
+    color var(--lh-dur-1) ease !important;
 }
 .btn.btn-round.btn-icon {
   transition:
-    background 0.15s ease,
-    box-shadow 0.15s ease,
-    border-color 0.15s ease !important;
+    background var(--lh-dur-1) ease,
+    box-shadow var(--lh-dur-1) ease,
+    border-color var(--lh-dur-1) ease !important;
 }
 .footer .btn-link {
   transition:
-    color 0.15s ease,
-    opacity 0.15s ease !important;
+    color var(--lh-dur-1) ease,
+    opacity var(--lh-dur-1) ease !important;
 }
 .cc-mode-btn {
   min-width: 28px;
   min-height: 28px;
   transition:
-    opacity 0.2s var(--lh-ease-out),
-    transform 0.15s var(--lh-ease-out) !important;
+    opacity var(--lh-dur-2) var(--lh-ease-out),
+    transform var(--lh-dur-1) var(--lh-ease-out) !important;
 }
 .btn:active,
 .navbar .navbar-nav > a.btn:active {
@@ -1243,31 +1244,31 @@ html body.sidebar-collapse .navbar .navbar-toggler.toggled .bar3 {
 // .tooltip rules live in ./tooltip (loaded before grid)
 .card {
   transition:
-    transform 0.3s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
-    box-shadow 0.3s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1));
+    transform var(--lh-dur-4) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    box-shadow var(--lh-dur-4) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1));
 }
 .form-control {
   transition:
-    border-color 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
-    box-shadow 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
-    background-color 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
-    color 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
+    border-color var(--lh-dur-3) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    box-shadow var(--lh-dur-3) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    background-color var(--lh-dur-3) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    color var(--lh-dur-3) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
 }
 .input-group-addon {
   transition:
-    border-color 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
-    color 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
+    border-color var(--lh-dur-3) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    color var(--lh-dur-3) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
 }
 // .form-error extracted to ./form-error
 .navbar {
   transition:
-    background-color 0.35s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
-    box-shadow 0.35s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
-    padding 0.35s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
+    background-color var(--lh-dur-5) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    box-shadow var(--lh-dur-5) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    padding var(--lh-dur-5) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
 }
 .navbar .nav-link {
   transition:
-    color 0.2s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
-    background-color 0.2s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
+    color var(--lh-dur-2) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    background-color var(--lh-dur-2) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
 }
 // @media (prefers-reduced-motion) extracted to ./reduced-motion

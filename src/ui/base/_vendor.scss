@@ -16,7 +16,7 @@
   font-size: 1rem;
   line-height: 1.25;
   border-radius: 0.25rem;
-  transition: 0.15s ease-in-out;
+  transition: var(--lh-dur-1) ease-in-out;
 }
 .btn:focus,
 .btn:hover {
