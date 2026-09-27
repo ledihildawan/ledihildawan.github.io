@@ -1,0 +1,16 @@
+/* ==========================================================================
+   FORM VALIDATION STATES
+   ========================================================================== */
+
+.form-error {
+  color: #b3261e;
+  font-size: 0.8rem;
+  opacity: 0;
+  display: none;
+  margin-top: 4px;
+}
+
+.form-error.is-visible {
+  opacity: 1;
+  display: block;
+}

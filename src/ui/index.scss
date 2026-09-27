@@ -30,6 +30,7 @@
 
 // 4. Base Typography & Media
 @use './base/media'; // figure, img, svg
+@use './base/grid-system'; // .container, .row, .col-*
 @use './base/content'; // .title, .category
 @use './base/scrollbar'; // html scrollbar
 
@@ -44,6 +45,7 @@
 @use './base/tooltip'; // .tooltip
 @use './base/footer-base'; // .footer base
 @use './base/form-control'; // .form-control, .form-group
+@use './base/form-error'; // .form-error validation states
 @use './base/fa-icons'; // .fa icons
 
 // 6. Utilities (override component bases)
@@ -52,6 +54,14 @@
 
 // 7. Monolith (cascade-dependent framework overrides)
 @use './base/grid';
+
+// 7b. Vendor framework (MUST load after grid — cascade position significant:
+//     overrides .btn/.navbar skin defined in grid, overridden by dark-mode etc.)
+@use './base/vendor';
+
+// 7c. Spacing & position utilities (MUST load after vendor:
+//     .fixed-top position:fixed must beat vendor .navbar position:relative)
+@use './base/spacing'; // .fixed-top, .mt-*, .mb-*, .pb-*, .mr-auto
 
 // 8. Independent At-Rules (no cascade conflict)
 @use './base/animations'; // @keyframes
