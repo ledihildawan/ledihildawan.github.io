@@ -4,7 +4,6 @@
 export function initThemeToggle() {
   const STORAGE_KEY = 'lh-theme';
   const html = document.documentElement;
-  const body = document.body;
 
   // Get saved theme or detect system preference
   function getPreferredTheme() {
