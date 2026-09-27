@@ -9,6 +9,9 @@
   --lh-ink: #eceae4;
   --lh-ink-strong: #ffffff;
   --lh-link: var(--lh-accent-soft);
+  /* accent-soft dark DINAIKKAN: #4f6fd2 hanya 3.18:1 di atas card #2a2825
+     (gagal WCAG AA 4.5). #869ef0 = 5.4:1 di card, 6.6:1 di surface */
+  --lh-accent-soft: #869ef0;
   --lh-ink-muted: #a8a5a0;
 
   .card {
