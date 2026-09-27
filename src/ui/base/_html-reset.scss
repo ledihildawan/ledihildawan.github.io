@@ -29,3 +29,11 @@ nav,
 section {
   display: block;
 }
+
+// Base body (supplies margin/line-height/weight; grid.scss theme body
+// loaded later overrides font-size/family/color — matches original cascade)
+body {
+  margin: 0px;
+  font-weight: 400;
+  line-height: 1.5;
+}
