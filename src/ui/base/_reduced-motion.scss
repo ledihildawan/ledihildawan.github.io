@@ -15,4 +15,10 @@
     transition-delay: 0s !important;
     scroll-behavior: auto !important;
   }
+  /* avatar pulse: (0,1,2) !important dari hero.scss harus dikalahkan eksplisit */
+  .cc-profile-image a::before,
+  .cc-profile-image a:hover::before {
+    animation: none !important;
+    opacity: 0 !important;
+  }
 }

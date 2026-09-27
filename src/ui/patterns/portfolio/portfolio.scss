@@ -175,13 +175,16 @@ to {
   box-shadow: none !important;
 }
 
-.portfolio-sort {
+/* ===== Sort Dropdown Component ===== */
+.sort-dropdown {
+  position: relative !important;
+  display: inline-block !important;
+}
+
+.sort-trigger {
   display: inline-flex !important;
   align-items: center !important;
   gap: 8px !important;
-}
-
-.portfolio-sort select {
   font-family: inherit !important;
   font-size: 0.8571em !important;
   font-weight: 600 !important;
@@ -189,17 +192,150 @@ to {
   background-color: rgba(222, 221, 216, 0.3) !important;
   border: 1px solid rgba(128, 128, 128, 0.2) !important;
   border-radius: 999px !important;
-  padding: 9px 14px !important;
+  padding: 9px 16px !important;
   cursor: pointer !important;
   transition:
     border-color 0.25s ease,
     box-shadow 0.25s ease !important;
 }
 
-.portfolio-sort select:hover,
-.portfolio-sort select:focus-visible {
+.sort-trigger:hover,
+.sort-trigger:focus-visible,
+.sort-dropdown.is-open .sort-trigger {
   border-color: rgba(68, 94, 147, 0.45) !important;
   outline: none !important;
+}
+
+.sort-dropdown.is-open .sort-trigger {
+  box-shadow: 0 4px 14px rgba(44, 44, 44, 0.12) !important;
+}
+
+.sort-icon {
+  width: 16px !important;
+  height: 16px !important;
+  color: var(--lh-ink-muted, #595550) !important;
+}
+
+.sort-chevron {
+  width: 18px !important;
+  height: 18px !important;
+  color: var(--lh-ink-muted, #595550) !important;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.sort-dropdown.is-open .sort-chevron {
+  transform: rotate(180deg) !important;
+}
+
+.sort-menu {
+  position: absolute !important;
+  top: calc(100% + 8px) !important;
+  right: 0 !important;
+  z-index: 20 !important;
+  min-width: 200px !important;
+  margin: 0 !important;
+  padding: 6px !important;
+  list-style: none !important;
+  background: var(--lh-surface, #ffffff) !important;
+  border: 1px solid rgba(128, 128, 128, 0.16) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.14) !important;
+  overflow: hidden !important;
+  animation: sort-menu-in 0.18s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+@keyframes sort-menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sort-option {
+  position: relative !important;
+  z-index: 1 !important;
+  padding: 10px 14px !important;
+  border-radius: 8px !important;
+  font-size: 0.8571em !important;
+  font-weight: 600 !important;
+  color: var(--lh-ink, #2c2c2c) !important;
+  cursor: pointer !important;
+}
+
+/* indikator hover/fokus: highlight samar terpisah — pill abu = penanda selected */
+.sort-option:hover,
+.sort-option:focus {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  outline: none !important;
+}
+
+.dark-mode .sort-option:hover,
+.dark-mode .sort-option:focus {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+.sort-option.is-selected {
+  color: var(--lh-accent, #2d4db6) !important;
+}
+
+/* Saat hover ke opsi lain: style accent milik opsi terpilih DIHILANGKAN
+   (jadi normal seperti opsi lain) — glider abu sudah jadi indikatornya */
+.sort-menu.is-hovering .sort-option.is-selected {
+  color: var(--lh-ink, #2c2c2c) !important;
+}
+
+.dark-mode .sort-option.is-selected {
+  color: var(--lh-accent-soft, #4f6fd2) !important;
+}
+
+.dark-mode .sort-menu.is-hovering .sort-option.is-selected {
+  color: var(--lh-ink, #eceae4) !important;
+}
+
+.dark-mode .sort-trigger {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  color: var(--lh-ink, #eceae4) !important;
+}
+
+.dark-mode .sort-icon,
+.dark-mode .sort-chevron {
+  color: var(--lh-ink-muted, #a8a5a0) !important;
+}
+
+.dark-mode .sort-menu {
+  background: var(--lh-base, #2a2825) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark-mode .sort-option {
+  color: var(--lh-ink, #eceae4) !important;
+}
+
+.dark-mode .sort-option:hover,
+.dark-mode .sort-option:focus {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* glider vertikal: slide mengikuti hover, pulang ke opsi terpilih */
+.sort-glider {
+  position: absolute !important;
+  /* left/top/width/height diset inline oleh JS mengikuti geometri item */
+  border-radius: 8px !important;
+  background-color: rgb(154, 154, 154) !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  transition:
+    top 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.15s ease !important;
+}
+
+.sort-menu.is-glider-ready .sort-glider {
+  opacity: 1 !important;
 }
 
 /* Dark mode adjustments (urutan penting: base -> hover -> active) */

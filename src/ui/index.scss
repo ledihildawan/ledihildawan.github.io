@@ -66,11 +66,9 @@
 //     .fixed-top position:fixed must beat vendor .navbar position:relative)
 @use './base/spacing'; // .fixed-top, .mt-*, .mb-*, .pb-*, .mr-auto
 
-// 8. Independent At-Rules (no cascade conflict)
+// 8. Independent At-Rules (override tertinggi — HARUS setelah patterns:
+//    reduced-motion harus bisa mematikan animasi !important milik patterns)
 @use './base/animations'; // @keyframes
-@use './base/reduced-motion'; // @media (prefers-reduced-motion)
-@use './base/selection'; // ::selection
-@use './base/print'; // @media print
 
 // 9. Primitives (Micro Components)
 @use './primitives/buttons';
@@ -87,3 +85,8 @@
 @use './patterns/experience/experience';
 @use './patterns/portfolio/portfolio';
 @use './patterns/contact/contact';
+
+// 12. Reduced Motion & Print (override paling akhir)
+@use './base/reduced-motion'; // @media (prefers-reduced-motion)
+@use './base/selection'; // ::selection
+@use './base/print'; // @media print

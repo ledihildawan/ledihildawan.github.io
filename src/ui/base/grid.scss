@@ -569,7 +569,7 @@ img {
   }
   .sidebar-collapse .navbar .navbar-toggler-bar.bar2 {
     width: 17px;
-    transition: width 0.2s linear;
+    transition: width 0.2s var(--lh-ease-out, ease);
   }
   .sidebar-collapse .bar1,
   .sidebar-collapse .bar2,

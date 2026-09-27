@@ -5,7 +5,39 @@
         <h2 class="h4 text-center mb-4 title">Karya Saya</h2>
       </div>
     </div>
-    <%- include('patterns/portfolio/portfolio-toolbar.html') %>
+    <div class="portfolio-toolbar">
+      <div
+        class="nav nav-pills nav-pills-primary filter-chips"
+        role="group"
+        aria-label="Filter kategori karya"
+      >
+        <button
+          class="nav-item nav-link filter-chip active"
+          data-filter="web"
+          aria-pressed="true"
+          type="button"
+        >
+          Web Development
+        </button>
+        <button
+          class="nav-item nav-link filter-chip"
+          data-filter="design"
+          aria-pressed="false"
+          type="button"
+        >
+          Graphic Design
+        </button>
+        <button
+          class="nav-item nav-link filter-chip"
+          data-filter="photo"
+          aria-pressed="false"
+          type="button"
+        >
+          Photography
+        </button>
+      </div>
+      <%- include('patterns/portfolio/sort-dropdown.html') %>
+    </div>
     <div class="gallery mt-4"><%- include('patterns/portfolio/portfolio-items.html') %></div>
   </div>
 </div>
