@@ -88,7 +88,7 @@
   inset: 0 !important;
   border-radius: inherit !important;
   z-index: 1 !important;
-  opacity: 0 !important;
+  opacity: 1 !important;
   pointer-events: none !important;
   transition: opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1) !important;
 }
@@ -143,19 +143,6 @@
 .btn-icon.cc-threads:focus-visible {
   border-color: rgba(130, 80, 220, 0.5) !important;
   box-shadow: 0 4px 20px rgba(43, 16, 85, 0.45) !important;
-}
-
-.btn-icon.cc-instagram:hover::before,
-.btn-icon.cc-instagram:focus-visible::before,
-.btn-icon.cc-linkedin:hover::before,
-.btn-icon.cc-linkedin:focus-visible::before,
-.btn-icon.cc-github:hover::before,
-.btn-icon.cc-github:focus-visible::before,
-.btn-icon.cc-twitter:hover::before,
-.btn-icon.cc-twitter:focus-visible::before,
-.btn-icon.cc-threads:hover::before,
-.btn-icon.cc-threads:focus-visible::before {
-  opacity: 1 !important;
 }
 
 /* 7. Circles & Pill Capsules */
