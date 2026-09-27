@@ -5,6 +5,7 @@
 import { initSmoothScroll } from './primitives/smooth-scroll.js';
 import { initTooltips } from './primitives/tooltips.js';
 import { initPopovers } from './primitives/popovers.js';
+import { initSocialShadowSnap } from './primitives/social-shadow.js';
 import { initThemeToggle } from './primitives/theme-toggle.js';
 import { initHeader } from './patterns/navbar/navbar.js';
 import { initPortfolioTabs } from './patterns/portfolio/portfolio.js';
@@ -18,6 +19,7 @@ function initApp() {
   initContactForm();
   initTooltips();
   initPopovers();
+  initSocialShadowSnap();
 }
 
 if (document.readyState === 'loading') {

@@ -168,3 +168,10 @@
 .nav-pills .nav-link {
   border-radius: 999px !important;
 }
+
+/* Retarget cepat antar tombol (social-shadow.js): box-shadow snap tanpa
+   transisi — glow langsung pindah, tanpa fase dua-glow. Border & ikon tetap
+   halus. Hover pertama tetap fade-in normal. */
+.button-container.shadow-snap .btn.btn-round.btn-icon {
+  transition: border-color 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
+}
