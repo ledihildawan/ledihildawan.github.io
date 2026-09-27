@@ -9,8 +9,8 @@
   background: rgba(128, 128, 128, 0.04) !important;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06) !important;
   transition:
-    border-color 0.25s ease,
-    box-shadow 0.25s ease !important;
+    border-color var(--lh-dur-3) ease,
+    box-shadow var(--lh-dur-3) ease !important;
   margin-bottom: 30px !important;
   transform: none !important;
 }
@@ -51,7 +51,7 @@
   justify-content: flex-end !important;
   opacity: 0 !important;
   transform: none !important;
-  transition: opacity 0.25s ease !important;
+  transition: opacity var(--lh-dur-3) ease !important;
 }
 .gallery figure.cc-effect:hover figcaption,
 .gallery figure.cc-effect:focus-within figcaption {
@@ -146,7 +146,7 @@ to {
   color: var(--lh-ink-muted, #595550) !important;
   cursor: pointer !important;
   font-family: inherit !important;
-  transition: color 0.25s ease !important;
+  transition: color var(--lh-dur-3) ease !important;
 }
 
 .filter-chip:hover,
@@ -194,8 +194,8 @@ to {
   padding: 9px 16px !important;
   cursor: pointer !important;
   transition:
-    border-color 0.25s ease,
-    box-shadow 0.25s ease !important;
+    border-color var(--lh-dur-3) ease,
+    box-shadow var(--lh-dur-3) ease !important;
 }
 
 .sort-trigger:hover,
@@ -219,7 +219,7 @@ to {
   width: 18px !important;
   height: 18px !important;
   color: var(--lh-ink-muted, #595550) !important;
-  transition: transform 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
+  transition: transform var(--lh-dur-3) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
 }
 
 .sort-dropdown.is-open .sort-chevron {
