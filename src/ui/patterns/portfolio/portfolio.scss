@@ -99,3 +99,88 @@ to {
 .gallery figure.cc-effect img {
   border-radius: calc(var(--lh-radius-lg, 12px) - 1px) !important;
 }
+
+/* 5. Filter Toolbar: Chips + Sort (chips replace old icon tabs) */
+/* Masonry: CSS multicol — item tinggi bervariasi tersusun per kolom */
+.portfolio-masonry {
+  columns: 1;
+  column-gap: 30px;
+}
+
+@media (min-width: 768px) {
+  .portfolio-masonry {
+    columns: 2;
+  }
+}
+
+.portfolio-masonry > .portfolio-item {
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+}
+
+.portfolio-toolbar {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 12px !important;
+}
+
+.filter-chips {
+  gap: 8px !important;
+}
+
+.filter-chip {
+  width: auto !important;
+  height: auto !important;
+  min-width: 0 !important;
+  padding: 9px 20px !important;
+  border-radius: 999px !important;
+  font-size: 0.8571em !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  font-family: inherit !important;
+}
+
+.portfolio-sort {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.portfolio-sort .sort-label {
+  font-size: 0.8571em !important;
+  color: var(--lh-ink-muted, #595550) !important;
+}
+
+.portfolio-sort select {
+  font-family: inherit !important;
+  font-size: 0.8571em !important;
+  font-weight: 600 !important;
+  color: var(--lh-ink, #2c2c2c) !important;
+  background-color: rgba(222, 221, 216, 0.3) !important;
+  border: 1px solid rgba(128, 128, 128, 0.2) !important;
+  border-radius: 999px !important;
+  padding: 9px 14px !important;
+  cursor: pointer !important;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease !important;
+}
+
+.portfolio-sort select:hover,
+.portfolio-sort select:focus-visible {
+  border-color: rgba(68, 94, 147, 0.45) !important;
+  outline: none !important;
+}
+
+/* Dark mode adjustments */
+.dark-mode .filter-chip {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  color: var(--lh-ink-muted, #a8a5a0) !important;
+}
+
+.dark-mode .portfolio-sort select {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  color: var(--lh-ink, #eceae4) !important;
+}

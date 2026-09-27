@@ -3,13 +3,9 @@
     <div class="row">
       <div class="col-md-6 ml-auto mr-auto">
         <h2 class="h4 text-center mb-4 title">Karya Saya</h2>
-        <%- include('patterns/portfolio/portfolio-nav.html') %>
       </div>
     </div>
-    <div class="tab-content gallery mt-5">
-      <%- include('patterns/portfolio/web-projects.html') %> <%-
-      include('patterns/portfolio/design-projects.html') %> <%-
-      include('patterns/portfolio/photo-projects.html') %>
-    </div>
+    <%- include('patterns/portfolio/portfolio-toolbar.html') %>
+    <div class="gallery mt-4"><%- include('patterns/portfolio/portfolio-items.html') %></div>
   </div>
 </div>

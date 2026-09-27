@@ -1,36 +1,29 @@
 export function initPortfolioTabs() {
-  // ===== Tab portofolio (dengan Sliding Indicator Glider) =====
-  // Pola WAI-ARIA: roving tabindex + navigasi panah + sliding indicator GPU-accelerated
+  // ===== Filter + Sort portofolio (dengan Sliding Indicator Glider) =====
+  // Chip filter per kategori (tanpa "Semua") + urutkan berdasarkan judul.
+  // Glider dipertahankan: slide antar chip filter, GPU-accelerated.
   (function () {
-    var tabs = Array.prototype.slice.call(document.querySelectorAll('a[data-toggle="tab"]'));
-    if (!tabs.length) return;
-    var panes = tabs.map(function (t) {
-      return document.querySelector(t.getAttribute('href'));
-    });
-    var container = tabs[0].closest('.nav-pills');
-    if (!container) return;
-
-    var hasFinePointer =
-      window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    var chips = Array.prototype.slice.call(document.querySelectorAll('.filter-chip'));
+    var row = document.getElementById('portfolio-items');
+    var sortSelect = document.getElementById('portfolio-sort');
+    if (!chips.length || !row) return;
+    var container = chips[0].closest('.nav-pills');
 
     // Buat elemen glider background
-    var glider = document.createElement('span');
-    glider.className = 'tab-glider';
-    container.appendChild(glider);
-    container.classList.add('has-glider');
-
-    var currentActive = tabs[0];
+    var glider = null;
+    if (container) {
+      glider = document.createElement('span');
+      glider.className = 'tab-glider';
+      container.appendChild(glider);
+      container.classList.add('has-glider');
+    }
 
     function updateGlider(targetEl) {
-      if (!targetEl || !glider) return;
-      var item = targetEl.closest('.nav-item') || targetEl;
-      var left = item.offsetLeft;
-      var top = item.offsetTop;
-      var width = targetEl.offsetWidth || 60;
-      var height = targetEl.offsetHeight || 60;
-      glider.style.transform = 'translate3d(' + left + 'px, ' + top + 'px, 0)';
-      glider.style.width = width + 'px';
-      glider.style.height = height + 'px';
+      if (!glider || !targetEl) return;
+      glider.style.transform =
+        'translate3d(' + targetEl.offsetLeft + 'px, ' + targetEl.offsetTop + 'px, 0)';
+      glider.style.width = targetEl.offsetWidth + 'px';
+      glider.style.height = targetEl.offsetHeight + 'px';
       if (!glider.classList.contains('is-ready')) {
         requestAnimationFrame(function () {
           glider.classList.add('is-ready');
@@ -38,78 +31,61 @@ export function initPortfolioTabs() {
       }
     }
 
-    function activate(link, focus) {
-      currentActive = link;
-      tabs.forEach(function (a, i) {
-        var on = a === link;
-        a.classList.toggle('active', on);
-        a.setAttribute('aria-selected', on ? 'true' : 'false');
-        a.tabIndex = on ? 0 : -1;
-        if (panes[i]) panes[i].classList.toggle('active', on);
-      });
-      updateGlider(link);
-      if (focus) link.focus();
+    var activeChip = chips[0];
+
+    function applyFilter() {
+      var category = activeChip.getAttribute('data-filter');
+      var items = row.querySelectorAll('[data-category]');
+      for (var i = 0; i < items.length; i++) {
+        items[i].hidden = items[i].getAttribute('data-category') !== category;
+      }
+      for (var j = 0; j < chips.length; j++) {
+        var isActive = chips[j] === activeChip;
+        chips[j].classList.toggle('active', isActive);
+        chips[j].setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      }
+      updateGlider(activeChip);
     }
 
-    // Beri id + relasi aria-controls / aria-labelledby
-    tabs.forEach(function (a, i) {
-      if (!a.id && panes[i]) a.id = 'tab-' + panes[i].id.toLowerCase();
-      if (panes[i]) {
-        a.setAttribute('aria-controls', panes[i].id);
-        if (!panes[i].getAttribute('aria-labelledby'))
-          panes[i].setAttribute('aria-labelledby', a.id);
-      }
-    });
-
-    tabs.forEach(function (link) {
-      link.addEventListener('click', function (e) {
-        e.preventDefault();
-        activate(link, false);
-      });
-
-      link.addEventListener('keydown', function (e) {
-        var i = tabs.indexOf(link);
-        var n = null;
-        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') n = tabs[(i + 1) % tabs.length];
-        else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp')
-          n = tabs[(i - 1 + tabs.length) % tabs.length];
-        else if (e.key === 'Home') n = tabs[0];
-        else if (e.key === 'End') n = tabs[tabs.length - 1];
-        if (n) {
-          e.preventDefault();
-          activate(n, true);
-        }
-      });
-
-      // Hover slide preview (hanya pada device dengan mouse/trackpad presisi)
-      if (hasFinePointer) {
-        link.addEventListener('mouseenter', function () {
-          updateGlider(link);
+    function applySort() {
+      if (!sortSelect) return;
+      var mode = sortSelect.value;
+      var items = Array.prototype.slice.call(row.querySelectorAll('[data-title]'));
+      if (mode === 'default') {
+        items.sort(function (a, b) {
+          return +a.getAttribute('data-order') - +b.getAttribute('data-order');
+        });
+      } else {
+        var mult = mode === 'za' ? -1 : 1;
+        items.sort(function (a, b) {
+          return (
+            mult * a.getAttribute('data-title').localeCompare(b.getAttribute('data-title'), 'id')
+          );
         });
       }
-    });
-
-    if (hasFinePointer) {
-      container.addEventListener('mouseleave', function () {
-        if (currentActive) updateGlider(currentActive);
-      });
+      for (var k = 0; k < items.length; k++) row.appendChild(items[k]);
     }
 
-    // Sinkronkan status awal (markup punya class active)
-    var initial = tabs[0];
-    for (var i = 0; i < tabs.length; i++) {
-      if (tabs[i].classList.contains('active')) initial = tabs[i];
+    for (var c = 0; c < chips.length; c++) {
+      (function (chip) {
+        chip.addEventListener('click', function () {
+          if (chip === activeChip) return;
+          activeChip = chip;
+          applyFilter();
+        });
+      })(chips[c]);
     }
-    activate(initial, false);
 
-    // Recalculate saat resize / rotasi layar
-    window.addEventListener('resize', function () {
-      if (currentActive) updateGlider(currentActive);
-    });
-    if (typeof ResizeObserver !== 'undefined') {
-      new ResizeObserver(function () {
-        if (currentActive) updateGlider(currentActive);
-      }).observe(container);
-    }
+    if (sortSelect) sortSelect.addEventListener('change', applySort);
+
+    window.addEventListener(
+      'resize',
+      function () {
+        updateGlider(activeChip);
+      },
+      { passive: true }
+    );
+
+    applyFilter();
   })();
 }
