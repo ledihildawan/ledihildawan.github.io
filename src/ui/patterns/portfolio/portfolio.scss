@@ -354,3 +354,10 @@ to {
   border-radius: 999px !important;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28) !important;
 }
+
+/* Re-open dropdown instan: animasi masuk (sort-menu-in) hanya untuk buka
+   pertama — closeMenu menandai is-opened-once (display:none->block akan
+   me-restart animasi CSS setiap buka) */
+.sort-menu.is-opened-once {
+  animation: none !important;
+}

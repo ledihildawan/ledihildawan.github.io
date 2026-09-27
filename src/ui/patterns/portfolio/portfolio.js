@@ -102,13 +102,27 @@ export function initPortfolioTabs() {
         if (selected) {
           selected.focus();
           requestAnimationFrame(function () {
-            updateSortGlider(selected);
+            // display:none->block membuat Chrome menganggap computed style
+            // glider ter-reset (none): tanpa ini, buka menu memicu transisi
+            // "menuju selected" yang terlihat. Posisikan instan sekali frame.
+            var gl = sortGliderComp && sortGliderComp.el;
+            if (gl) {
+              var prev = gl.style.transition;
+              gl.style.transition = 'none';
+              updateSortGlider(selected);
+              void gl.offsetWidth;
+              gl.style.transition = prev;
+            } else {
+              updateSortGlider(selected);
+            }
           });
         }
       }
 
       function closeMenu() {
         menu.hidden = true;
+        // buka berikutnya instan — animasi masuk hanya untuk buka pertama
+        menu.classList.add('is-opened-once');
         trigger.setAttribute('aria-expanded', 'false');
         dropdown.classList.remove('is-open');
       }
