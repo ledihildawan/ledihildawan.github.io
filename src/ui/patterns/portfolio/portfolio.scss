@@ -266,16 +266,15 @@ to {
   cursor: pointer !important;
 }
 
-/* indikator hover/fokus: highlight samar terpisah — pill abu = penanda selected */
-.sort-option:hover,
+/* indikator hover/fokus: HANYA glider (pola navbar — nav-link tanpa
+   background hover). Focus-visible outline untuk aksesibilitas keyboard */
 .sort-option:focus {
-  background-color: rgba(0, 0, 0, 0.05) !important;
   outline: none !important;
 }
 
-.dark-mode .sort-option:hover,
-.dark-mode .sort-option:focus {
-  background-color: rgba(255, 255, 255, 0.06) !important;
+.sort-option:focus-visible {
+  outline: 2px solid var(--lh-ink, #2c2c2c) !important;
+  outline-offset: -2px !important;
 }
 
 .sort-option.is-selected {
@@ -315,9 +314,8 @@ to {
   color: var(--lh-ink, #eceae4) !important;
 }
 
-.dark-mode .sort-option:hover,
-.dark-mode .sort-option:focus {
-  background-color: rgba(255, 255, 255, 0.08) !important;
+.dark-mode .sort-option:focus-visible {
+  outline-color: var(--lh-ink, #eceae4) !important;
 }
 
 /* glider vertikal: slide mengikuti hover, pulang ke opsi terpilih */
