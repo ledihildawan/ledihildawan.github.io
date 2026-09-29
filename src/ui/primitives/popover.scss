@@ -347,3 +347,56 @@
 .cc-popover-link {
   border-radius: var(--lh-radius-sm, 6px) !important;
 }
+
+/* Glider halo avatar (createGlider base) — bulatan netral DI BELAKANG
+   avatar aktif/hover (z=0, avatar diangkat z=1), meluncur antar avatar
+   tanpa pernah menimpa foto tetangga */
+.cc-avatar-stack.has-glider {
+  position: relative;
+}
+.cc-avatar-stack.has-glider .cc-project-avatar {
+  z-index: 1 !important;
+}
+.cc-avatar-stack.has-glider .cc-project-avatar:hover,
+.cc-avatar-stack.has-glider .cc-project-avatar:focus-visible,
+.cc-avatar-stack.has-glider .cc-project-avatar.is-active {
+  z-index: 2 !important;
+}
+.avatar-glider {
+  border-radius: 50% !important;
+  /* tint indigo 14% di atas surface: terlihat sengaja di light (kartu putih)
+     maupun dark (card #2a2825), tanpa garis abu mencurigakan */
+  background: color-mix(in srgb, var(--lh-accent-soft) 14%, var(--lh-surface)) !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12) !important;
+  /* netralkan margin-left -8px milik .cc-avatar-stack > * */
+  margin: 0 !important;
+  /* SOLID sejak frame pertama: opacity KELUAR dari transisi (base mem-fade
+     0 -> 1 via is-ready, bikin halo tampak tembus saat muncul) */
+  transition:
+    transform var(--lh-dur-med) var(--lh-ease-out),
+    width var(--lh-dur-med) var(--lh-ease-out),
+    height var(--lh-dur-med) var(--lh-ease-out) !important;
+  z-index: 0 !important;
+
+  /* tampil solid penuh saat ready; lepas is-ready = hilang instan
+     (mekanisme sembunyi base tetap bekerja, halo tidak nyangkut) */
+  &.is-ready {
+    opacity: 1 !important;
+  }
+}
+.cc-avatar-stack.has-glider .cc-project-avatar:hover,
+.cc-avatar-stack.has-glider .cc-project-avatar.is-active {
+  transform: scale(1.1) !important;
+  transition: transform 0.2s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
+}
+
+/* Popover tembus pointer: hover-preview harus bisa jalan terus antar
+   avatar (popover sering menutupi baris chip saat flip-below). Hanya
+   tombol tutup & link yang tetap interaktif. */
+.cc-project-popover {
+  pointer-events: none !important;
+}
+.cc-project-popover .cc-popover-close,
+.cc-project-popover .cc-popover-link {
+  pointer-events: auto !important;
+}

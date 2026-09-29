@@ -11,7 +11,13 @@ import { initHeader } from './patterns/navbar/navbar.js';
 import { initPortfolioTabs } from './patterns/portfolio/portfolio.js';
 import { initContactForm } from './patterns/contact/contact.js';
 
+let appInitialized = false;
+
 function initApp() {
+  // Idempoten: panggilan ganda (HMR/embed) tidak boleh membuat
+  // listener & elemen glider/tooltip/popover dua kali (sumber leak klasik)
+  if (appInitialized) return;
+  appInitialized = true;
   initSmoothScroll();
   initThemeToggle();
   initHeader();

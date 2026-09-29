@@ -4,15 +4,11 @@
    ========================================================================== */
 
 .dark-mode {
-  --lh-surface: #191817;
-  --lh-base: #2a2825;
-  --lh-ink: #eceae4;
-  --lh-ink-strong: #ffffff;
-  --lh-link: var(--lh-accent-soft);
-  /* accent-soft dark DINAIKKAN: #4f6fd2 hanya 3.18:1 di atas card #2a2825
-     (gagal WCAG AA 4.5). #869ef0 = 5.4:1 di card, 6.6:1 di surface */
-  --lh-accent-soft: #869ef0;
-  --lh-ink-muted: #a8a5a0;
+  /* Flip tema modern: color-scheme menggerakkan light-dark() pada SEMUA
+     token (lihat _tokens.scss). Nilai dark tiap token kini tinggal di
+     sana - tidak ada override var di sini lagi.
+     accent-soft dark #869ef0: #4f6fd2 hanya 3.18:1 di card (gagal AA) */
+  color-scheme: dark;
 
   .card {
     background-color: var(--lh-base) !important;
@@ -32,11 +28,13 @@
     background: var(--lh-accent);
     color: #ffffff;
   }
-  html.dark-mode body .page-header {
+  /* JANGAN tulis 'html.dark-mode' di dalam blok .dark-mode ini — hasil
+     kompilasi '.dark-mode html.dark-mode ...' tak pernah match */
+  body .page-header {
     background-image: url('/src/assets/images/background-dark-mobile.webp') !important;
   }
   @media (min-width: 768px) {
-    html.dark-mode body .page-header {
+    body .page-header {
       background-image: url('/src/assets/images/background-dark.webp') !important;
     }
   }
@@ -93,7 +91,8 @@
     color: var(--lh-link) !important;
   }
   .form-control:focus {
-    border-color: var(--lh-accent) !important;
+    /* accent gelap kontras ~2.4:1 di card gelap — pakai soft */
+    border-color: var(--lh-accent-soft) !important;
     color: var(--lh-ink) !important;
   }
   .input-group .form-control {

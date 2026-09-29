@@ -296,7 +296,7 @@ export function initHeader() {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
           var el = entry.target;
-          var dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var dark = document.documentElement.classList.contains('dark-mode');
           var bg = (dark && el.getAttribute('data-bg-dark')) || el.getAttribute('data-bg');
           if (bg) {
             el.style.backgroundImage = 'url(' + bg + ')';

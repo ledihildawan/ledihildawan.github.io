@@ -1,31 +1,45 @@
 /* ==========================================================================
    CSS CUSTOM PROPERTIES (Design Tokens)
+   Warna memakai OKLCH (konversi round-trip identik dari hex asal) dan
+   light-dark() untuk pergantian tema - MODERN ONLY (Chrome 123+,
+   Firefox 120+, Safari 17.5+). Hex light dipertahankan sbg fallback.
    ========================================================================== */
 
 :root {
   // Color Palette
-  --lh-white: #ffffff;
   --lh-ivory: #f0efeb;
+  --lh-ivory: oklch(95.18% 0.0054 95.1);
   --lh-ivory-warm: #f0eee9;
+  --lh-ivory-warm: oklch(94.93% 0.007 88.6);
   --lh-ivory-dark: #e4e2dc;
+  --lh-ivory-dark: oklch(91.27% 0.0084 91.5);
   --lh-charcoal: #2c2c2c;
+  --lh-charcoal: oklch(29.31% 0 89.9);
   --lh-charcoal-deep: #1f1f1f;
-  --lh-ink-muted: #595550;
+  --lh-charcoal-deep: oklch(23.93% 0 89.9);
   --lh-indigo: #2d4db6;
+  --lh-indigo: oklch(46.18% 0.1705 266.6);
   --lh-indigo-deep: #1e3a8a;
-  --lh-indigo-soft: #4f6fd2;
+  --lh-indigo-deep: oklch(37.91% 0.1378 265.5);
 
-  // Semantic Tokens
-  --lh-surface: var(--lh-white);
-  --lh-base: var(--lh-ivory);
+  // Semantic Tokens (berganti tema via light-dark(); flip di .dark-mode)
+  --lh-surface: #ffffff;
+  --lh-surface: light-dark(oklch(100% 0 89.9), oklch(20.98% 0.0025 67.7));
+  --lh-base: #f0efeb;
+  --lh-base: light-dark(oklch(95.18% 0.0054 95.1), oklch(27.79% 0.0062 78.2));
   --lh-primary: var(--lh-ivory-warm);
-  --lh-primary-hover: var(--lh-ivory-dark);
-  --lh-ink: var(--lh-charcoal);
-  --lh-ink-strong: var(--lh-charcoal-deep);
+  --lh-ink: #2c2c2c;
+  --lh-ink: light-dark(oklch(29.31% 0 89.9), oklch(93.69% 0.0083 91.5));
+  --lh-ink-strong: #1f1f1f;
+  --lh-ink-strong: light-dark(oklch(23.93% 0 89.9), oklch(100% 0 89.9));
+  --lh-ink-muted: #595550;
+  --lh-ink-muted: light-dark(oklch(45.17% 0.0096 73.6), oklch(72.29% 0.0079 80.7));
   --lh-accent: var(--lh-indigo);
   --lh-accent-strong: var(--lh-indigo-deep);
-  --lh-accent-soft: var(--lh-indigo-soft);
-  --lh-link: var(--lh-indigo);
+  --lh-accent-soft: #4f6fd2;
+  --lh-accent-soft: light-dark(oklch(56.83% 0.1564 267.7), oklch(71.46% 0.1231 270.6));
+  --lh-link: #2d4db6;
+  --lh-link: light-dark(oklch(46.18% 0.1705 266.6), oklch(71.46% 0.1231 270.6));
 
   // Border Radius
   --lh-radius-xs: 4px;
@@ -47,6 +61,8 @@
   --lh-dur-fast: 0.15s;
   --lh-dur-med: 0.3s;
 
-  // Color Scheme
-  color-scheme: light dark;
+  // Color Scheme - default LIGHT (BUKAN 'light dark': system-dark tanpa
+  // class .dark-mode akan membalik token light-dark() -> mismatch tema).
+  // Flip ke dark dilakukan .dark-mode { color-scheme: dark }.
+  color-scheme: light;
 }

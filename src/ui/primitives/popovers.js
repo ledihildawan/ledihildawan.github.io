@@ -1,4 +1,5 @@
 import { createFloatingLayer } from './floating.js';
+import { createGlider } from './glider.js';
 
 export function initPopovers() {
   // ===== Popover Preview Kontribusi Proyek (Experience Rich Hover & Tap) =====
@@ -9,6 +10,39 @@ export function initPopovers() {
       )
     );
     if (!chips.length) return;
+
+    // Glider ring (createGlider base): mengikuti hover avatar, pulang ke
+    // avatar popover-nya terbuka, sembunyi saat tidak ada yang aktif.
+    var stackGliders = new Map(); // stack -> { comp, glider } (cache referensi)
+    function gliderFor(chip) {
+      var stack = chip.closest('.cc-avatar-stack');
+      if (!stack) return null;
+      if (!stackGliders.has(stack)) {
+        var comp = createGlider(stack, 'avatar-glider');
+        stackGliders.set(stack, { comp: comp, glider: comp.el });
+      }
+      return stackGliders.get(stack).comp;
+    }
+    function moveRing(chip) {
+      var comp = gliderFor(chip);
+      if (!comp) return;
+      /* Guard race event: mouseenter bisa datang terlambat (coalesced)
+         SETELAH mouseleave stack menyala. Cek posisi pointer riil via
+         :hover - kalau pointer tidak ada di stack, ring tetap sembunyi. */
+      var stack = chip.closest('.cc-avatar-stack');
+      /* Satu-satunya syarat: pointer riil di atas stack (matches(':hover')
+         membaca state live, kebal urutan event coalesced) */
+      if (!(stack && stack.matches(':hover'))) {
+        comp.hide();
+        return;
+      }
+      comp.move(chip, {
+        left: chip.offsetLeft - 4,
+        top: chip.offsetTop - 4,
+        width: chip.offsetWidth + 8,
+        height: chip.offsetHeight + 8,
+      });
+    }
 
     var popover = document.createElement('div');
     popover.id = 'cc-project-popover';
@@ -72,8 +106,16 @@ export function initPopovers() {
       onShow: function () {
         popover.setAttribute('aria-hidden', 'false');
       },
-      onHide: function () {
+      onHide: function (chip) {
         popover.setAttribute('aria-hidden', 'true');
+        /* onHide jalan di SEMUA jalur tutup (wrapper/dismiss/Escape/scheduled)
+           dan menerima chip aktif terakhir — is-active & ring dibersihkan di
+           sini agar tidak nyangkut */
+        if (chip) {
+          chip.classList.remove('is-active');
+          var comp = gliderFor(chip);
+          if (comp) comp.hide();
+        }
       },
       position: function (chip, pop) {
         updatePosition(chip, pop);
@@ -114,6 +156,7 @@ export function initPopovers() {
       var prev = layer.current();
       if (prev && prev !== chip) prev.classList.remove('is-active');
       chip.classList.add('is-active');
+      moveRing(chip);
 
       // Populate data
       var title = chip.getAttribute('data-project-title') || '';
@@ -165,8 +208,6 @@ export function initPopovers() {
     }
 
     function hide() {
-      var cur = layer.current();
-      if (cur) cur.classList.remove('is-active');
       layer.hide();
     }
 
@@ -175,6 +216,7 @@ export function initPopovers() {
       // Hover desktop
       chip.addEventListener('mouseenter', function () {
         layer.cancelHide();
+        moveRing(chip);
         showTimer = setTimeout(function () {
           show(chip);
         }, 120);
@@ -210,14 +252,36 @@ export function initPopovers() {
       });
     });
 
-    // Keep open when mouse is over popover itself
-    popover.addEventListener('mouseenter', function () {
-      layer.cancelHide();
-    });
+    /* Watchdog 250ms + reconciler mousemove: mouseleave boundary events bisa
+       tidak tereksekusi saat hover secepat kilang (coalescing). Keduanya
+       DOM-based (bebas instansi) — halo yang is-ready namun stack-nya tak
+       di-hover dipaksa hilang; popover tertinggal ikut ditutup. */
+    setInterval(function () {
+      var anyHover = false;
+      document.querySelectorAll('.avatar-glider').forEach(function (g) {
+        var stack = g.closest('.cc-avatar-stack');
+        var hov = !!(stack && stack.matches(':hover'));
+        if (hov) anyHover = true;
+        if (g.classList.contains('is-ready') && !hov) g.classList.remove('is-ready');
+      });
+      if (!anyHover && layer.isOpen()) {
+        clearTimeout(showTimer);
+        hide();
+      }
+    }, 250);
 
-    popover.addEventListener('mouseleave', function () {
-      layer.scheduleHide();
-    });
+    document.addEventListener(
+      'mousemove',
+      function () {
+        document.querySelectorAll('.avatar-glider').forEach(function (g) {
+          var stack = g.closest('.cc-avatar-stack');
+          if (g.classList.contains('is-ready') && !(stack && stack.matches(':hover'))) {
+            g.classList.remove('is-ready');
+          }
+        });
+      },
+      { passive: true }
+    );
 
     // Close button
     if (closeBtn) {

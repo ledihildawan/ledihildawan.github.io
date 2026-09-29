@@ -180,7 +180,8 @@ main a:not(.btn):not(.nav-link) {
 }
 .form-control:focus {
   border-color: var(--lh-accent);
-  box-shadow: none;
+  /* ring 3px = pola .btn.focus — border 1px saja terlalu lemah sebagai indikator */
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--lh-accent-soft) 30%, transparent);
   color: var(--lh-ink);
   outline: 0px !important;
 }
@@ -212,7 +213,8 @@ section:focus-visible,
 }
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid var(--lh-accent) !important;
+  /* accent-soft: accent gelap (#2d4db2) kontras ~2.4:1 di dark mode */
+  outline: 2px solid var(--lh-accent-soft) !important;
   outline-offset: 2px;
 }
 html body footer a.credit {

@@ -71,9 +71,10 @@ export function createFloatingLayer(opts) {
     clearTimeout(hideTimer);
     if (!shown) return;
     shown = false;
+    var closing = current;
     current = null;
     el.classList.remove(visibleClass);
-    if (onHide) onHide();
+    if (onHide) onHide(closing);
     if (build && removeAfterHide > 0) {
       var doomed = el;
       removeTimer = setTimeout(function () {

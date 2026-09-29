@@ -20,20 +20,22 @@ export function initThemeToggle() {
       html.classList.remove('dark-mode');
     }
     localStorage.setItem(STORAGE_KEY, theme);
-    console.log('[Theme] Applied:', theme);
   }
 
   // Toggle theme
   function toggleTheme() {
     const isDark = html.classList.contains('dark-mode');
     const next = isDark ? 'light' : 'dark';
-    console.log('[Theme] Toggling from:', isDark ? 'dark' : 'light', 'to:', next);
     applyTheme(next);
   }
 
   // Initialize
+  // Live OS-switch: hanya relevan bila user belum menyimpan tema manual
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    if (!localStorage.getItem(STORAGE_KEY)) applyTheme(e.matches ? 'dark' : 'light');
+  });
+
   const initial = getPreferredTheme();
-  console.log('[Theme] Initial theme:', initial);
   applyTheme(initial);
 
   // Keyboard shortcut: press 'D' key (not in input/textarea/contenteditable)

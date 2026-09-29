@@ -209,6 +209,12 @@ to {
   box-shadow: 0 4px 14px rgba(44, 44, 44, 0.12) !important;
 }
 
+/* outline global button:focus-visible kena timpa rule lain — eksplisit di sini */
+.sort-trigger:focus-visible {
+  outline: 2px solid var(--lh-accent-soft) !important;
+  outline-offset: 2px !important;
+}
+
 .sort-icon {
   width: 16px !important;
   height: 16px !important;
