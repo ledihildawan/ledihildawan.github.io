@@ -16,12 +16,6 @@ export function createGlider(container, className) {
   container.appendChild(el);
   container.classList.add('has-glider');
 
-  var ready = false;
-  // Generation token: membatalkan rAF is-ready yang tertunda bila hide()
-  // terjadi di frame yang sama (hover secepat kilang) — tanpa ini, rAF
-  // lama menambah kembali is-ready SETELAH hide -> halo nyangkut.
-  var gen = 0;
-
   /**
    * Pindahkan glider ke target.
    * @param {HTMLElement} target - elemen acuan posisi
@@ -37,21 +31,14 @@ export function createGlider(container, className) {
     el.style.transform = 'translate3d(' + left + 'px, ' + top + 'px, 0)';
     el.style.width = width + 'px';
     el.style.height = height + 'px';
-    if (!ready) {
-      var my = ++gen;
-      requestAnimationFrame(function () {
-        if (my !== gen) return; // sudah di-hide sebelum frame ini
-        el.classList.add('is-ready');
-        ready = true;
-      });
-    }
+    /* is-ready dipasang sinkron: solid sejak frame pertama. Tidak ada rAF
+       basi yang bisa menghidupkan-ulang glider setelah hide. */
+    el.classList.add('is-ready');
   }
 
   /** Sembunyikan glider (mis. viewport mobile / tidak ada item aktif). */
   function hide() {
-    gen++;
     el.classList.remove('is-ready');
-    ready = false;
   }
 
   return { el: el, move: move, hide: hide };

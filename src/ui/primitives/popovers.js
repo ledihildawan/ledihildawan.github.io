@@ -95,6 +95,7 @@ export function initPopovers() {
     var accessText = popover.querySelector('.cc-popover-access-text');
 
     var showTimer = null;
+    var lastStack = null;
 
     // Floating layer base: lifecycle show/hide/grace period/dismiss
     // terpusat di primitives/floating.js (scroll/resize = reposition,
@@ -156,6 +157,7 @@ export function initPopovers() {
       var prev = layer.current();
       if (prev && prev !== chip) prev.classList.remove('is-active');
       chip.classList.add('is-active');
+      lastStack = chip.closest('.cc-avatar-stack');
       moveRing(chip);
 
       // Populate data
@@ -257,14 +259,9 @@ export function initPopovers() {
        DOM-based (bebas instansi) — halo yang is-ready namun stack-nya tak
        di-hover dipaksa hilang; popover tertinggal ikut ditutup. */
     setInterval(function () {
-      var anyHover = false;
-      document.querySelectorAll('.avatar-glider').forEach(function (g) {
-        var stack = g.closest('.cc-avatar-stack');
-        var hov = !!(stack && stack.matches(':hover'));
-        if (hov) anyHover = true;
-        if (g.classList.contains('is-ready') && !hov) g.classList.remove('is-ready');
-      });
-      if (!anyHover && layer.isOpen()) {
+      /* Relevansi = stack PEMBUKA popover: pointer keluar dari stack itu
+         -> popover & ring ditutup, apa pun yang di-hover di stack lain. */
+      if (lastStack && !lastStack.matches(':hover')) {
         clearTimeout(showTimer);
         hide();
       }
