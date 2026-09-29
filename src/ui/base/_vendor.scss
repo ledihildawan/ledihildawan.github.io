@@ -140,7 +140,9 @@
   line-height: 1.25;
   color: rgb(73, 80, 87);
   text-align: center;
-  background-color: rgb(233, 236, 239);
+  /* transparan: konsisten dengan input & dark mode (addon polos, pemisah
+     cukup lewat border) */
+  background-color: transparent;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 0.25rem;
 }
