@@ -202,13 +202,12 @@ to {
   font-weight: 600 !important;
   color: var(--lh-ink) !important;
   background-color: light-dark(var(--lh-base), rgba(255, 255, 255, 0.06)) !important;
-  border: 1px solid light-dark(rgba(128, 128, 128, 0.18), rgba(255, 255, 255, 0.1)) !important;
+  border: none !important;
   border-radius: 999px !important;
   padding: 9px 16px !important;
   cursor: pointer !important;
   box-shadow: var(--lh-shadow-xs) !important;
   transition:
-    border-color var(--lh-dur-3) ease,
     box-shadow var(--lh-dur-3) ease,
     background-color var(--lh-dur-3) ease !important;
 }
@@ -216,7 +215,6 @@ to {
 .sort-trigger:hover,
 .sort-trigger:focus-visible,
 .sort-dropdown.is-open .sort-trigger {
-  border-color: light-dark(rgba(128, 128, 128, 0.38), rgba(255, 255, 255, 0.22)) !important;
   box-shadow: var(--lh-shadow-sm) !important;
   outline: none !important;
 }
@@ -225,6 +223,12 @@ to {
 .sort-trigger:focus-visible {
   outline: 2px solid var(--lh-ink) !important;
   outline-offset: 2px !important;
+}
+
+.sort-icon {
+  width: 16px !important;
+  height: 16px !important;
+  color: var(--lh-ink-muted) !important;
 }
 
 .sort-chevron {
@@ -294,15 +298,10 @@ to {
 .dark-mode .sort-trigger {
   background-color: rgba(255, 255, 255, 0.06) !important;
   color: var(--lh-ink) !important;
-  border-color: rgba(255, 255, 255, 0.1) !important;
+  border: none !important;
 }
 
-.dark-mode .sort-trigger:hover,
-.dark-mode .sort-trigger:focus-visible,
-.dark-mode .sort-dropdown.is-open .sort-trigger {
-  border-color: rgba(255, 255, 255, 0.22) !important;
-}
-
+.dark-mode .sort-icon,
 .dark-mode .sort-chevron {
   color: var(--lh-ink-muted) !important;
 }
