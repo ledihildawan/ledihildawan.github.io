@@ -182,6 +182,49 @@ test.describe('Portfolio Modal Dribbble-style', () => {
     const backTitle = await page.locator('.portfolio-modal-title').textContent();
     expect(backTitle).toBe(firstTitle);
   });
+
+  test('scroll konten modal menjaga border-top-left-radius tetap 24px dan border-top-right-radius 0px', async ({
+    page,
+  }) => {
+    await page.goto('/');
+    const firstItem = page.locator('#portfolio-items .portfolio-item').first();
+    await firstItem.scrollIntoViewIfNeeded();
+    await firstItem.click();
+
+    const modal = page.locator('#portfolio-modal');
+    await expect(modal).toHaveClass(/is-visible/);
+
+    const mainContainer = page.locator('.portfolio-modal-main');
+
+    // Cek radius sebelum di-scroll
+    const topLeftBefore = await mainContainer.evaluate(
+      (el) => getComputedStyle(el).borderTopLeftRadius
+    );
+    const topRightBefore = await mainContainer.evaluate(
+      (el) => getComputedStyle(el).borderTopRightRadius
+    );
+    expect(topLeftBefore).toBe('24px');
+    expect(topRightBefore).toBe('0px');
+
+    // Scroll konten ke bawah 300px
+    await mainContainer.evaluate((el) => {
+      el.scrollTop = 300;
+      el.dispatchEvent(new Event('scroll'));
+    });
+
+    const scrollTop = await mainContainer.evaluate((el) => el.scrollTop);
+    expect(scrollTop).toBeGreaterThan(0);
+
+    // Radius top-left pada container scroll HARUS tetap 24px saat di-scroll
+    const topLeftAfter = await mainContainer.evaluate(
+      (el) => getComputedStyle(el).borderTopLeftRadius
+    );
+    const topRightAfter = await mainContainer.evaluate(
+      (el) => getComputedStyle(el).borderTopRightRadius
+    );
+    expect(topLeftAfter).toBe('24px');
+    expect(topRightAfter).toBe('0px');
+  });
 });
 
 test.describe('Bebas error console', () => {

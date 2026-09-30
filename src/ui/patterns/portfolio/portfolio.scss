@@ -404,20 +404,17 @@ body.portfolio-modal-open {
   -webkit-backdrop-filter: blur(10px) !important;
 }
 
-/* Modal Header (Fixed Non-scrolling Top Bar with Close Button) */
+/* Modal Header (Non-scrolling Top Bar with Close Button) */
 .portfolio-modal-header {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  z-index: 1070 !important;
+  position: relative !important;
+  z-index: 20 !important;
   width: 100% !important;
   height: 48px !important;
+  flex-shrink: 0 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: flex-end !important;
   padding: 0 20px !important;
-  pointer-events: none !important;
   background: transparent !important;
 }
 
@@ -435,7 +432,6 @@ body.portfolio-modal-open {
   align-items: center !important;
   justify-content: center !important;
   cursor: pointer !important;
-  pointer-events: auto !important;
   transition:
     color 0.18s ease,
     transform 0.18s ease,
@@ -460,23 +456,28 @@ body.portfolio-modal-open {
   fill: currentColor !important;
 }
 
-/* Modal Main (100% Full-Screen Height Scroll Container - Scrollbar di tepi layar penuh) */
+/* Modal Main (Dedicated Body Scroll Container - Hanya area body yang di-scroll) */
+/* Modal Main (Dedicated Body Scroll Container - Sudut kiri atas selalu melengkung 24px saat di-scroll) */
 .portfolio-modal-main {
   position: relative !important;
   z-index: 10 !important;
   width: 100% !important;
-  height: 100% !important;
+  height: calc(100% - 48px) !important;
   flex: 1 1 auto !important;
   overflow-y: auto !important;
   overflow-x: hidden !important;
   -webkit-overflow-scrolling: touch !important;
   overscroll-behavior: contain !important;
+  border-top-left-radius: 24px !important;
+  border-top-right-radius: 0 !important;
+  background: var(--lh-surface, #ffffff) !important;
+  border-top: 1px solid rgba(128, 128, 128, 0.14) !important;
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.3) !important;
   scrollbar-width: thin !important;
   scrollbar-color: rgba(128, 128, 128, 0.35) transparent !important;
   display: flex !important;
   flex-direction: column !important;
   align-items: stretch !important;
-  background: transparent !important;
 
   &::-webkit-scrollbar {
     width: 6px !important;
@@ -493,6 +494,9 @@ body.portfolio-modal-open {
 }
 
 .dark-mode .portfolio-modal-main {
+  background: var(--lh-charcoal-deep, #1b1d24) !important;
+  border-top-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.6) !important;
   scrollbar-color: rgba(255, 255, 255, 0.25) transparent !important;
 
   &::-webkit-scrollbar-thumb {
@@ -507,30 +511,17 @@ body.portfolio-modal-open {
   min-height: 100% !important;
   flex: 1 0 auto !important;
   box-sizing: border-box !important;
-  margin-top: 48px !important;
-  background: var(--lh-surface, #ffffff) !important;
+  margin-top: 0 !important;
+  background: transparent !important;
   border-top-left-radius: 24px !important;
-  border-top-right-radius: 24px !important;
-  border-bottom-left-radius: 0 !important;
-  border-bottom-right-radius: 0 !important;
-  border: 1px solid rgba(128, 128, 128, 0.14) !important;
-  border-bottom: none !important;
-  border-left: none !important;
-  border-right: none !important;
-  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.3) !important;
+  border-top-right-radius: 0 !important;
+  border: none !important;
   padding: 40px 48px 80px !important;
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
   transform: translateY(20px);
-  transition:
-    transform 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
-    border-top-right-radius 0.2s ease !important;
-}
-
-.portfolio-modal-card.has-overflow,
-.portfolio-modal-card.is-scrolled {
-  border-top-right-radius: 0 !important;
+  transition: transform 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
 }
 
 .portfolio-modal.is-visible .portfolio-modal-card {
@@ -665,17 +656,15 @@ body.portfolio-modal-open {
     padding: 0 14px !important;
   }
   .portfolio-modal-main {
-    height: 100% !important;
+    height: calc(100% - 44px) !important;
+    border-top-left-radius: 18px !important;
+    border-top-right-radius: 0 !important;
   }
   .portfolio-modal-card {
-    margin-top: 40px !important;
+    margin-top: 0 !important;
     border-top-left-radius: 18px !important;
-    border-top-right-radius: 18px !important;
-    padding: 24px 16px 60px !important;
-  }
-  .portfolio-modal-card.has-overflow,
-  .portfolio-modal-card.is-scrolled {
     border-top-right-radius: 0 !important;
+    padding: 24px 16px 60px !important;
   }
   .portfolio-modal-title {
     font-size: 1.25rem !important;
