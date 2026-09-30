@@ -191,6 +191,31 @@ test.describe('Portfolio Modal Dribbble-Style', () => {
   });
 });
 
+test.describe('Form Kontak Auto-Resize', () => {
+  test('textarea bertambah tinggi secara dinamis saat mengetik multi-line', async ({ page }) => {
+    await page.goto('/');
+    const textarea = page.locator('textarea[data-auto-resize]');
+    await textarea.scrollIntoViewIfNeeded();
+
+    const initialHeight = await textarea.evaluate((el) => el.clientHeight);
+    expect(initialHeight).toBeGreaterThanOrEqual(80);
+
+    // Ketik beberapa baris teks
+    await textarea.fill('Baris 1\nBaris 2\nBaris 3\nBaris 4\nBaris 5\nBaris 6\nBaris 7\nBaris 8');
+    await page.waitForTimeout(200);
+
+    const expandedHeight = await textarea.evaluate((el) => el.clientHeight);
+    expect(expandedHeight).toBeGreaterThan(initialHeight);
+
+    // Hapus teks, ukuran harus kembali mengecil ke baseline
+    await textarea.fill('Halo');
+    await page.waitForTimeout(200);
+
+    const shrunkHeight = await textarea.evaluate((el) => el.clientHeight);
+    expect(shrunkHeight).toBeLessThan(expandedHeight);
+  });
+});
+
 test.describe('Bebas Error Console', () => {
   test('halaman termuat tanpa ada uncaught page errors', async ({ page }) => {
     const errors = [];

@@ -54,3 +54,14 @@
   min-height: 28px;
   padding: 4px 0;
 }
+
+.cc-contact-textarea {
+  field-sizing: content;
+  min-height: 90px;
+  max-height: 380px;
+  resize: none !important;
+  line-height: 1.5;
+  transition:
+    border-color var(--lh-dur-1) ease-in-out,
+    box-shadow var(--lh-dur-1) ease-in-out;
+}
