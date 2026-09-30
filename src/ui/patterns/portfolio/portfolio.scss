@@ -1,80 +1,59 @@
 /* Portfolio Showcase, Scrim & CrossFade Tabs */
 
 /* 4. Gallery Showcase: Modern Product Card with Bottom Glass Scrim */
+/* 4. Gallery Showcase: Dribbble-style Clean Image Card */
+.portfolio-item {
+  cursor: pointer;
+  outline: none;
+  margin-bottom: 30px;
+  border-radius: var(--lh-radius-lg, 12px);
+}
+
+.portfolio-item:focus-visible figure.cc-effect {
+  outline: 2px solid var(--lh-accent, #2d4db6) !important;
+  outline-offset: 4px !important;
+}
+
 .gallery figure.cc-effect {
   position: relative !important;
   overflow: hidden !important;
-  border-radius: 12px !important;
+  border-radius: var(--lh-radius-lg, 12px) !important;
   border: 1px solid rgba(128, 128, 128, 0.14) !important;
   background: rgba(128, 128, 128, 0.04) !important;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06) !important;
   transition:
-    border-color var(--lh-dur-3) ease,
-    box-shadow var(--lh-dur-3) ease !important;
-  margin-bottom: 30px !important;
-  transform: none !important;
+    transform var(--lh-dur-3, 0.25s) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    border-color var(--lh-dur-3, 0.25s) ease,
+    box-shadow var(--lh-dur-3, 0.25s) ease !important;
+  margin-bottom: 0 !important;
+  transform: translateY(0);
 }
-.gallery figure.cc-effect:hover {
+
+.gallery .portfolio-item:hover figure.cc-effect {
+  transform: translateY(-4px);
   border-color: rgba(68, 94, 147, 0.38) !important;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1) !important;
-  transform: none !important;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12) !important;
 }
+
 .gallery figure.cc-effect figcaption::before,
 .gallery figure.cc-effect figcaption::after {
   display: none !important;
 }
+
 .gallery figure.cc-effect img {
   width: 100% !important;
   height: auto !important;
   display: block !important;
-  transform: none !important;
-  transition: none !important;
+  border-radius: calc(var(--lh-radius-lg, 12px) - 1px) !important;
+  transition: transform 0.4s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
 }
-.gallery figure.cc-effect:hover img,
-.gallery figure.cc-effect:focus-within img {
-  transform: none !important;
+
+.gallery .portfolio-item:hover figure.cc-effect img {
+  transform: scale(1.02) !important;
 }
+
 .gallery figure.cc-effect figcaption {
-  position: absolute !important;
-  inset: auto 0 0 0 !important;
-  padding: 24px 20px 16px 20px !important;
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    rgba(12, 15, 24, 0.85) 45%,
-    rgba(8, 10, 16, 0.96) 100%
-  ) !important;
-  backdrop-filter: blur(4px) !important;
-  -webkit-backdrop-filter: blur(4px) !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: flex-end !important;
-  opacity: 0 !important;
-  transform: none !important;
-  transition: opacity var(--lh-dur-3) ease !important;
-}
-.gallery figure.cc-effect:hover figcaption,
-.gallery figure.cc-effect:focus-within figcaption {
-  opacity: 1 !important;
-  transform: none !important;
-}
-.gallery figure.cc-effect .h4 {
-  margin: 0 0 4px 0 !important;
-  color: #ffffff !important;
-  font-size: 1.05rem !important;
-  font-weight: 600 !important;
-  opacity: 1 !important;
-  transform: none !important;
-}
-.gallery figure.cc-effect p {
-  margin: 0 !important;
-  padding: 0 !important;
-  color: rgba(255, 255, 255, 0.75) !important;
-  font-size: 0.8rem !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.06em !important;
-  opacity: 1 !important;
-  transform: none !important;
+  display: none !important;
 }
 
 /* 5. Portfolio Tab CrossFade (Zero Layout Shift) */
@@ -313,10 +292,16 @@ to {
    left/top/width/height diset inline oleh JS mengikuti geometri item */
 .sort-glider {
   border-radius: 8px !important;
-  background-color: rgb(154, 154, 154) !important;
+  /* tint accent 12% di atas surface menu: dekat background, bukan abu
+     mencolok. Dark memakai base (#2a2825 = bg menu dark) sebagai dasar */
+  background-color: color-mix(in srgb, var(--lh-accent-soft) 12%, var(--lh-surface)) !important;
 }
 
 /* Dark mode adjustments (urutan penting: base -> hover -> active) */
+.dark-mode .sort-glider {
+  background-color: color-mix(in srgb, var(--lh-accent-soft) 12%, var(--lh-base)) !important;
+}
+
 .dark-mode .filter-chip {
   color: var(--lh-ink-muted, #a8a5a0) !important;
 }
@@ -366,4 +351,333 @@ to {
    me-restart animasi CSS setiap buka) */
 .sort-menu.is-opened-once {
   animation: none !important;
+}
+
+/* ==========================================================================
+   7. DRIBBLE-STYLE OVERLAY VIEW (Shot Detail View with Top-Radius Card)
+   ========================================================================== */
+
+/* Body & Root scroll lock when overlay open */
+body.portfolio-modal-open {
+  overflow: hidden !important;
+  scrollbar-gutter: auto !important;
+  scrollbar-width: none !important;
+
+  &::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+}
+
+.portfolio-modal {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 1050 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: transparent !important;
+  overflow: hidden !important;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.22s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    visibility 0.22s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
+}
+
+.portfolio-modal.is-visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+/* Translucent Darkened Blur Backdrop */
+.portfolio-modal-backdrop {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 1 !important;
+  background: rgba(10, 13, 20, 0.75) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+}
+
+/* Modal Header (Fixed Non-scrolling Top Bar with Close Button) */
+.portfolio-modal-header {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 1070 !important;
+  width: 100% !important;
+  height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  padding: 0 20px !important;
+  pointer-events: none !important;
+  background: transparent !important;
+}
+
+/* Minimal Close Icon (Tanpa Button Background/Frame, Non-scrolling) */
+.portfolio-modal-close {
+  width: 28px !important;
+  height: 28px !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 4px !important;
+  color: rgba(255, 255, 255, 0.75) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  transition:
+    color 0.18s ease,
+    transform 0.18s ease,
+    opacity 0.18s ease !important;
+}
+
+.portfolio-modal-close:hover {
+  color: #ffffff !important;
+  background: transparent !important;
+  transform: scale(1.15) !important;
+  opacity: 1 !important;
+}
+
+.portfolio-modal-close:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.8) !important;
+  outline-offset: 2px !important;
+}
+
+.portfolio-modal-close svg {
+  width: 18px !important;
+  height: 18px !important;
+  fill: currentColor !important;
+}
+
+/* Modal Main (100% Full-Screen Height Scroll Container - Scrollbar di tepi layar penuh) */
+.portfolio-modal-main {
+  position: relative !important;
+  z-index: 10 !important;
+  width: 100% !important;
+  height: 100% !important;
+  flex: 1 1 auto !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior: contain !important;
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(128, 128, 128, 0.35) transparent !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  background: transparent !important;
+
+  &::-webkit-scrollbar {
+    width: 6px !important;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent !important;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(128, 128, 128, 0.35) !important;
+    border-radius: 999px !important;
+  }
+}
+
+.dark-mode .portfolio-modal-main {
+  scrollbar-color: rgba(255, 255, 255, 0.25) transparent !important;
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.25) !important;
+  }
+}
+
+/* 100% FULL-WIDTH Content Card with Top-Left & Top-Right Radius */
+.portfolio-modal-card {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: 100% !important;
+  flex: 1 0 auto !important;
+  box-sizing: border-box !important;
+  margin-top: 48px !important;
+  background: var(--lh-surface, #ffffff) !important;
+  border-top-left-radius: 24px !important;
+  border-top-right-radius: 24px !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  border: 1px solid rgba(128, 128, 128, 0.14) !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.3) !important;
+  padding: 40px 48px 80px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  transform: translateY(20px);
+  transition:
+    transform 0.25s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    border-top-right-radius 0.2s ease !important;
+}
+
+.portfolio-modal-card.has-overflow,
+.portfolio-modal-card.is-scrolled {
+  border-top-right-radius: 0 !important;
+}
+
+.portfolio-modal.is-visible .portfolio-modal-card {
+  transform: translateY(0) !important;
+}
+
+/* Full Width Body Content (All copy & image media live here) */
+.portfolio-modal-body {
+  width: 100% !important;
+  max-width: 1000px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: 24px !important;
+}
+
+/* Meta inside Body: Title & Category */
+.portfolio-modal-meta {
+  width: 100% !important;
+  max-width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 12px !important;
+  margin-bottom: 0 !important;
+}
+
+.portfolio-modal-title {
+  margin: 0 !important;
+  font-size: 1.65rem !important;
+  font-weight: 700 !important;
+  color: var(--lh-ink, #2c2c2c) !important;
+  line-height: 1.25 !important;
+}
+
+.portfolio-modal-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  padding: 5px 14px !important;
+  border-radius: 999px !important;
+  background: rgba(45, 77, 182, 0.1) !important;
+  color: var(--lh-accent, #2d4db6) !important;
+}
+
+/* Media Showcase inside Body */
+.portfolio-modal-media {
+  width: 100% !important;
+  max-width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-bottom: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+.portfolio-modal-img {
+  max-width: 100% !important;
+  width: auto !important;
+  height: auto !important;
+  max-height: 85vh !important;
+  border-radius: var(--lh-radius-lg, 12px) !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.14) !important;
+  border: 1px solid rgba(128, 128, 128, 0.12) !important;
+  display: block !important;
+}
+
+/* Copy & Tags inside Body */
+.portfolio-modal-desc {
+  margin: 0 !important;
+  font-size: 1.05rem !important;
+  line-height: 1.7 !important;
+  color: var(--lh-ink-muted, #595550) !important;
+}
+
+.portfolio-modal-tags {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  align-items: center !important;
+  margin-top: 0 !important;
+}
+
+.portfolio-modal-tag {
+  font-size: 0.85rem !important;
+  font-weight: 500 !important;
+  padding: 5px 14px !important;
+  border-radius: var(--lh-radius-sm, 6px) !important;
+  background: rgba(128, 128, 128, 0.08) !important;
+  color: var(--lh-ink, #2c2c2c) !important;
+  border: 1px solid rgba(128, 128, 128, 0.12) !important;
+}
+
+/* Dark Mode Theme */
+.dark-mode .portfolio-modal-card {
+  background: var(--lh-charcoal-deep, #1b1d24) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.6) !important;
+}
+
+.dark-mode .portfolio-modal-title {
+  color: var(--lh-ink, #eceae4) !important;
+}
+
+.dark-mode .portfolio-modal-badge {
+  background: rgba(79, 111, 210, 0.2) !important;
+  color: var(--lh-accent-soft, #7997ea) !important;
+}
+
+.dark-mode .portfolio-modal-desc {
+  color: var(--lh-ink-muted, #a8a5a0) !important;
+}
+
+.dark-mode .portfolio-modal-tag {
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: var(--lh-ink, #eceae4) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+@media (max-width: 768px) {
+  .portfolio-modal-header {
+    height: 44px !important;
+    padding: 0 14px !important;
+  }
+  .portfolio-modal-main {
+    height: 100% !important;
+  }
+  .portfolio-modal-card {
+    margin-top: 40px !important;
+    border-top-left-radius: 18px !important;
+    border-top-right-radius: 18px !important;
+    padding: 24px 16px 60px !important;
+  }
+  .portfolio-modal-card.has-overflow,
+  .portfolio-modal-card.is-scrolled {
+    border-top-right-radius: 0 !important;
+  }
+  .portfolio-modal-title {
+    font-size: 1.25rem !important;
+  }
 }

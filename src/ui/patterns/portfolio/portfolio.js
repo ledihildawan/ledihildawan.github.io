@@ -224,5 +224,235 @@ export function initPortfolioTabs() {
     );
 
     applyFilter();
+    initPortfolioModal();
   })();
+}
+
+function initPortfolioModal() {
+  var row = document.getElementById('portfolio-items');
+  if (!row) return;
+
+  var modal = document.createElement('div');
+  modal.id = 'portfolio-modal';
+  modal.className = 'portfolio-modal';
+  modal.setAttribute('role', 'dialog');
+  modal.setAttribute('aria-modal', 'true');
+  modal.setAttribute('aria-hidden', 'true');
+  modal.setAttribute('tabindex', '-1');
+
+  modal.innerHTML = [
+    '<div class="portfolio-modal-backdrop" aria-hidden="true"></div>',
+    '<header class="portfolio-modal-header">',
+    '  <button type="button" class="portfolio-modal-close portfolio-modal-overlay-close" aria-label="Tutup preview karya">',
+    '    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>',
+    '  </button>',
+    '</header>',
+    '<main class="portfolio-modal-main portfolio-modal-container">',
+    '  <article class="portfolio-modal-card">',
+    '    <div class="portfolio-modal-body">',
+    '      <div class="portfolio-modal-meta">',
+    '        <h2 class="portfolio-modal-title"></h2>',
+    '        <span class="portfolio-modal-badge"></span>',
+    '      </div>',
+    '      <div class="portfolio-modal-media">',
+    '        <img class="portfolio-modal-img" src="" alt="" loading="eager" />',
+    '      </div>',
+    '      <p class="portfolio-modal-desc"></p>',
+    '      <div class="portfolio-modal-tags"></div>',
+    '    </div>',
+    '  </article>',
+    '</main>',
+  ].join('');
+
+  document.body.appendChild(modal);
+
+  var backdrop = modal.querySelector('.portfolio-modal-backdrop');
+  var closeBtn = modal.querySelector('.portfolio-modal-close');
+  var titleEl = modal.querySelector('.portfolio-modal-title');
+  var badgeEl = modal.querySelector('.portfolio-modal-badge');
+  var imgEl = modal.querySelector('.portfolio-modal-img');
+  var descEl = modal.querySelector('.portfolio-modal-desc');
+  var tagsContainer = modal.querySelector('.portfolio-modal-tags');
+  var container = modal.querySelector('.portfolio-modal-main');
+  var cardEl = modal.querySelector('.portfolio-modal-card');
+
+  var lastFocusedEl = null;
+  var currentItem = null;
+
+  function checkOverflow() {
+    if (!container || !cardEl) return;
+    var hasOverflow = container.scrollHeight > container.clientHeight;
+    cardEl.classList.toggle('has-overflow', hasOverflow);
+  }
+
+  if (container && cardEl) {
+    container.addEventListener(
+      'scroll',
+      function () {
+        var isScrolled = container.scrollTop > 0;
+        cardEl.classList.toggle('is-scrolled', isScrolled);
+      },
+      { passive: true }
+    );
+  }
+
+  imgEl.addEventListener('load', function () {
+    checkOverflow();
+  });
+
+  window.addEventListener(
+    'resize',
+    function () {
+      if (modal.classList.contains('is-visible')) {
+        checkOverflow();
+      }
+    },
+    { passive: true }
+  );
+
+  function getVisibleItems() {
+    return Array.prototype.slice.call(row.querySelectorAll('.portfolio-item:not([hidden])'));
+  }
+
+  function populateData(item) {
+    if (!item) return;
+    currentItem = item;
+
+    var title = item.getAttribute('data-title') || '';
+    var categoryLabel =
+      item.getAttribute('data-category-label') || item.getAttribute('data-category') || '';
+    var desc = item.getAttribute('data-desc') || '';
+    var tags = (item.getAttribute('data-tags') || '')
+      .split(',')
+      .map(function (t) {
+        return t.trim();
+      })
+      .filter(Boolean);
+
+    var img = item.querySelector('img');
+    var imgSrc = img ? img.getAttribute('src') : '';
+    var imgAlt = img ? img.getAttribute('alt') : title;
+
+    titleEl.textContent = title;
+    badgeEl.textContent = categoryLabel;
+    descEl.textContent = desc;
+
+    imgEl.src = imgSrc;
+    imgEl.alt = imgAlt;
+
+    tagsContainer.innerHTML = '';
+    tags.forEach(function (tag) {
+      var span = document.createElement('span');
+      span.className = 'portfolio-modal-tag';
+      span.textContent = tag;
+      tagsContainer.appendChild(span);
+    });
+
+    if (container) container.scrollTop = 0;
+    if (cardEl) {
+      cardEl.classList.remove('is-scrolled');
+    }
+    requestAnimationFrame(function () {
+      checkOverflow();
+    });
+  }
+
+  function openModal(item) {
+    lastFocusedEl = document.activeElement;
+    populateData(item);
+
+    modal.classList.add('is-visible');
+    modal.setAttribute('aria-hidden', 'false');
+    document.documentElement.classList.add('scroll-locked');
+    document.body.classList.add('portfolio-modal-open');
+
+    closeBtn.focus();
+    requestAnimationFrame(function () {
+      checkOverflow();
+    });
+  }
+
+  function closeModal() {
+    if (!modal.classList.contains('is-visible')) return;
+
+    modal.classList.remove('is-visible');
+    modal.setAttribute('aria-hidden', 'true');
+    document.documentElement.classList.remove('scroll-locked');
+    document.body.classList.remove('portfolio-modal-open');
+
+    if (lastFocusedEl && typeof lastFocusedEl.focus === 'function') {
+      lastFocusedEl.focus();
+    }
+  }
+
+  function navigate(delta) {
+    var visibleItems = getVisibleItems();
+    if (visibleItems.length <= 1) return;
+
+    var curIdx = visibleItems.indexOf(currentItem);
+    if (curIdx === -1) curIdx = 0;
+
+    var nextIdx = (curIdx + delta + visibleItems.length) % visibleItems.length;
+    populateData(visibleItems[nextIdx]);
+  }
+
+  // Event trigger pada item portfolio
+  row.addEventListener('click', function (e) {
+    var item = e.target.closest('.portfolio-item');
+    if (!item) return;
+    openModal(item);
+  });
+
+  row.addEventListener('keydown', function (e) {
+    var item = e.target.closest('.portfolio-item');
+    if (!item) return;
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      openModal(item);
+    }
+  });
+
+  // Modal actions
+  backdrop.addEventListener('click', closeModal);
+  closeBtn.addEventListener('click', closeModal);
+  container.addEventListener('click', function (e) {
+    if (e.target === container) {
+      closeModal();
+    }
+  });
+
+  // Keyboard navigation saat modal terbuka
+  document.addEventListener('keydown', function (e) {
+    if (!modal.classList.contains('is-visible')) return;
+
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      closeModal();
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      navigate(-1);
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      navigate(1);
+    } else if (e.key === 'Tab') {
+      // Focus trap
+      var focusable = modal.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      var first = focusable[0];
+      var last = focusable[focusable.length - 1];
+
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    }
+  });
 }

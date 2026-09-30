@@ -135,6 +135,55 @@ test.describe('Shadow snap tombol sosial', () => {
   });
 });
 
+test.describe('Portfolio Modal Dribbble-style', () => {
+  test('klik item membuka modal, Escape & tombol close menutup modal', async ({ page }) => {
+    await page.goto('/');
+    const firstItem = page.locator('#portfolio-items .portfolio-item').first();
+    await firstItem.scrollIntoViewIfNeeded();
+    await firstItem.click();
+
+    const modal = page.locator('#portfolio-modal');
+    await expect(modal).toHaveClass(/is-visible/, { timeout: 5000 });
+    await expect(page.locator('body')).toHaveClass(/portfolio-modal-open/);
+
+    const title = await firstItem.getAttribute('data-title');
+    await expect(page.locator('.portfolio-modal-title')).toHaveText(title);
+
+    // Escape menutup modal
+    await page.keyboard.press('Escape');
+    await expect(modal).not.toHaveClass(/is-visible/);
+    await expect(page.locator('body')).not.toHaveClass(/portfolio-modal-open/);
+
+    // Buka lagi lalu klik tombol close
+    await firstItem.click();
+    await expect(modal).toHaveClass(/is-visible/);
+    await page.locator('.portfolio-modal-overlay-close').click();
+    await expect(modal).not.toHaveClass(/is-visible/);
+  });
+
+  test('navigasi arrow keyboard berganti karya', async ({ page }) => {
+    await page.goto('/');
+    const firstItem = page.locator('#portfolio-items .portfolio-item').first();
+    await firstItem.scrollIntoViewIfNeeded();
+    await firstItem.click();
+
+    const modal = page.locator('#portfolio-modal');
+    await expect(modal).toHaveClass(/is-visible/);
+
+    const firstTitle = await page.locator('.portfolio-modal-title').textContent();
+
+    // Panah keyboard kanan (next) berganti karya
+    await page.keyboard.press('ArrowRight');
+    const nextTitle = await page.locator('.portfolio-modal-title').textContent();
+    expect(nextTitle).not.toBe(firstTitle);
+
+    // Panah keyboard kiri (prev) kembali ke judul pertama
+    await page.keyboard.press('ArrowLeft');
+    const backTitle = await page.locator('.portfolio-modal-title').textContent();
+    expect(backTitle).toBe(firstTitle);
+  });
+});
+
 test.describe('Bebas error console', () => {
   test('tidak ada page error', async ({ page }) => {
     const errors = [];
