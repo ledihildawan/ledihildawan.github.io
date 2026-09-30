@@ -25,7 +25,7 @@
     z-index: 1 !important;
   }
   .navbar.bg-primary:not(.navbar-transparent) .nav-glider {
-    background-color: rgba(68, 94, 147, 0.15) !important;
+    background-color: light-dark(rgba(0, 0, 0, 0.07), rgba(255, 255, 255, 0.12)) !important;
   }
   .dark-mode .navbar.bg-primary:not(.navbar-transparent) .nav-glider {
     background-color: rgba(255, 255, 255, 0.12) !important;
@@ -77,12 +77,18 @@
   line-height: 1 !important;
   color: #ffffff !important;
   transition:
+    color var(--lh-dur-3) ease,
     opacity var(--lh-dur-2) ease,
     transform var(--lh-dur-2) ease !important;
 
   &:hover {
     opacity: 0.85;
   }
+}
+
+.navbar:not(.navbar-transparent) .navbar-brand,
+.navbar.bg-primary:not(.navbar-transparent) .navbar-brand {
+  color: var(--lh-ink) !important;
 }
 
 .navbar-brand-logo {

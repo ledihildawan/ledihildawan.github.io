@@ -360,12 +360,14 @@ to {
 }
 
 /* 6. Featured badge — penanda karya unggulan (data-featured="true") */
-.portfolio-item[data-featured='true'] figure.cc-effect::after {
-  content: '★ Unggulan' !important;
+.portfolio-featured-badge {
   position: absolute !important;
   top: 14px !important;
   right: 14px !important;
   z-index: 3 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
   background: var(--lh-accent, #2d4db6) !important;
   color: #ffffff !important;
   font-size: 0.7142em !important;
@@ -375,6 +377,16 @@ to {
   padding: 5px 12px !important;
   border-radius: 999px !important;
   box-shadow: var(--lh-shadow-sm) !important;
+  pointer-events: none !important;
+  line-height: 1 !important;
+}
+
+.portfolio-featured-icon {
+  width: 12px !important;
+  height: 12px !important;
+  stroke: currentColor !important;
+  display: inline-block !important;
+  flex-shrink: 0 !important;
 }
 
 /* Re-open dropdown instan: animasi masuk (sort-menu-in) hanya untuk buka
