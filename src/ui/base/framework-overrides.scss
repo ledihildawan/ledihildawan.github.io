@@ -243,9 +243,6 @@ button:focus-visible {
   outline: 2px solid var(--lh-accent-soft) !important;
   outline-offset: 2px;
 }
-html body footer a.credit {
-  color: var(--lh-link) !important;
-}
 // .cc-inst rules extracted to ./social-icons
 .btn:focus-visible {
   outline: 2px solid var(--lh-accent);
@@ -772,7 +769,7 @@ img {
 }
 a.credit {
   color: inherit;
-  border-bottom: 1px dashed;
+  border: none;
   text-decoration: none;
   cursor: pointer;
 }

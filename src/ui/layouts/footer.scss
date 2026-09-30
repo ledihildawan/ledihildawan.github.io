@@ -21,3 +21,41 @@
 .footer .cc-threads:focus .icon-fill {
   fill: url(#th-grad) !important;
 }
+
+/* Footer Credits with Avatars */
+.footer-credit-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  vertical-align: middle;
+  text-decoration: none;
+  border: none;
+  color: var(--lh-link);
+  font-weight: 500;
+  transition: color var(--lh-dur-2) ease;
+
+  span {
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  &:hover {
+    color: var(--lh-accent-strong);
+  }
+}
+
+.dark-mode .footer-credit-link:hover {
+  color: var(--lh-accent-soft);
+}
+
+.footer-credit-avatar {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: middle;
+  box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--lh-ink) 20%, transparent);
+}
