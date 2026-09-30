@@ -117,6 +117,26 @@ test.describe('Popover preview proyek', () => {
     await page.waitForTimeout(500);
     await expect(page.locator('.cc-project-popover.is-visible')).toHaveCount(0);
   });
+
+  test('hover ke dalam kartu popover: popover tetap terbuka', async ({ page }) => {
+    await page.goto('/');
+    const chip = page
+      .locator('.cc-project-avatar[data-project-title], .cc-shipped-chip[data-project-title]')
+      .first();
+    await chip.scrollIntoViewIfNeeded();
+    await chip.hover();
+    const popover = page.locator('.cc-project-popover.is-visible');
+    await expect(popover).toBeVisible({ timeout: 5000 });
+
+    // Gerakkan mouse ke dalam kartu popover
+    const box = await popover.boundingBox();
+    expect(box).not.toBeNull();
+    await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2, { steps: 5 });
+    await page.waitForTimeout(400);
+
+    // Popover HARUS tetap terbuka
+    await expect(popover).toBeVisible();
+  });
 });
 
 test.describe('Shadow snap tombol sosial', () => {

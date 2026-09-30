@@ -390,13 +390,9 @@
   transition: transform 0.2s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
 }
 
-/* Popover tembus pointer: hover-preview harus bisa jalan terus antar
-   avatar (popover sering menutupi baris chip saat flip-below). Hanya
-   tombol tutup & link yang tetap interaktif. */
 .cc-project-popover {
-  pointer-events: none !important;
+  pointer-events: none;
 }
-.cc-project-popover .cc-popover-close,
-.cc-project-popover .cc-popover-link {
+.cc-project-popover.is-visible {
   pointer-events: auto !important;
 }

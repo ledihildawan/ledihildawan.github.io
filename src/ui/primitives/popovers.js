@@ -28,11 +28,10 @@ export function initPopovers() {
       if (!comp) return;
       /* Guard race event: mouseenter bisa datang terlambat (coalesced)
          SETELAH mouseleave stack menyala. Cek posisi pointer riil via
-         :hover - kalau pointer tidak ada di stack, ring tetap sembunyi. */
+         :hover - kalau pointer tidak ada di stack atau popover, ring tetap sembunyi. */
       var stack = chip.closest('.cc-avatar-stack');
-      /* Satu-satunya syarat: pointer riil di atas stack (matches(':hover')
-         membaca state live, kebal urutan event coalesced) */
-      if (!(stack && stack.matches(':hover'))) {
+      /* Tetap aktif bila pointer di atas stack ATAU di atas kartu popover */
+      if (!(stack && (stack.matches(':hover') || popover.matches(':hover')))) {
         comp.hide();
         return;
       }
@@ -103,7 +102,7 @@ export function initPopovers() {
     var layer = createFloatingLayer({
       el: popover,
       visibleClass: 'is-visible',
-      hideDelay: 200,
+      hideDelay: 300,
       onShow: function () {
         popover.setAttribute('aria-hidden', 'false');
       },
@@ -254,25 +253,49 @@ export function initPopovers() {
       });
     });
 
-    /* Watchdog 250ms + reconciler mousemove: mouseleave boundary events bisa
-       tidak tereksekusi saat hover secepat kilang (coalescing). Keduanya
-       DOM-based (bebas instansi) — halo yang is-ready namun stack-nya tak
-       di-hover dipaksa hilang; popover tertinggal ikut ditutup. */
+    // Hover popover card: batalkan hide saat pointer masuk ke dalam kartu popover
+    popover.addEventListener('mouseenter', function () {
+      layer.cancelHide();
+      var activeChip = layer.current();
+      if (activeChip) moveRing(activeChip);
+    });
+
+    popover.addEventListener('mouseleave', function () {
+      layer.scheduleHide(250);
+    });
+
+    /* Watchdog 100ms + reconciler mousemove: mouseleave boundary events bisa
+       tidak tereksekusi saat hover secepat kilang (coalescing).
+       outsideSince melacak durasi pointer di luar stack & popover — jika melebihi
+       grace period (300ms), popover ditutup tanpa mengganggu transisi hover. */
+    var outsideSince = 0;
     setInterval(function () {
-      /* Relevansi = stack PEMBUKA popover: pointer keluar dari stack itu
-         -> popover & ring ditutup, apa pun yang di-hover di stack lain. */
-      if (lastStack && !lastStack.matches(':hover')) {
-        clearTimeout(showTimer);
-        hide();
+      if (
+        layer.isOpen() &&
+        lastStack &&
+        !lastStack.matches(':hover') &&
+        !popover.matches(':hover')
+      ) {
+        if (!outsideSince) outsideSince = Date.now();
+        else if (Date.now() - outsideSince > 300) {
+          clearTimeout(showTimer);
+          hide();
+          outsideSince = 0;
+        }
+      } else {
+        outsideSince = 0;
       }
-    }, 250);
+    }, 100);
 
     document.addEventListener(
       'mousemove',
       function () {
         document.querySelectorAll('.avatar-glider').forEach(function (g) {
           var stack = g.closest('.cc-avatar-stack');
-          if (g.classList.contains('is-ready') && !(stack && stack.matches(':hover'))) {
+          if (
+            g.classList.contains('is-ready') &&
+            !(stack && (stack.matches(':hover') || popover.matches(':hover')))
+          ) {
             g.classList.remove('is-ready');
           }
         });
