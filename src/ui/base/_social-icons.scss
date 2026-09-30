@@ -5,7 +5,9 @@
 .cc-inst {
   display: flex;
   align-items: center;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: var(--lh-ink);
 }
 
 .cc-inst-logo {
@@ -16,6 +18,21 @@
   padding: 2px;
 }
 
-.cc-inst a {
+.cc-inst a,
+.cc-inst a:visited,
+.cc-inst a:hover,
+.cc-inst a:active,
+.cc-inst a:focus,
+.cc-inst a:focus-visible {
   min-width: 0;
+  color: var(--lh-ink) !important;
+}
+
+.cc-inst a {
+  text-decoration: none;
+}
+
+.cc-inst a:hover,
+.cc-inst a:focus-visible {
+  text-decoration: underline;
 }

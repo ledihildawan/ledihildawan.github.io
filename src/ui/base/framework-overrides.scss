@@ -172,11 +172,26 @@ body,
   background-color: var(--lh-accent) !important;
   color: #fff !important;
 }
-.card-body a {
+.card-body a:not(.cc-inst a) {
   color: var(--lh-link) !important;
 }
-main a:not(.btn):not(.nav-link) {
+main a:not(.btn):not(.nav-link):not(.cc-inst a) {
   color: var(--lh-link) !important;
+}
+
+.cc-inst a,
+.cc-inst a:visited,
+.cc-inst a:hover,
+.cc-inst a:active,
+.cc-inst a:focus,
+.cc-inst a:focus-visible {
+  color: var(--lh-ink) !important;
+  text-decoration: none;
+}
+
+.cc-inst a:hover,
+.cc-inst a:focus-visible {
+  text-decoration: underline !important;
 }
 
 .form-control:focus {
@@ -794,9 +809,6 @@ a.credit {
 }
 .footer .text-muted,
 .footer .text-muted p {
-  color: var(--lh-ink-muted, #595550) !important;
-}
-a.credit {
   color: var(--lh-ink-muted, #595550) !important;
 }
 .bg-primary {

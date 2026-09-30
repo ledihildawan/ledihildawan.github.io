@@ -23,14 +23,15 @@
 }
 
 /* Footer Credits with Avatars */
-.footer-credit-link {
+.footer-credit-link,
+a.credit {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   vertical-align: middle;
   text-decoration: none;
   border: none;
-  color: var(--lh-link);
+  color: var(--lh-link) !important;
   font-weight: 500;
   transition: color var(--lh-dur-2) ease;
 
@@ -40,13 +41,17 @@
     text-underline-offset: 3px;
   }
 
-  &:hover {
-    color: var(--lh-accent-strong);
+  &:hover,
+  &:focus-visible {
+    color: var(--lh-accent-strong) !important;
   }
 }
 
-.dark-mode .footer-credit-link:hover {
-  color: var(--lh-accent-soft);
+.dark-mode .footer-credit-link:hover,
+.dark-mode .footer-credit-link:focus-visible,
+.dark-mode a.credit:hover,
+.dark-mode a.credit:focus-visible {
+  color: var(--lh-accent-soft) !important;
 }
 
 .footer-credit-avatar {
