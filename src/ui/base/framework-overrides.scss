@@ -334,30 +334,32 @@ a:focus {
 }
 h2,
 .h2 {
-  font-size: 2.5em;
-  margin-bottom: 30px;
+  font-size: clamp(1.65rem, 3.5vw, 2rem);
+  margin-bottom: 24px;
+  line-height: 1.25;
 }
 h4,
 .h4 {
-  font-size: 1.714em;
-  line-height: 1.45em;
-  margin-top: 30px;
-  margin-bottom: 15px;
+  font-size: 1.3rem;
+  line-height: 1.4;
+  margin-top: 20px;
+  margin-bottom: 12px;
 }
 h5,
 .h5 {
-  font-size: 1.57em;
-  line-height: 1.4em;
-  margin-bottom: 15px;
+  font-size: 1.15rem;
+  line-height: 1.4;
+  margin-bottom: 12px;
 }
 p {
-  line-height: 1.61em;
+  line-height: 1.65;
 }
 // .title, .category rules extracted to ./content
 // body extracted to ./html-reset
 body {
   color: var(--lh-ink, #2c2c2c);
-  font-size: 14px;
+  font-size: 15px;
+  line-height: 1.65;
   font-family: Montserrat, 'Helvetica Neue', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
