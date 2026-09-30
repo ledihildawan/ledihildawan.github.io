@@ -13,7 +13,23 @@
     position: relative !important;
     z-index: 2 !important;
     background: transparent !important;
+    color: var(--lh-ink) !important;
     transition: color var(--lh-dur-3) ease !important;
+  }
+  .navbar-transparent.navbar-expand-lg .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.85) !important;
+  }
+  .navbar-transparent.navbar-expand-lg .navbar-nav .nav-link:hover,
+  .navbar-transparent.navbar-expand-lg .navbar-nav .nav-link:focus,
+  .navbar-transparent.navbar-expand-lg .navbar-nav .nav-item.active .nav-link,
+  .navbar-transparent.navbar-expand-lg .navbar-nav .nav-link.active {
+    color: #ffffff !important;
+  }
+  .navbar:not(.navbar-transparent).navbar-expand-lg .navbar-nav .nav-link:hover,
+  .navbar:not(.navbar-transparent).navbar-expand-lg .navbar-nav .nav-link:focus,
+  .navbar:not(.navbar-transparent).navbar-expand-lg .navbar-nav .nav-item.active .nav-link,
+  .navbar:not(.navbar-transparent).navbar-expand-lg .navbar-nav .nav-link.active {
+    color: var(--lh-ink) !important;
   }
   .nav-glider {
     /* struktur (position/transition/opacity) dari primitives/_glider.scss */

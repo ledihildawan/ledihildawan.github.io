@@ -131,6 +131,15 @@ to {
   cursor: pointer !important;
 }
 
+.section-subtitle {
+  font-size: 0.95rem !important;
+  color: var(--lh-ink-muted) !important;
+  line-height: 1.6 !important;
+  margin-bottom: 24px !important;
+  max-width: 520px !important;
+  margin-inline: auto !important;
+}
+
 .portfolio-toolbar {
   display: flex !important;
   align-items: center !important;
