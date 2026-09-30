@@ -3,7 +3,7 @@
 /* 8. Footer Social Icons */
 .footer .btn-link,
 .footer ul li a {
-  color: var(--lh-ink) !important;
+  color: var(--lh-ink-muted) !important;
   opacity: 1 !important;
 }
 
@@ -40,17 +40,9 @@
   .footer .cc-github:focus .icon-fill {
     fill: url(#gh-grad-dark) !important;
   }
-  .footer .cc-linkedin:hover .icon-fill,
-  .footer .cc-linkedin:focus .icon-fill {
-    fill: url(#li-grad-dark) !important;
-  }
   .footer .cc-twitter:hover .icon-fill,
   .footer .cc-twitter:focus .icon-fill {
     fill: url(#tw-grad-dark) !important;
-  }
-  .footer .cc-instagram:hover .icon-fill,
-  .footer .cc-instagram:focus .icon-fill {
-    fill: url(#ig-grad-dark) !important;
   }
   .footer .cc-threads:hover .icon-fill,
   .footer .cc-threads:focus .icon-fill {
