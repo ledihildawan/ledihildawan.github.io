@@ -166,7 +166,7 @@ export function initHeader() {
       }
       var navItem = targetEl.closest('.nav-item');
       if (!navItem) return;
-      var height = 36;
+      var height = 28;
       gliderComp.move(targetEl, {
         left: navItem.offsetLeft,
         top: navItem.offsetTop + (navItem.offsetHeight - height) / 2,

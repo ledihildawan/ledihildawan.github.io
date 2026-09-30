@@ -5,46 +5,116 @@
   .navbar-expand-lg .navbar-nav {
     position: relative !important;
     isolation: isolate !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    flex-direction: row !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    list-style: none !important;
+    transition:
+      background-color var(--lh-dur-3) ease,
+      border-color var(--lh-dur-3) ease,
+      box-shadow var(--lh-dur-3) ease,
+      padding var(--lh-dur-3) ease !important;
   }
+
+  /* Right-side Navbar with Blur Background (when unscrolled / navbar-transparent) */
+  .navbar-transparent.navbar-expand-lg .navbar-nav {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(16px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    border-radius: 9999px !important;
+    padding: 3px 4px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+    gap: 1px !important;
+  }
+
+  .dark-mode .navbar-transparent.navbar-expand-lg .navbar-nav {
+    background-color: rgba(30, 30, 30, 0.45) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35) !important;
+  }
+
   .navbar-expand-lg .navbar-nav .nav-item {
     position: relative !important;
+    display: inline-flex !important;
+    align-items: center !important;
   }
+
   .navbar-expand-lg .navbar-nav .nav-link {
     position: relative !important;
     z-index: 2 !important;
     background: transparent !important;
     color: var(--lh-ink) !important;
+    font-size: 0.8125rem !important;
+    font-weight: 500 !important;
+    padding: 4px 12px !important;
+    border-radius: 9999px !important;
+    text-decoration: none !important;
     transition: color var(--lh-dur-3) ease !important;
   }
+
   .navbar-transparent.navbar-expand-lg .navbar-nav .nav-link {
-    color: rgba(255, 255, 255, 0.85) !important;
+    color: rgba(255, 255, 255, 0.88) !important;
   }
+
   .navbar-transparent.navbar-expand-lg .navbar-nav .nav-link:hover,
   .navbar-transparent.navbar-expand-lg .navbar-nav .nav-link:focus,
   .navbar-transparent.navbar-expand-lg .navbar-nav .nav-item.active .nav-link,
   .navbar-transparent.navbar-expand-lg .navbar-nav .nav-link.active {
     color: #ffffff !important;
   }
+
+  /* Right-side Navbar when scrolled */
+  .navbar:not(.navbar-transparent).navbar-expand-lg .navbar-nav {
+    background-color: light-dark(rgba(240, 239, 235, 0.75), rgba(25, 24, 23, 0.75)) !important;
+    backdrop-filter: blur(16px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+    border: 1px solid light-dark(rgba(0, 0, 0, 0.08), rgba(255, 255, 255, 0.12)) !important;
+    border-radius: 9999px !important;
+    padding: 3px 4px !important;
+    box-shadow: var(--lh-shadow-sm) !important;
+    gap: 1px !important;
+  }
+
+  .dark-mode .navbar:not(.navbar-transparent).navbar-expand-lg .navbar-nav {
+    background-color: rgba(25, 24, 23, 0.75) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    box-shadow: var(--lh-shadow-md) !important;
+  }
+
+  .navbar:not(.navbar-transparent).navbar-expand-lg .navbar-nav .nav-link {
+    color: var(--lh-ink) !important;
+    padding: 4px 12px !important;
+  }
+
   .navbar:not(.navbar-transparent).navbar-expand-lg .navbar-nav .nav-link:hover,
   .navbar:not(.navbar-transparent).navbar-expand-lg .navbar-nav .nav-link:focus,
   .navbar:not(.navbar-transparent).navbar-expand-lg .navbar-nav .nav-item.active .nav-link,
   .navbar:not(.navbar-transparent).navbar-expand-lg .navbar-nav .nav-link.active {
     color: var(--lh-ink) !important;
   }
+
   .nav-glider {
     /* struktur (position/transition/opacity) dari primitives/_glider.scss */
-    height: 36px !important;
-    border-radius: 18px !important;
-    background-color: rgba(255, 255, 255, 0.2) !important;
-    backdrop-filter: blur(8px) !important;
-    -webkit-backdrop-filter: blur(8px) !important;
+    height: 28px !important;
+    border-radius: 14px !important;
     z-index: 1 !important;
   }
-  .navbar.bg-primary:not(.navbar-transparent) .nav-glider {
-    background-color: light-dark(rgba(0, 0, 0, 0.07), rgba(255, 255, 255, 0.12)) !important;
+
+  .navbar-transparent .nav-glider {
+    background-color: rgba(255, 255, 255, 0.25) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
   }
+
+  .navbar.bg-primary:not(.navbar-transparent) .nav-glider {
+    background-color: light-dark(rgba(0, 0, 0, 0.07), rgba(255, 255, 255, 0.14)) !important;
+  }
+
   .dark-mode .navbar.bg-primary:not(.navbar-transparent) .nav-glider {
-    background-color: rgba(255, 255, 255, 0.12) !important;
+    background-color: rgba(255, 255, 255, 0.14) !important;
   }
 }
 
@@ -89,32 +159,105 @@
 .navbar-brand {
   display: inline-flex !important;
   align-items: center !important;
-  padding: 4px 0 !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
   line-height: 1 !important;
   color: #ffffff !important;
+  text-decoration: none !important;
+  box-sizing: border-box !important;
   transition:
     color var(--lh-dur-3) ease,
     opacity var(--lh-dur-2) ease,
-    transform var(--lh-dur-2) ease !important;
-
-  &:hover {
-    opacity: 0.85;
-  }
-}
-
-.navbar-transparent .navbar-brand {
-  color: #ffffff !important;
-}
-
-.navbar:not(.navbar-transparent) .navbar-brand,
-.navbar.bg-primary:not(.navbar-transparent) .navbar-brand {
-  color: var(--lh-ink) !important;
+    transform var(--lh-dur-3) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    background-color var(--lh-dur-3) ease,
+    border-color var(--lh-dur-3) ease,
+    box-shadow var(--lh-dur-3) ease !important;
 }
 
 .navbar-brand-logo {
-  width: 34px;
-  height: 34px;
+  width: 22px;
+  height: 22px;
   display: block;
+  transition: transform var(--lh-dur-3) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
+}
+
+/* 1. Circle Logo with Blur Background (when unscrolled / navbar-transparent) */
+.navbar-transparent .navbar-brand {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  min-height: 38px;
+  border-radius: 50% !important;
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08) !important;
+  color: #ffffff !important;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.25) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12) !important;
+
+    .navbar-brand-logo {
+      transform: scale(1.05);
+    }
+  }
+
+  &:active {
+    transform: scale(0.96);
+  }
+}
+
+.dark-mode .navbar-transparent .navbar-brand {
+  background-color: rgba(30, 30, 30, 0.45) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
+
+  &:hover {
+    background-color: rgba(45, 45, 45, 0.6) !important;
+    border-color: rgba(255, 255, 255, 0.25) !important;
+  }
+}
+
+/* When Scrolled */
+.navbar:not(.navbar-transparent) .navbar-brand,
+.navbar.bg-primary:not(.navbar-transparent) .navbar-brand {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  min-height: 38px;
+  border-radius: 50% !important;
+  background-color: light-dark(rgba(240, 239, 235, 0.75), rgba(25, 24, 23, 0.75)) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+  border: 1px solid light-dark(rgba(0, 0, 0, 0.08), rgba(255, 255, 255, 0.12)) !important;
+  box-shadow: var(--lh-shadow-sm) !important;
+  color: var(--lh-ink) !important;
+
+  &:hover {
+    background-color: light-dark(rgba(240, 239, 235, 0.9), rgba(25, 24, 23, 0.9)) !important;
+    transform: scale(1.05);
+    box-shadow: var(--lh-shadow-md) !important;
+    opacity: 1;
+
+    .navbar-brand-logo {
+      transform: scale(1.05);
+    }
+  }
+
+  &:active {
+    transform: scale(0.96);
+  }
+}
+
+.dark-mode .navbar:not(.navbar-transparent) .navbar-brand {
+  background-color: rgba(25, 24, 23, 0.75) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: var(--lh-shadow-md) !important;
 }
 
 /* 7. Mobile Navbar Sliding Drawer & Choreographed Motion */
@@ -186,21 +329,20 @@
   }
   html body.sidebar-collapse .navbar .navbar-toggler {
     position: fixed !important;
-    top: 10px !important;
-    left: calc(100% - 16px - 44px) !important;
+    top: 16px !important;
+    left: calc(100% - 16px - 38px) !important;
     right: auto !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    width: 44px !important;
-    height: 44px !important;
-    min-width: 44px !important;
-    min-height: 44px !important;
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    min-height: 38px !important;
     padding: 0 !important;
     margin: 0 !important;
     border: none !important;
     outline: none !important;
-    background: transparent !important;
     cursor: pointer !important;
     z-index: 1055 !important;
     pointer-events: auto !important;
@@ -208,17 +350,54 @@
     transform: none !important;
     transition:
       left var(--lh-dur-5) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
-      top var(--lh-dur-5) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
+      top var(--lh-dur-5) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+      background-color var(--lh-dur-3) ease,
+      border-color var(--lh-dur-3) ease,
+      box-shadow var(--lh-dur-3) ease !important;
   }
+
+  html body.sidebar-collapse .navbar-transparent .navbar-toggler {
+    border-radius: 50% !important;
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(16px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  html.dark-mode body.sidebar-collapse .navbar-transparent .navbar-toggler {
+    background-color: rgba(30, 30, 30, 0.45) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
+  }
+
+  html body.sidebar-collapse .navbar:not(.navbar-transparent) .navbar-toggler {
+    border-radius: 50% !important;
+    background-color: light-dark(rgba(240, 239, 235, 0.75), rgba(25, 24, 23, 0.75)) !important;
+    backdrop-filter: blur(16px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+    border: 1px solid light-dark(rgba(0, 0, 0, 0.08), rgba(255, 255, 255, 0.12)) !important;
+    box-shadow: var(--lh-shadow-sm) !important;
+  }
+
+  html.dark-mode body.sidebar-collapse .navbar:not(.navbar-transparent) .navbar-toggler {
+    background-color: rgba(25, 24, 23, 0.75) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    box-shadow: var(--lh-shadow-md) !important;
+  }
+
   html.nav-open body.sidebar-collapse .navbar .navbar-toggler {
     top: 18px !important;
-    left: calc((100% - min(300px, 85vw) - 44px) / 2) !important;
+    left: calc((100% - min(300px, 85vw) - 38px) / 2) !important;
     z-index: 1060 !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
   }
   html body.sidebar-collapse .navbar .navbar-toggler .navbar-toggler-bar {
     position: absolute !important;
-    left: 10px !important;
-    width: 24px !important;
+    left: 9px !important;
+    width: 20px !important;
     height: 2px !important;
     border-radius: 2px !important;
     background-color: #ffffff !important;
@@ -238,16 +417,16 @@
     background-color: var(--lh-ink, #2c2c2c) !important;
   }
   html body.sidebar-collapse .navbar .navbar-toggler .bar1 {
-    top: 13px !important;
+    top: 11px !important;
     transform: translateY(0) rotate(0deg) !important;
   }
   html body.sidebar-collapse .navbar .navbar-toggler .bar2 {
-    top: 21px !important;
+    top: 18px !important;
     opacity: 1 !important;
     transform: scaleX(1) !important;
   }
   html body.sidebar-collapse .navbar .navbar-toggler .bar3 {
-    top: 29px !important;
+    top: 25px !important;
     transform: translateY(0) rotate(0deg) !important;
   }
 
@@ -273,23 +452,51 @@
   }
 }
 
-/* ===== Smart Hide/Show Navbar on Scroll ===== */
+/* ===== Navbar Layout & Smart Hide/Show on Scroll ===== */
 .navbar {
+  padding: 16px 0 !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border: none !important;
   transition:
     transform var(--lh-dur-5) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
-    background-color var(--lh-dur-5) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
-    box-shadow var(--lh-dur-5) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
     padding var(--lh-dur-5) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
   will-change: transform;
 }
+
+.navbar > .container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+.navbar.navbar-transparent {
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.navbar:not(.navbar-transparent),
+.navbar.bg-primary:not(.navbar-transparent) {
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 12px 0 !important;
+}
+
 .navbar.navbar-hidden {
   transform: translate3d(0, -100%, 0) !important;
   pointer-events: none !important;
 }
+
 html.nav-open .navbar.navbar-hidden {
   transform: translate3d(0, 0, 0) !important;
   pointer-events: auto !important;
 }
+
 @media (prefers-reduced-motion: reduce) {
   .navbar {
     transition: none !important;
