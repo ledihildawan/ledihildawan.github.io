@@ -30,7 +30,7 @@
 }
 
 .gallery .portfolio-item:hover figure.cc-effect {
-  transform: translateY(-2px);
+  transform: none !important;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06) !important;
 }
 
@@ -44,11 +44,11 @@
   height: auto !important;
   display: block !important;
   border-radius: calc(var(--lh-radius-lg, 12px) - 1px) !important;
-  transition: transform 0.4s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
+  transform: none !important;
 }
 
 .gallery .portfolio-item:hover figure.cc-effect img {
-  transform: scale(1.02) !important;
+  transform: none !important;
 }
 
 .gallery figure.cc-effect figcaption {
@@ -421,7 +421,7 @@ body.portfolio-modal-open {
   display: flex !important;
   align-items: center !important;
   justify-content: flex-end !important;
-  padding: 0 20px !important;
+  padding: 0 12px !important;
   background: transparent !important;
 }
 
