@@ -317,20 +317,20 @@
   position: relative;
   width: 38px;
   height: 38px;
-  border-radius: var(--lh-radius-full, 9999px);
+  border-radius: var(--lh-radius-full, 9999px) !important;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   background: var(--lh-surface);
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: var(--lh-radius-full, 9999px);
-    border: 2px solid var(--lh-surface);
-    mix-blend-mode: multiply;
-  }
+  border: 2px solid var(--lh-surface);
+  box-shadow: none !important;
+  padding: 0;
+  transition:
+    background-color var(--lh-dur-2) var(--lh-ease-out),
+    border-color var(--lh-dur-2) var(--lh-ease-out),
+    transform 0.2s var(--lh-ease-out);
+
   .cc-ico {
     position: relative;
     z-index: 1;
@@ -344,10 +344,8 @@
 
 .dark-mode .cc-project-avatar {
   background: var(--lh-base);
-  &::after {
-    border-color: var(--lh-base);
-    mix-blend-mode: lighten;
-  }
+  border-color: var(--lh-base);
+
   .cc-ico {
     color: var(--lh-ink);
   }
@@ -357,7 +355,10 @@
 .cc-project-avatar.is-active {
   z-index: 50;
   background: var(--lh-accent);
+  border-color: var(--lh-accent);
+
   .cc-ico {
+    filter: brightness(0) invert(1);
     stroke: #ffffff;
   }
 }
@@ -377,8 +378,8 @@
 
 .avatar-glider {
   border-radius: 50% !important;
-  background: color-mix(in srgb, var(--lh-accent-soft) 14%, var(--lh-surface)) !important;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12) !important;
+  background: var(--lh-accent) !important;
+  box-shadow: none !important;
   margin: 0 !important;
   transition:
     transform var(--lh-dur-med) var(--lh-ease-out),
@@ -391,8 +392,12 @@
   }
 }
 
+.dark-mode .avatar-glider {
+  background: var(--lh-accent-soft) !important;
+}
+
 .cc-avatar-stack.has-glider .cc-project-avatar:hover,
 .cc-avatar-stack.has-glider .cc-project-avatar.is-active {
-  transform: scale(1.1) !important;
+  transform: scale(1.08) !important;
   transition: transform 0.2s var(--lh-ease-out) !important;
 }
