@@ -102,6 +102,10 @@
   }
 }
 
+.navbar-transparent .navbar-brand {
+  color: #ffffff !important;
+}
+
 .navbar:not(.navbar-transparent) .navbar-brand,
 .navbar.bg-primary:not(.navbar-transparent) .navbar-brand {
   color: var(--lh-ink) !important;

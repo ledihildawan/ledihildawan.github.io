@@ -127,7 +127,7 @@
     border-color: var(--lh-accent-soft) !important;
   }
   a.credit,
-  a:not(.btn):not(.nav-link):not(.cc-inst a):not(.cc-timeline-title a) {
+  a:not(.btn):not(.nav-link):not(.navbar-brand):not(.cc-inst a):not(.cc-timeline-title a) {
     color: var(--lh-link) !important;
   }
   .cc-timeline-title,
