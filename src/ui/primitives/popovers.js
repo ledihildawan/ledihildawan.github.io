@@ -36,10 +36,10 @@ export function initPopovers() {
         return;
       }
       comp.move(chip, {
-        left: chip.offsetLeft - 4,
-        top: chip.offsetTop - 4,
-        width: chip.offsetWidth + 8,
-        height: chip.offsetHeight + 8,
+        left: chip.offsetLeft - 3,
+        top: chip.offsetTop - 3,
+        width: chip.offsetWidth + 6,
+        height: chip.offsetHeight + 6,
       });
     }
 
