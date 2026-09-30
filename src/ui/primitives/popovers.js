@@ -1,5 +1,4 @@
 import { createFloatingLayer } from './floating.js';
-import { createGlider } from './glider.js';
 
 export function initPopovers() {
   // ===== Popover Preview Kontribusi Proyek (Experience Rich Hover & Tap) =====
@@ -10,38 +9,6 @@ export function initPopovers() {
       )
     );
     if (!chips.length) return;
-
-    // Glider ring (createGlider base): mengikuti hover avatar, pulang ke
-    // avatar popover-nya terbuka, sembunyi saat tidak ada yang aktif.
-    var stackGliders = new Map(); // stack -> { comp, glider } (cache referensi)
-    function gliderFor(chip) {
-      var stack = chip.closest('.cc-avatar-stack');
-      if (!stack) return null;
-      if (!stackGliders.has(stack)) {
-        var comp = createGlider(stack, 'avatar-glider');
-        stackGliders.set(stack, { comp: comp, glider: comp.el });
-      }
-      return stackGliders.get(stack).comp;
-    }
-    function moveRing(chip) {
-      var comp = gliderFor(chip);
-      if (!comp) return;
-      /* Guard race event: mouseenter bisa datang terlambat (coalesced)
-         SETELAH mouseleave stack menyala. Cek posisi pointer riil via
-         :hover - kalau pointer tidak ada di stack atau popover, ring tetap sembunyi. */
-      var stack = chip.closest('.cc-avatar-stack');
-      /* Tetap aktif bila pointer di atas stack ATAU di atas kartu popover */
-      if (!(stack && (stack.matches(':hover') || popover.matches(':hover')))) {
-        comp.hide();
-        return;
-      }
-      comp.move(chip, {
-        left: chip.offsetLeft,
-        top: chip.offsetTop,
-        width: chip.offsetWidth,
-        height: chip.offsetHeight,
-      });
-    }
 
     var popover = document.createElement('div');
     popover.id = 'cc-project-popover';
@@ -113,8 +80,6 @@ export function initPopovers() {
            sini agar tidak nyangkut */
         if (chip) {
           chip.classList.remove('is-active');
-          var comp = gliderFor(chip);
-          if (comp) comp.hide();
         }
       },
       position: function (chip, pop) {
@@ -157,7 +122,6 @@ export function initPopovers() {
       if (prev && prev !== chip) prev.classList.remove('is-active');
       chip.classList.add('is-active');
       lastStack = chip.closest('.cc-avatar-stack');
-      moveRing(chip);
 
       // Populate data
       var title = chip.getAttribute('data-project-title') || '';
@@ -217,7 +181,6 @@ export function initPopovers() {
       // Hover desktop
       chip.addEventListener('mouseenter', function () {
         layer.cancelHide();
-        moveRing(chip);
         showTimer = setTimeout(function () {
           show(chip);
         }, 120);
@@ -256,17 +219,13 @@ export function initPopovers() {
     // Hover popover card: batalkan hide saat pointer masuk ke dalam kartu popover
     popover.addEventListener('mouseenter', function () {
       layer.cancelHide();
-      var activeChip = layer.current();
-      if (activeChip) moveRing(activeChip);
     });
 
     popover.addEventListener('mouseleave', function () {
       layer.scheduleHide(250);
     });
 
-    /* Watchdog 100ms + reconciler mousemove: mouseleave boundary events bisa
-       tidak tereksekusi saat hover secepat kilang (coalescing).
-       outsideSince melacak durasi pointer di luar stack & popover — jika melebihi
+    /* Watchdog 100ms: outsideSince melacak durasi pointer di luar stack & popover — jika melebihi
        grace period (300ms), popover ditutup tanpa mengganggu transisi hover. */
     var outsideSince = 0;
     setInterval(function () {
@@ -286,22 +245,6 @@ export function initPopovers() {
         outsideSince = 0;
       }
     }, 100);
-
-    document.addEventListener(
-      'mousemove',
-      function () {
-        document.querySelectorAll('.avatar-glider').forEach(function (g) {
-          var stack = g.closest('.cc-avatar-stack');
-          if (
-            g.classList.contains('is-ready') &&
-            !(stack && (stack.matches(':hover') || popover.matches(':hover')))
-          ) {
-            g.classList.remove('is-ready');
-          }
-        });
-      },
-      { passive: true }
-    );
 
     // Close button
     if (closeBtn) {

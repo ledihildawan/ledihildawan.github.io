@@ -365,39 +365,3 @@
   border-color: var(--lh-accent-soft) !important;
   transform: scale(1.08);
 }
-
-/* Glider halo avatar (createGlider base) — Cincin solid pas melingkar di batas avatar */
-.cc-avatar-stack.has-glider {
-  position: relative;
-}
-.cc-avatar-stack.has-glider .cc-project-avatar {
-  z-index: 1 !important;
-}
-.cc-avatar-stack.has-glider .cc-project-avatar:hover,
-.cc-avatar-stack.has-glider .cc-project-avatar:focus-visible,
-.cc-avatar-stack.has-glider .cc-project-avatar.is-active {
-  z-index: 2 !important;
-}
-
-.avatar-glider {
-  border-radius: 50% !important;
-  background: transparent !important;
-  border: 2px solid var(--lh-accent) !important;
-  box-shadow: none !important;
-  margin: 0 !important;
-  box-sizing: border-box !important;
-  pointer-events: none;
-  transition:
-    transform var(--lh-dur-med) var(--lh-ease-out),
-    width var(--lh-dur-med) var(--lh-ease-out),
-    height var(--lh-dur-med) var(--lh-ease-out) !important;
-  z-index: 0 !important;
-
-  &.is-ready {
-    opacity: 1 !important;
-  }
-}
-
-.dark-mode .avatar-glider {
-  border-color: var(--lh-accent-soft) !important;
-}
