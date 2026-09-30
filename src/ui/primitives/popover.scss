@@ -324,7 +324,7 @@
   cursor: pointer;
   background: var(--lh-surface);
   border: 2px solid var(--lh-surface);
-  box-shadow: none !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
   padding: 0;
   transition:
     background-color var(--lh-dur-2) var(--lh-ease-out),
@@ -338,29 +338,27 @@
     height: 20px;
     pointer-events: none;
     object-fit: contain;
-    color: var(--lh-ink);
+    display: block;
   }
 }
 
 .dark-mode .cc-project-avatar {
-  background: var(--lh-base);
-  border-color: var(--lh-base);
-
-  .cc-ico {
-    color: var(--lh-ink);
-  }
+  background: var(--lh-surface) !important;
+  border-color: var(--lh-base) !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3) !important;
 }
 
 .cc-project-avatar:hover,
 .cc-project-avatar.is-active {
   z-index: 50;
-  background: var(--lh-accent);
-  border-color: var(--lh-accent);
+  background: var(--lh-surface) !important;
+  border-color: var(--lh-accent) !important;
+}
 
-  .cc-ico {
-    filter: brightness(0) invert(1);
-    stroke: #ffffff;
-  }
+.dark-mode .cc-project-avatar:hover,
+.dark-mode .cc-project-avatar.is-active {
+  background: var(--lh-surface) !important;
+  border-color: var(--lh-accent-soft) !important;
 }
 
 /* Glider halo avatar (createGlider base) */
