@@ -305,7 +305,7 @@
 .cc-avatar-stack {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   position: relative;
   padding: 4px 0;
 }
@@ -319,17 +319,20 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
+  background: var(--lh-surface, #ffffff);
+  border: 1px solid color-mix(in srgb, var(--lh-ink) 12%, transparent);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
   padding: 0;
-  transition: transform 0.2s var(--lh-ease-out);
+  transition:
+    background-color var(--lh-dur-2) var(--lh-ease-out),
+    border-color var(--lh-dur-2) var(--lh-ease-out),
+    transform 0.2s var(--lh-ease-out);
 
   .cc-ico {
     position: relative;
     z-index: 1;
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
     pointer-events: none;
     object-fit: contain;
     display: block;
@@ -337,27 +340,27 @@
 }
 
 .dark-mode .cc-project-avatar {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
+  background: var(--lh-surface, #202020) !important;
+  border-color: color-mix(in srgb, var(--lh-ink) 15%, transparent) !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
 .cc-project-avatar:hover,
 .cc-project-avatar.is-active {
   z-index: 50;
-  background: transparent !important;
-  border: none !important;
-  transform: scale(1.12) !important;
+  background: var(--lh-surface, #ffffff) !important;
+  border-color: var(--lh-accent) !important;
+  transform: scale(1.06);
 }
 
 .dark-mode .cc-project-avatar:hover,
 .dark-mode .cc-project-avatar.is-active {
-  background: transparent !important;
-  border: none !important;
-  transform: scale(1.12) !important;
+  background: var(--lh-surface, #202020) !important;
+  border-color: var(--lh-accent-soft) !important;
+  transform: scale(1.06);
 }
 
-/* Glider halo avatar (createGlider base) — Cincin solid meluncur antar logo */
+/* Glider halo avatar (createGlider base) — Cincin solid meluncur di luar avatar */
 .cc-avatar-stack.has-glider {
   position: relative;
 }
