@@ -321,13 +321,14 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  background: var(--lh-surface, #ffffff);
-  border: 2px solid var(--lh-surface, #ffffff);
+  background: light-dark(var(--lh-base, #f0efeb), var(--lh-surface, #1f1f1f));
+  border: 2px solid light-dark(var(--lh-surface, #ffffff), var(--lh-base, #2a2825));
   box-shadow: var(--lh-shadow-xs);
   padding: 0;
   transition:
     background-color var(--lh-dur-2) var(--lh-ease-out),
     border-color var(--lh-dur-2) var(--lh-ease-out),
+    box-shadow var(--lh-dur-2) var(--lh-ease-out),
     transform 0.2s var(--lh-ease-out);
 
   .cc-ico {
@@ -341,8 +342,13 @@
   }
 }
 
+.cc-project-avatar:focus-visible {
+  outline: 2px solid var(--lh-ink) !important;
+  outline-offset: 2px !important;
+}
+
 .dark-mode .cc-project-avatar {
-  background: var(--lh-surface, #202020) !important;
+  background: var(--lh-surface, #1f1f1f) !important;
   border-color: var(--lh-base, #2a2825) !important;
   box-shadow: var(--lh-shadow-xs) !important;
 }
@@ -350,14 +356,16 @@
 .cc-project-avatar:hover,
 .cc-project-avatar.is-active {
   z-index: 50;
-  background: var(--lh-surface, #ffffff) !important;
-  border-color: var(--lh-accent) !important;
+  background: light-dark(var(--lh-surface, #ffffff), var(--lh-surface, #1f1f1f)) !important;
+  border-color: light-dark(var(--lh-surface, #ffffff), var(--lh-base, #2a2825)) !important;
+  box-shadow: var(--lh-shadow-md) !important;
   transform: scale(1.08);
 }
 
 .dark-mode .cc-project-avatar:hover,
 .dark-mode .cc-project-avatar.is-active {
-  background: var(--lh-surface, #202020) !important;
-  border-color: var(--lh-accent-soft) !important;
+  background: var(--lh-surface, #1f1f1f) !important;
+  border-color: var(--lh-base, #2a2825) !important;
+  box-shadow: var(--lh-shadow-md) !important;
   transform: scale(1.08);
 }
