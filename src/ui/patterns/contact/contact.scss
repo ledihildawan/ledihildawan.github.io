@@ -5,8 +5,28 @@
   margin-inline: auto;
 }
 .cc-contact-information {
+  position: relative;
   background-size: cover;
   background-position: center center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.4) 0%,
+      rgba(0, 0, 0, 0.22) 50%,
+      rgba(0, 0, 0, 0.45) 100%
+    );
+  }
+
+  > .container {
+    position: relative;
+    z-index: 2;
+  }
 }
 
 .cc-mode-toggle {

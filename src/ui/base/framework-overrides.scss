@@ -578,7 +578,12 @@ img {
   content: '';
 }
 .page-header::before {
-  background-color: rgba(0, 0, 0, 0.5);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.42) 50%,
+    rgba(0, 0, 0, 0.6) 100%
+  ) !important;
 }
 .page-header .container {
   z-index: 2;
@@ -870,6 +875,9 @@ a.credit {
   background-size: cover !important;
   background-position: center !important;
 }
+html:not(.dark-mode) .page-header {
+  background-image: url('/src/assets/images/background-light.jpg') !important;
+}
 .page-header.page-header-small {
   min-height: 520px !important;
   height: 520px !important;
@@ -893,13 +901,6 @@ a.credit {
   text-align: left !important;
   margin-top: 5px !important;
   margin-bottom: 15px !important;
-}
-@media (min-width: 768px) {
-  /* scope :not(.dark-mode): tanpa ini selector match sesaat sebelum JS
-     memasang class tema -> browser fetch 257KB background light di dark mode */
-  html:not(.dark-mode) .page-header {
-    background-image: url('/src/assets/images/background-light.webp') !important;
-  }
 }
 @media (max-width: 767px) {
   .page-header,

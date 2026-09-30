@@ -30,18 +30,27 @@
     background: var(--lh-accent);
     color: #ffffff;
   }
-  /* JANGAN tulis 'html.dark-mode' di dalam blok .dark-mode ini — hasil
-     kompilasi '.dark-mode html.dark-mode ...' tak pernah match */
   body .page-header {
-    background-image: url('/src/assets/images/background-dark-mobile.webp') !important;
+    background-image: url('/src/assets/images/background-dark.jpg') !important;
   }
-  @media (min-width: 768px) {
-    body .page-header {
-      background-image: url('/src/assets/images/background-dark.webp') !important;
-    }
+  .page-header::before {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.38) 0%,
+      rgba(0, 0, 0, 0.22) 50%,
+      rgba(0, 0, 0, 0.4) 100%
+    ) !important;
   }
   #contact .cc-contact-information {
-    background-image: url('/src/assets/images/map-dark.webp') !important;
+    background-image: url('/src/assets/images/map-dark.jpg') !important;
+  }
+  .cc-contact-information::before {
+    background: linear-gradient(
+      180deg,
+      rgba(20, 19, 18, 0.55) 0%,
+      rgba(20, 19, 18, 0.3) 50%,
+      rgba(20, 19, 18, 0.65) 100%
+    ) !important;
   }
 
   .navbar.bg-primary:not(.navbar-transparent) {
