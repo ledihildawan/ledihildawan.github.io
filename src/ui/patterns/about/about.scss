@@ -1,4 +1,10 @@
 /* About Section Specifics */
 .cc-about .card-body {
-  padding: 1.5rem;
+  padding: 2rem;
+}
+
+@media (max-width: 767px) {
+  .cc-about .card-body {
+    padding: 1.5rem;
+  }
 }
