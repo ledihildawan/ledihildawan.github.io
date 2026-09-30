@@ -1,6 +1,8 @@
 /* Contact Section & Form Styling */
 .cc-contact .card {
   overflow: hidden;
+  max-width: 720px;
+  margin-inline: auto;
 }
 .cc-contact-information {
   background-size: cover;

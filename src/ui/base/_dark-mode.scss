@@ -10,16 +10,18 @@
      accent-soft dark #869ef0: #4f6fd2 hanya 3.18:1 di card (gagal AA) */
   color-scheme: dark;
 
-  .card {
+  .card,
+  .gallery figure.cc-effect {
     background-color: var(--lh-base) !important;
     color: var(--lh-ink) !important;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3) !important;
   }
+  .card:hover,
+  .gallery .portfolio-item:hover figure.cc-effect {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+  }
   .card .col-md-3.bg-primary {
     background-color: var(--lh-base) !important;
-  }
-  .cc-porfolio-image.img-raised {
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4) !important;
   }
   .nav-pills .nav-link:not(.active) {
     color: var(--lh-ink-muted) !important;

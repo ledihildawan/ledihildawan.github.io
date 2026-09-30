@@ -5,7 +5,7 @@
 .portfolio-item {
   cursor: pointer;
   outline: none;
-  margin-bottom: 30px;
+  margin-bottom: 24px;
   border-radius: var(--lh-radius-lg, 12px);
 }
 
@@ -20,7 +20,7 @@
   border-radius: var(--lh-radius-lg, 12px) !important;
   border: 1px solid rgba(128, 128, 128, 0.14) !important;
   background: rgba(128, 128, 128, 0.04) !important;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06) !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04) !important;
   transition:
     transform var(--lh-dur-3, 0.25s) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
     border-color var(--lh-dur-3, 0.25s) ease,
@@ -30,9 +30,8 @@
 }
 
 .gallery .portfolio-item:hover figure.cc-effect {
-  transform: translateY(-4px);
-  border-color: rgba(68, 94, 147, 0.38) !important;
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06) !important;
 }
 
 .gallery figure.cc-effect figcaption::before,
@@ -83,12 +82,20 @@ to {
 /* Masonry: CSS multicol — item tinggi bervariasi tersusun per kolom */
 .portfolio-masonry {
   columns: 1;
-  column-gap: 30px;
+  column-gap: 24px;
 }
 
 @media (min-width: 768px) {
   .portfolio-masonry {
     columns: 2;
+    column-gap: 24px;
+  }
+}
+
+@media (min-width: 992px) {
+  .portfolio-masonry {
+    columns: 3;
+    column-gap: 24px;
   }
 }
 
