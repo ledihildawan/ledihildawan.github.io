@@ -127,11 +127,18 @@
     border-color: var(--lh-accent-soft) !important;
   }
   a.credit,
-  a:not(.btn) {
+  a:not(.btn):not(.nav-link):not(.cc-inst a):not(.cc-timeline-title a) {
     color: var(--lh-link) !important;
   }
+  .cc-timeline-title,
+  .cc-timeline-title a,
+  .cc-timeline-at,
+  .cc-inst,
+  .cc-inst a {
+    color: var(--lh-ink) !important;
+  }
   .footer ul li a {
-    color: var(--lh-ink-muted) !important;
+    color: var(--lh-ink) !important;
   }
   h1,
   h2,

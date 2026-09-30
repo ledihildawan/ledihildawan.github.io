@@ -12,6 +12,21 @@ export function initPortfolioTabs() {
     if (!chips.length || !row) return;
     var container = chips[0].closest('.nav-pills');
     var currentSort = 'recent';
+    var ITEMS_PER_PAGE = 12;
+    var visibleLimit = ITEMS_PER_PAGE;
+    var loadMoreWrap = document.getElementById('portfolio-load-more-wrap');
+    var loadMoreBtn = document.getElementById('portfolio-load-more-btn');
+    var allItems = Array.prototype.slice.call(row.querySelectorAll('.portfolio-item'));
+
+    function getColumnCount() {
+      var w = window.innerWidth;
+      if (w >= 992) return 4;
+      if (w >= 768) return 3;
+      if (w >= 576) return 2;
+      return 1;
+    }
+
+    var lastColumnCount = getColumnCount();
 
     // Buat elemen glider background via komponen base
     var gliderComp = container ? createGlider(container, 'tab-glider') : null;
@@ -22,12 +37,63 @@ export function initPortfolioTabs() {
 
     var activeChip = chips[0];
 
+    function getSortedItems() {
+      var mode = currentSort;
+      var byOrderAsc = function (a, b) {
+        return +a.getAttribute('data-order') - +b.getAttribute('data-order');
+      };
+      var byOrderDesc = function (a, b) {
+        return +b.getAttribute('data-order') - +a.getAttribute('data-order');
+      };
+      var byMode = mode === 'popular' ? byOrderAsc : byOrderDesc;
+      var featured = [];
+      var rest = [];
+      for (var s = 0; s < allItems.length; s++) {
+        if (allItems[s].getAttribute('data-featured') === 'true') featured.push(allItems[s]);
+        else rest.push(allItems[s]);
+      }
+      featured.sort(byMode);
+      rest.sort(byMode);
+      return featured.concat(rest);
+    }
+
     function applyFilter() {
       var category = activeChip.getAttribute('data-filter');
-      var items = row.querySelectorAll('[data-category]');
-      for (var i = 0; i < items.length; i++) {
-        items[i].hidden = items[i].getAttribute('data-category') !== category;
+      var sorted = getSortedItems();
+      var matching = [];
+      for (var i = 0; i < sorted.length; i++) {
+        if (sorted[i].getAttribute('data-category') === category) {
+          matching.push(sorted[i]);
+        } else {
+          sorted[i].hidden = true;
+        }
       }
+
+      var colCount = getColumnCount();
+      lastColumnCount = colCount;
+      row.innerHTML = '';
+      var cols = [];
+      for (var c = 0; c < colCount; c++) {
+        var col = document.createElement('div');
+        col.className = 'portfolio-col';
+        cols.push(col);
+        row.appendChild(col);
+      }
+
+      for (var m = 0; m < matching.length; m++) {
+        var isVisible = m < visibleLimit;
+        matching[m].hidden = !isVisible;
+        if (isVisible) {
+          cols[m % colCount].appendChild(matching[m]);
+        }
+      }
+
+      if (loadMoreWrap) {
+        var hasMore = matching.length > visibleLimit;
+        loadMoreWrap.hidden = !hasMore;
+        loadMoreWrap.style.display = hasMore ? 'flex' : 'none';
+      }
+
       for (var j = 0; j < chips.length; j++) {
         var isActive = chips[j] === activeChip;
         chips[j].classList.toggle('active', isActive);
@@ -37,27 +103,14 @@ export function initPortfolioTabs() {
     }
 
     function applySort() {
-      var mode = currentSort;
-      var items = Array.prototype.slice.call(row.querySelectorAll('[data-title]'));
-      var byOrderAsc = function (a, b) {
-        return +a.getAttribute('data-order') - +b.getAttribute('data-order');
-      };
-      var byOrderDesc = function (a, b) {
-        return +b.getAttribute('data-order') - +a.getAttribute('data-order');
-      };
-      var byMode = mode === 'popular' ? byOrderAsc : byOrderDesc;
-      // Pinned: item featured SELALU teratas (dalam mode sort apa pun),
-      // sisanya diurutkan mengikuti mode yang dipilih
-      var featured = [];
-      var rest = [];
-      for (var s = 0; s < items.length; s++) {
-        if (items[s].getAttribute('data-featured') === 'true') featured.push(items[s]);
-        else rest.push(items[s]);
-      }
-      featured.sort(byMode);
-      rest.sort(byMode);
-      var ordered = featured.concat(rest);
-      for (var k = 0; k < ordered.length; k++) row.appendChild(ordered[k]);
+      applyFilter();
+    }
+
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener('click', function () {
+        visibleLimit += ITEMS_PER_PAGE;
+        applyFilter();
+      });
     }
 
     for (var c = 0; c < chips.length; c++) {
@@ -65,6 +118,7 @@ export function initPortfolioTabs() {
         chip.addEventListener('click', function () {
           if (chip === activeChip) return;
           activeChip = chip;
+          visibleLimit = ITEMS_PER_PAGE;
           applyFilter();
         });
       })(chips[c]);
@@ -219,6 +273,9 @@ export function initPortfolioTabs() {
       'resize',
       function () {
         updateGlider(activeChip);
+        if (getColumnCount() !== lastColumnCount) {
+          applyFilter();
+        }
       },
       { passive: true }
     );

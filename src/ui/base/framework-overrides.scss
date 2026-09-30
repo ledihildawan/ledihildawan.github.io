@@ -172,10 +172,16 @@ body,
   background-color: var(--lh-accent) !important;
   color: #fff !important;
 }
-.card-body a:not(.cc-inst a) {
+.card-body
+  a:not(.cc-inst a):not(.cc-timeline-title a):not(.cc-timeline-company):not(
+    .cc-timeline-company a
+  ) {
   color: var(--lh-link) !important;
 }
-main a:not(.btn):not(.nav-link):not(.cc-inst a) {
+main
+  a:not(.btn):not(.nav-link):not(.cc-inst a):not(.cc-timeline-title a):not(
+    .cc-timeline-company
+  ):not(.cc-timeline-company a) {
   color: var(--lh-link) !important;
 }
 
@@ -184,13 +190,37 @@ main a:not(.btn):not(.nav-link):not(.cc-inst a) {
 .cc-inst a:hover,
 .cc-inst a:active,
 .cc-inst a:focus,
-.cc-inst a:focus-visible {
+.cc-inst a:focus-visible,
+.cc-timeline-title a,
+.cc-timeline-title a:visited,
+.cc-timeline-title a:hover,
+.cc-timeline-title a:active,
+.cc-timeline-title a:focus,
+.cc-timeline-title a:focus-visible,
+.cc-timeline-company,
+.cc-timeline-company:visited,
+.cc-timeline-company:hover,
+.cc-timeline-company:active,
+.cc-timeline-company:focus,
+.cc-timeline-company:focus-visible,
+.cc-timeline-company a,
+.cc-timeline-company a:visited,
+.cc-timeline-company a:hover,
+.cc-timeline-company a:active,
+.cc-timeline-company a:focus,
+.cc-timeline-company a:focus-visible {
   color: var(--lh-ink) !important;
   text-decoration: none;
 }
 
 .cc-inst a:hover,
-.cc-inst a:focus-visible {
+.cc-inst a:focus-visible,
+.cc-timeline-title a:hover,
+.cc-timeline-title a:focus-visible,
+.cc-timeline-company:hover,
+.cc-timeline-company:focus-visible,
+.cc-timeline-company a:hover,
+.cc-timeline-company a:focus-visible {
   text-decoration: underline !important;
 }
 

@@ -5,8 +5,13 @@
 .portfolio-item {
   cursor: pointer;
   outline: none;
-  margin-bottom: 24px;
+  margin-bottom: 0;
   border-radius: var(--lh-radius-lg, 12px);
+  width: 100%;
+}
+
+.portfolio-item[hidden] {
+  display: none !important;
 }
 
 .portfolio-item:focus-visible figure.cc-effect {
@@ -79,29 +84,51 @@ to {
 }
 
 /* 5. Filter Toolbar: Chips + Sort (chips replace old icon tabs) */
-/* Masonry: CSS multicol — item tinggi bervariasi tersusun per kolom */
+/* Portfolio Masonry: Multi-kolom independen (natural height, terisi dari bawah) */
 .portfolio-masonry {
-  columns: 1;
-  column-gap: 24px;
+  display: flex !important;
+  gap: 24px !important;
+  align-items: flex-start !important;
+  width: 100% !important;
 }
 
-@media (min-width: 768px) {
+.portfolio-col {
+  flex: 1 1 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 24px !important;
+  min-width: 0 !important;
+}
+
+@media (max-width: 767px) {
   .portfolio-masonry {
-    columns: 2;
-    column-gap: 24px;
+    gap: 20px !important;
+  }
+  .portfolio-col {
+    gap: 20px !important;
   }
 }
 
-@media (min-width: 992px) {
-  .portfolio-masonry {
-    columns: 3;
-    column-gap: 24px;
-  }
+/* Load More Button below Masonry */
+.portfolio-load-more-wrap {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin-top: 28px !important;
+  width: 100% !important;
 }
 
-.portfolio-masonry > .portfolio-item {
-  break-inside: avoid;
-  -webkit-column-break-inside: avoid;
+.portfolio-load-more-wrap[hidden] {
+  display: none !important;
+}
+
+.portfolio-load-more-btn {
+  padding: 10px 32px !important;
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em !important;
+  border-radius: 999px !important;
+  cursor: pointer !important;
 }
 
 .portfolio-toolbar {
