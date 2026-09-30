@@ -1,0 +1,22 @@
+{
+  "name": "Ledi Hildawan - Software Engineer",
+  "short_name": "Ledi Hildawan",
+  "description": "Portofolio Ledi Hildawan, Software Engineer & Frontend Developer.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F0EFEB",
+  "theme_color": "#2D4DB6",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}
