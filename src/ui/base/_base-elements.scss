@@ -20,12 +20,12 @@ strong {
 }
 
 a {
-  color: rgb(0, 123, 255);
+  color: var(--lh-link, #2d4db6);
   text-decoration: none;
   background-color: transparent;
 }
 
 a:hover {
-  color: rgb(0, 86, 179);
+  color: var(--lh-accent-strong, #1e3a8a);
   text-decoration: underline;
 }

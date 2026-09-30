@@ -341,18 +341,18 @@ body {
   height: 60px;
   width: 60px;
   font-weight: 400;
-  color: rgb(156, 154, 148);
+  color: var(--lh-ink-muted, #595550);
   margin-right: 19px;
-  background-color: rgba(222, 221, 216, 0.3);
+  background-color: rgba(128, 128, 128, 0.08);
   border-radius: 30px;
 }
 .nav-pills .nav-item .nav-link:hover {
-  background-color: rgba(222, 222, 222, 0.3);
+  background-color: rgba(128, 128, 128, 0.15);
 }
 .nav-pills .nav-item .nav-link.active:not(.filter-chip),
 .nav-pills .nav-item .nav-link.active:not(.filter-chip):focus,
 .nav-pills .nav-item .nav-link.active:not(.filter-chip):hover {
-  background-color: rgb(154, 154, 154);
+  background-color: var(--lh-accent, #2d4db6);
   color: rgb(255, 255, 255);
   box-shadow: 0 4px 14px rgba(44, 44, 44, 0.12);
 }
@@ -369,7 +369,7 @@ body {
 .nav-pills.nav-pills-primary .nav-item .nav-link.active:not(.filter-chip),
 .nav-pills.nav-pills-primary .nav-item .nav-link.active:not(.filter-chip):focus,
 .nav-pills.nav-pills-primary .nav-item .nav-link.active:not(.filter-chip):hover {
-  background-color: rgb(68, 94, 147);
+  background-color: var(--lh-accent, #2d4db6);
 }
 .nav-align-center {
   text-align: center;
@@ -744,30 +744,31 @@ a.credit {
 // .section { padding-bottom: 0 } removed (redundant with shorthand)
 // scrollbar extracted to ./scrollbar
 .category {
-  color: rgb(110, 108, 102) !important;
+  color: var(--lh-ink-muted, #595550) !important;
 }
 .content-center .category {
   color: rgba(255, 255, 255, 0.92) !important;
 }
 .btn-hero-secondary {
   background-color: transparent !important;
-  border: 1px solid #a8a8a8 !important;
-  color: #a8a8a8 !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  color: #ffffff !important;
 }
 .btn-hero-secondary:hover,
 .btn-hero-secondary:focus {
-  background-color: rgba(168, 168, 168, 0.18) !important;
-  color: #d9d9d9 !important;
+  background-color: rgba(255, 255, 255, 0.18) !important;
+  border-color: #ffffff !important;
+  color: #ffffff !important;
 }
 .footer .text-muted,
 .footer .text-muted p {
-  color: rgb(110, 108, 102) !important;
+  color: var(--lh-ink-muted, #595550) !important;
 }
 a.credit {
-  color: rgb(68, 68, 68) !important;
+  color: var(--lh-ink-muted, #595550) !important;
 }
 .bg-primary {
-  background-color: #445e93 !important;
+  background-color: var(--lh-accent, #2d4db6) !important;
 }
 .cc-experience-header p,
 .cc-education-header p,
@@ -1212,9 +1213,9 @@ html body.sidebar-collapse .navbar .navbar-toggler.toggled .bar3 {
   }
   .btn-hero-secondary:hover,
   .btn-hero-secondary:focus {
-    background-color: rgba(168, 168, 168, 0.18) !important;
-    border-color: #d9d9d9 !important;
-    color: #d9d9d9 !important;
+    background-color: rgba(255, 255, 255, 0.18) !important;
+    border-color: #ffffff !important;
+    color: #ffffff !important;
     transform: none !important;
   }
   .btn.btn-round.btn-icon:hover,

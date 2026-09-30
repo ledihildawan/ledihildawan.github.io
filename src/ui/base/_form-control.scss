@@ -20,20 +20,20 @@
 }
 
 .form-control:focus {
-  color: rgb(73, 80, 87);
-  background-color: rgb(255, 255, 255);
-  border-color: rgb(128, 189, 255);
+  color: var(--lh-ink, #2c2c2c);
+  background-color: var(--lh-surface, #ffffff);
+  border-color: var(--lh-accent, #2d4db6);
   outline: 0px;
 }
 
 .form-control::placeholder {
-  color: rgb(134, 142, 150);
+  color: var(--lh-ink-muted, #595550);
   opacity: 1;
 }
 
 .form-control:disabled,
 .form-control[readonly] {
-  background-color: rgb(233, 236, 239);
+  background-color: var(--lh-ivory-dark, #e4e2dc);
   opacity: 1;
 }
 

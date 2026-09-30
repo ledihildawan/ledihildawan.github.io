@@ -17,5 +17,5 @@
 .category {
   text-transform: uppercase;
   font-weight: 700;
-  color: rgb(154, 154, 154);
+  color: var(--lh-ink-muted, #595550);
 }
