@@ -453,8 +453,11 @@
 }
 
 /* ===== Navbar Layout & Smart Hide/Show on Scroll ===== */
-.navbar {
+.navbar,
+html body .navbar,
+html.dark-mode body .navbar {
   padding: 16px 0 !important;
+  background: transparent !important;
   background-color: transparent !important;
   background-image: none !important;
   box-shadow: none !important;
@@ -471,19 +474,18 @@
   justify-content: space-between !important;
 }
 
-.navbar.navbar-transparent {
+.navbar.navbar-transparent,
+.navbar:not(.navbar-transparent),
+.navbar.bg-primary,
+.navbar.bg-primary:not(.navbar-transparent) {
+  background: transparent !important;
   background-color: transparent !important;
   background-image: none !important;
   box-shadow: none !important;
   border: none !important;
 }
 
-.navbar:not(.navbar-transparent),
-.navbar.bg-primary:not(.navbar-transparent) {
-  background-color: transparent !important;
-  background-image: none !important;
-  box-shadow: none !important;
-  border: none !important;
+.navbar:not(.navbar-transparent) {
   padding: 12px 0 !important;
 }
 
