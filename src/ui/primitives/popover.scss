@@ -357,7 +357,7 @@
 .cc-project-avatar.is-active {
   z-index: 50;
   background: light-dark(var(--lh-surface, #ffffff), var(--lh-surface, #1f1f1f)) !important;
-  border-color: light-dark(var(--lh-surface, #ffffff), var(--lh-base, #2a2825)) !important;
+  border-color: light-dark(rgba(0, 0, 0, 0.22), rgba(255, 255, 255, 0.35)) !important;
   box-shadow: var(--lh-shadow-md) !important;
   transform: scale(1.08);
 }
@@ -365,7 +365,7 @@
 .dark-mode .cc-project-avatar:hover,
 .dark-mode .cc-project-avatar.is-active {
   background: var(--lh-surface, #1f1f1f) !important;
-  border-color: var(--lh-base, #2a2825) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
   box-shadow: var(--lh-shadow-md) !important;
   transform: scale(1.08);
 }

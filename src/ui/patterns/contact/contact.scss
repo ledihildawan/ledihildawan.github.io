@@ -67,3 +67,11 @@
     border-color var(--lh-dur-1) ease-in-out,
     box-shadow var(--lh-dur-1) ease-in-out;
 }
+
+.input-group-addon .svg-form {
+  width: 16px !important;
+  height: 16px !important;
+  fill: none !important;
+  stroke: currentColor !important;
+  display: block;
+}

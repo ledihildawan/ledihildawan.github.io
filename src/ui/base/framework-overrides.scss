@@ -955,7 +955,8 @@ a.credit {
   height: 16px;
   display: inline-block;
   vertical-align: middle;
-  fill: currentColor;
+  fill: none;
+  stroke: currentColor;
 }
 // @font-face extracted to ./fonts
 body,
