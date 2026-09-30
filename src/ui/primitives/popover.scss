@@ -305,23 +305,29 @@
 .cc-avatar-stack {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 0;
   position: relative;
-  padding: 4px 0;
+  padding: 2px 0;
+  & > * {
+    margin-left: -8px;
+    &:first-child {
+      margin-left: 0;
+    }
+  }
 }
 
 .cc-project-avatar {
   position: relative;
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: var(--lh-radius-full, 9999px) !important;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   background: var(--lh-surface, #ffffff);
-  border: 1px solid color-mix(in srgb, var(--lh-ink) 12%, transparent);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  border: 2px solid var(--lh-surface, #ffffff);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
   padding: 0;
   transition:
     background-color var(--lh-dur-2) var(--lh-ease-out),
@@ -331,8 +337,8 @@
   .cc-ico {
     position: relative;
     z-index: 1;
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     pointer-events: none;
     object-fit: contain;
     display: block;
@@ -341,7 +347,7 @@
 
 .dark-mode .cc-project-avatar {
   background: var(--lh-surface, #202020) !important;
-  border-color: color-mix(in srgb, var(--lh-ink) 15%, transparent) !important;
+  border-color: var(--lh-base, #2a2825) !important;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
@@ -350,17 +356,17 @@
   z-index: 50;
   background: var(--lh-surface, #ffffff) !important;
   border-color: var(--lh-accent) !important;
-  transform: scale(1.06);
+  transform: scale(1.08);
 }
 
 .dark-mode .cc-project-avatar:hover,
 .dark-mode .cc-project-avatar.is-active {
   background: var(--lh-surface, #202020) !important;
   border-color: var(--lh-accent-soft) !important;
-  transform: scale(1.06);
+  transform: scale(1.08);
 }
 
-/* Glider halo avatar (createGlider base) — Cincin solid meluncur di luar avatar */
+/* Glider halo avatar (createGlider base) — Cincin solid pas melingkar di batas avatar */
 .cc-avatar-stack.has-glider {
   position: relative;
 }
