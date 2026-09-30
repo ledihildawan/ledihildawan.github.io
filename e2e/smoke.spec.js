@@ -191,12 +191,22 @@ test.describe('Portfolio Modal Dribbble-Style', () => {
   });
 });
 
-test.describe('Form Kontak Auto-Resize', () => {
-  test('textarea bertambah tinggi secara dinamis saat mengetik multi-line', async ({ page }) => {
+test.describe('Form Kontak Interaksi & Auto-Resize', () => {
+  test('fokus terpadu pada input-group dan auto-resize textarea', async ({ page }) => {
     await page.goto('/');
-    const textarea = page.locator('textarea[data-auto-resize]');
-    await textarea.scrollIntoViewIfNeeded();
 
+    // 1. Verifikasi input-group: klik addon ikon email memfokuskan input dan memberi highlight ke seluruh group
+    const inputGroup = page.locator('.input-group').first();
+    const addon = inputGroup.locator('.input-group-addon');
+    const emailInput = inputGroup.locator('input[type="email"]');
+    await inputGroup.scrollIntoViewIfNeeded();
+
+    await addon.click();
+    await expect(emailInput).toBeFocused();
+    await expect(inputGroup).toHaveClass(/input-group-focus/);
+
+    // 2. Auto-resize textarea
+    const textarea = page.locator('textarea[data-auto-resize]');
     const initialHeight = await textarea.evaluate((el) => el.clientHeight);
     expect(initialHeight).toBeGreaterThanOrEqual(80);
 

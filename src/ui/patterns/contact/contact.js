@@ -1,14 +1,23 @@
 export function initContactForm() {
-  // ===== Highlight input-group saat fokus (pengganti now-ui-kit) =====
-  document.querySelectorAll('.form-control').forEach(function (input) {
-    var parent = input.parentElement;
-    if (!parent || !parent.classList.contains('input-group')) return;
+  // ===== Highlight input-group saat fokus & klik addon =====
+  document.querySelectorAll('.input-group').forEach(function (group) {
+    const input = group.querySelector('.form-control');
+    const addon = group.querySelector('.input-group-addon');
+    if (!input) return;
+
     input.addEventListener('focus', function () {
-      parent.classList.add('input-group-focus');
+      group.classList.add('input-group-focus');
     });
     input.addEventListener('blur', function () {
-      parent.classList.remove('input-group-focus');
+      group.classList.remove('input-group-focus');
     });
+
+    if (addon) {
+      addon.style.cursor = 'text';
+      addon.addEventListener('click', function () {
+        input.focus();
+      });
+    }
   });
 
   // ===== Auto-resize untuk textarea pesan kontak =====

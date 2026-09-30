@@ -178,6 +178,7 @@ body,
 main a:not(.btn):not(.nav-link) {
   color: var(--lh-link) !important;
 }
+
 .form-control:focus {
   border-color: var(--lh-accent);
   /* ring 3px = pola .btn.focus — border 1px saja terlalu lemah sebagai indikator */
@@ -185,17 +186,42 @@ main a:not(.btn):not(.nav-link) {
   color: var(--lh-ink);
   outline: 0px !important;
 }
-.input-group .form-control {
-  border-left: 0px !important;
+
+.input-group {
+  transition: box-shadow var(--lh-dur-1) ease-in-out;
 }
+
+.input-group:focus-within,
+.input-group.input-group-focus {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--lh-accent-soft) 30%, transparent);
+  border-radius: var(--lh-radius-md, 8px);
+}
+
+.input-group:focus-within .input-group-addon,
 .input-group.input-group-focus .input-group-addon {
   border-color: var(--lh-accent);
   border-right: 0px !important;
   color: var(--lh-accent);
 }
+
+.input-group:focus-within .input-group-addon svg,
 .input-group.input-group-focus .input-group-addon svg {
   color: var(--lh-accent);
 }
+
+.input-group:focus-within .form-control,
+.input-group.input-group-focus .form-control {
+  border-color: var(--lh-accent);
+}
+
+.input-group .form-control {
+  border-left: 0px !important;
+}
+
+.input-group .form-control:focus {
+  box-shadow: none !important;
+}
+
 // .cc-porfolio-image rules extracted to ./portfolio-image
 .btn:focus,
 .btn.focus,

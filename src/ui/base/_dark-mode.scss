@@ -107,12 +107,22 @@
   .input-group-addon svg {
     color: var(--lh-ink-muted) !important;
   }
-  .input-group.input-group-focus .input-group-addon {
-    border-color: var(--lh-accent) !important;
-    color: var(--lh-accent) !important;
+  .input-group:focus-within,
+  .input-group.input-group-focus {
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--lh-accent-soft) 35%, transparent) !important;
   }
+  .input-group:focus-within .input-group-addon,
+  .input-group.input-group-focus .input-group-addon {
+    border-color: var(--lh-accent-soft) !important;
+    color: var(--lh-accent-soft) !important;
+  }
+  .input-group:focus-within .input-group-addon svg,
   .input-group.input-group-focus .input-group-addon svg {
-    color: var(--lh-accent) !important;
+    color: var(--lh-accent-soft) !important;
+  }
+  .input-group:focus-within .form-control,
+  .input-group.input-group-focus .form-control {
+    border-color: var(--lh-accent-soft) !important;
   }
   a.credit,
   a:not(.btn) {
