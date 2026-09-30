@@ -227,12 +227,6 @@ to {
   outline-offset: 2px !important;
 }
 
-.sort-icon {
-  width: 16px !important;
-  height: 16px !important;
-  color: var(--lh-ink-muted) !important;
-}
-
 .sort-chevron {
   width: 18px !important;
   height: 18px !important;
@@ -309,7 +303,6 @@ to {
   border-color: rgba(255, 255, 255, 0.22) !important;
 }
 
-.dark-mode .sort-icon,
 .dark-mode .sort-chevron {
   color: var(--lh-ink-muted) !important;
 }
