@@ -49,6 +49,41 @@
   --lh-radius-xl: 16px;
   --lh-radius-full: 9999px;
 
+  // Elevation / Box Shadows (Multi-layer ambient & key light)
+  --lh-shadow-xs: light-dark(0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.35));
+  --lh-shadow-sm: light-dark(
+    (0 1px 3px rgba(0, 0, 0, 0.04), 0 3px 8px -1px rgba(0, 0, 0, 0.03)),
+    (0 2px 8px rgba(0, 0, 0, 0.35), 0 1px 3px rgba(0, 0, 0, 0.25))
+  );
+  --lh-shadow-md: light-dark(
+    (0 4px 16px -2px rgba(0, 0, 0, 0.06), 0 2px 6px -1px rgba(0, 0, 0, 0.03)),
+    (0 4px 20px -2px rgba(0, 0, 0, 0.5), 0 2px 8px -1px rgba(0, 0, 0, 0.35))
+  );
+  --lh-shadow-lg: light-dark(
+    (0 12px 32px -4px rgba(0, 0, 0, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.04)),
+    (0 14px 36px -4px rgba(0, 0, 0, 0.55), 0 4px 14px -2px rgba(0, 0, 0, 0.4))
+  );
+  --lh-shadow-xl: light-dark(
+    (0 20px 48px -6px rgba(0, 0, 0, 0.12), 0 8px 18px -3px rgba(0, 0, 0, 0.06)),
+    (0 22px 52px -6px rgba(0, 0, 0, 0.65), 0 8px 20px -3px rgba(0, 0, 0, 0.5))
+  );
+  --lh-shadow-popover: light-dark(
+    (0 18px 40px -4px rgba(0, 0, 0, 0.12), 0 6px 14px -2px rgba(0, 0, 0, 0.06)),
+    (0 20px 48px -4px rgba(0, 0, 0, 0.6), 0 8px 18px -2px rgba(0, 0, 0, 0.45))
+  );
+  --lh-shadow-primary: light-dark(
+    (0 2px 8px -1px rgba(45, 77, 182, 0.28), 0 1px 3px rgba(45, 77, 182, 0.18)),
+    (0 2px 10px rgba(0, 0, 0, 0.35), 0 1px 3px rgba(0, 0, 0, 0.2))
+  );
+  --lh-shadow-primary-hover: light-dark(
+    (0 4px 14px -2px rgba(45, 77, 182, 0.35), 0 2px 6px -1px rgba(45, 77, 182, 0.2)),
+    (0 4px 16px -2px rgba(79, 111, 210, 0.35), 0 2px 6px -1px rgba(79, 111, 210, 0.2))
+  );
+  --lh-shadow-primary-active: light-dark(
+    0 1px 4px rgba(45, 77, 182, 0.2),
+    0 1px 4px rgba(0, 0, 0, 0.4)
+  );
+
   // Easing
   --lh-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --lh-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);

@@ -20,10 +20,8 @@
   position: absolute !important;
   inset: -12px !important;
   border-radius: 50% !important;
-  border: 10px solid rgba(63, 84, 166, 0.6) !important;
-  box-shadow:
-    0 0 28px rgba(63, 84, 166, 0.45),
-    inset 0 0 18px rgba(63, 84, 166, 0.25) !important;
+  border: 3px solid rgba(79, 111, 210, 0.45) !important;
+  box-shadow: 0 0 20px rgba(79, 111, 210, 0.3) !important;
   z-index: 0 !important;
   pointer-events: none !important;
   /* opacity TANPA !important — opacity:0 !important akan mengalahkan keyframes pulsate */
@@ -40,14 +38,14 @@
   object-fit: cover !important;
   border-radius: 50% !important;
   border: none !important;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.22) !important;
+  box-shadow: 0 10px 28px -4px rgba(0, 0, 0, 0.24) !important;
   position: relative !important;
   z-index: 1 !important;
   transition: box-shadow var(--lh-dur-3) ease !important;
   transform: none !important;
 }
 .cc-profile-image a:hover img {
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.32) !important;
+  box-shadow: 0 14px 36px -4px rgba(0, 0, 0, 0.34) !important;
   transform: none !important;
 }
 
@@ -78,7 +76,7 @@
   border: 1px solid rgba(255, 255, 255, 0.22) !important;
   /* shadow selalu ada (soft) — hover hanya menguatkan & mewarnai,
      jadi tidak ada momen tanpa shadow saat pindah antar tombol */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16) !important;
   transition:
     border-color var(--lh-dur-3) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
     box-shadow var(--lh-dur-3) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
@@ -125,31 +123,31 @@
     #515bd4 100%
   ),
   rgba(221, 42, 123, 0.6),
-  0 4px 20px rgba(221, 42, 123, 0.38)
+  0 4px 16px rgba(221, 42, 123, 0.3)
 );
 @include brand-social-btn(
   'linkedin',
   linear-gradient(135deg, #00a0dc 0%, #0077b5 50%, #004182 100%),
   rgba(0, 119, 181, 0.6),
-  0 4px 20px rgba(0, 119, 181, 0.38)
+  0 4px 16px rgba(0, 119, 181, 0.3)
 );
 @include brand-social-btn(
   'github',
   linear-gradient(135deg, #161b22 0%, #24292e 50%, #0d1117 100%),
   rgba(255, 255, 255, 0.38),
-  0 4px 20px rgba(0, 0, 0, 0.45)
+  0 4px 16px rgba(0, 0, 0, 0.38)
 );
 @include brand-social-btn(
   'twitter',
   linear-gradient(135deg, #000000 0%, #15202b 100%),
   rgba(255, 255, 255, 0.35),
-  0 4px 20px rgba(0, 0, 0, 0.45)
+  0 4px 16px rgba(0, 0, 0, 0.38)
 );
 @include brand-social-btn(
   'threads',
   radial-gradient(circle at 10% 20%, #181818 0%, #000000 55%, #2b1055 100%),
   rgba(130, 80, 220, 0.5),
-  0 4px 20px rgba(43, 16, 85, 0.45)
+  0 4px 16px rgba(43, 16, 85, 0.38)
 );
 
 /* 7. Circles & Pill Capsules */

@@ -19,7 +19,7 @@
   background: var(--lh-accent);
   color: #ffffff;
   border-color: var(--lh-accent);
-  box-shadow: 0 3px 8px rgba(45, 77, 182, 0.3);
+  box-shadow: var(--lh-shadow-primary);
 }
 .cc-shipped-chip.is-active svg {
   stroke: #ffffff;
@@ -35,9 +35,7 @@
   color: var(--lh-ink);
   border-radius: var(--lh-radius-lg, 12px) !important;
   border: 1px solid color-mix(in srgb, var(--lh-ink) 12%, transparent);
-  box-shadow:
-    0 18px 40px -4px rgba(0, 0, 0, 0.16),
-    0 6px 14px -2px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--lh-shadow-popover) !important;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -62,9 +60,7 @@
   background: var(--lh-surface) !important;
   color: var(--lh-ink) !important;
   border-color: color-mix(in srgb, var(--lh-ink) 14%, transparent) !important;
-  box-shadow:
-    0 20px 48px -4px rgba(0, 0, 0, 0.6),
-    0 8px 18px -2px rgba(0, 0, 0, 0.45) !important;
+  box-shadow: var(--lh-shadow-popover) !important;
 }
 
 .cc-popover-media {
@@ -327,7 +323,7 @@
   cursor: pointer;
   background: var(--lh-surface, #ffffff);
   border: 2px solid var(--lh-surface, #ffffff);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--lh-shadow-xs);
   padding: 0;
   transition:
     background-color var(--lh-dur-2) var(--lh-ease-out),
@@ -348,7 +344,7 @@
 .dark-mode .cc-project-avatar {
   background: var(--lh-surface, #202020) !important;
   border-color: var(--lh-base, #2a2825) !important;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--lh-shadow-xs) !important;
 }
 
 .cc-project-avatar:hover,

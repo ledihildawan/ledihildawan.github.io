@@ -19,7 +19,7 @@
      left/top ditransisi agar tooltip meluncur mulus saat retarget antar
      ikon (pola glider); kemunculan pertama tak ikut animasi karena posisi
      diset sebelum render */
-  filter: drop-shadow(0 4px 10px rgba(44, 44, 44, 0.25)) !important;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2)) !important;
   transition:
     opacity var(--lh-dur-2) ease,
     left 0.22s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),

@@ -25,7 +25,7 @@
 .btn.focus,
 .btn:focus {
   outline: 0px;
-  box-shadow: rgba(0, 123, 255, 0.25) 0px 0px 0px 3px;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--lh-accent-soft) 30%, transparent);
 }
 .btn.disabled,
 .btn:disabled {
@@ -47,7 +47,7 @@
 }
 .btn-primary.focus,
 .btn-primary:focus {
-  box-shadow: rgba(0, 123, 255, 0.5) 0px 0px 0px 3px;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--lh-accent-soft) 30%, transparent);
 }
 .btn-primary.disabled,
 .btn-primary:disabled {
@@ -320,7 +320,7 @@
 }
 .btn:hover,
 .navbar .navbar-nav > a.btn:hover {
-  box-shadow: 0 2px 8px rgba(44, 44, 44, 0.1);
+  box-shadow: var(--lh-shadow-primary-hover);
 }
 .btn.disabled,
 .btn.disabled:hover,
@@ -458,7 +458,7 @@ fieldset[disabled] .navbar .navbar-nav > a.btn.active {
   box-shadow: none;
 }
 .btn-primary:hover {
-  box-shadow: 0 2px 8px rgba(44, 44, 44, 0.1);
+  box-shadow: var(--lh-shadow-primary-hover);
 }
 .btn-primary.disabled,
 .btn-primary.disabled:hover,

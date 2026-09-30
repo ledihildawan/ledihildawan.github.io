@@ -3,9 +3,9 @@
 /* 3. Cards: Unified Chronicle Surface & Subtle Ambient Hover */
 .card {
   border: 1px solid rgba(128, 128, 128, 0.14) !important;
-  border-radius: 12px !important;
+  border-radius: var(--lh-radius-lg, 12px) !important;
   background-color: var(--lh-surface) !important;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04) !important;
+  box-shadow: var(--lh-shadow-sm) !important;
   transition:
     border-color var(--lh-dur-3) ease,
     box-shadow var(--lh-dur-3) ease !important;
@@ -14,7 +14,7 @@
   transform: none !important;
 }
 .card:hover {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06) !important;
+  box-shadow: var(--lh-shadow-md) !important;
   transform: none !important;
 }
 .card .col-md-3.bg-primary {

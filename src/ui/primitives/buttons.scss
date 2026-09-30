@@ -50,7 +50,7 @@ textarea.form-control {
   background-color: var(--lh-accent, #2d4db6) !important;
   border: 1px solid var(--lh-accent, #2d4db6) !important;
   color: #ffffff !important;
-  box-shadow: 0 2px 8px rgba(45, 77, 182, 0.22) !important;
+  box-shadow: var(--lh-shadow-primary) !important;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -67,14 +67,14 @@ textarea.form-control {
     background-color: var(--lh-accent-strong, #1e3a8a) !important;
     border-color: var(--lh-accent-strong, #1e3a8a) !important;
     color: #ffffff !important;
-    box-shadow: 0 4px 14px rgba(45, 77, 182, 0.35) !important;
+    box-shadow: var(--lh-shadow-primary-hover) !important;
   }
 
   &:active {
     background-color: var(--lh-accent-strong, #1e3a8a) !important;
     border-color: var(--lh-accent-strong, #1e3a8a) !important;
     color: #ffffff !important;
-    box-shadow: 0 1px 4px rgba(45, 77, 182, 0.2) !important;
+    box-shadow: var(--lh-shadow-primary-active) !important;
     transform: scale(0.98) !important;
   }
 
@@ -90,19 +90,20 @@ textarea.form-control {
   background-color: var(--lh-accent, #2d4db6) !important;
   border-color: var(--lh-accent, #2d4db6) !important;
   color: #ffffff !important;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35) !important;
+  box-shadow: var(--lh-shadow-primary) !important;
 
   &:hover,
   &:focus {
     background-color: var(--lh-accent-soft, #4f6fd2) !important;
     border-color: var(--lh-accent-soft, #4f6fd2) !important;
     color: #ffffff !important;
-    box-shadow: 0 4px 16px rgba(79, 111, 210, 0.35) !important;
+    box-shadow: var(--lh-shadow-primary-hover) !important;
   }
 
   &:active {
     background-color: var(--lh-accent-strong, #1e3a8a) !important;
     border-color: var(--lh-accent-strong, #1e3a8a) !important;
     color: #ffffff !important;
+    box-shadow: var(--lh-shadow-primary-active) !important;
   }
 }

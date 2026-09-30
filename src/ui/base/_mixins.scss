@@ -57,14 +57,14 @@ $transition-smooth: var(--lh-dur-5) cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid $border-color !important;
   border-radius: $radius !important;
   background-color: $color-surface !important;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04) !important;
+  box-shadow: var(--lh-shadow-sm) !important;
   transition:
     border-color $transition-base,
     box-shadow $transition-base !important;
   overflow: hidden !important;
 
   &:hover {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06) !important;
+    box-shadow: var(--lh-shadow-md) !important;
   }
 }
 

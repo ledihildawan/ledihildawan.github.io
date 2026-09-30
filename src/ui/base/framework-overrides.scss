@@ -153,7 +153,7 @@ body,
 
 .navbar.bg-primary:not(.navbar-transparent) {
   background-color: var(--lh-base) !important;
-  box-shadow: 0 1px 12px rgba(44, 44, 44, 0.07);
+  box-shadow: var(--lh-shadow-sm);
 }
 .navbar.bg-primary:not(.navbar-transparent) .nav-link,
 .navbar.bg-primary:not(.navbar-transparent) .navbar-brand {
@@ -431,7 +431,7 @@ body {
 .nav-pills .nav-item .nav-link.active:not(.filter-chip):hover {
   background-color: var(--lh-accent, #2d4db6);
   color: rgb(255, 255, 255);
-  box-shadow: 0 4px 14px rgba(44, 44, 44, 0.12);
+  box-shadow: var(--lh-shadow-primary);
 }
 .nav-pills .nav-item .nav-link.disabled,
 .nav-pills .nav-item .nav-link:disabled,
@@ -459,7 +459,7 @@ body {
   padding-bottom: 0.625rem;
   min-height: 53px;
   margin-bottom: 20px;
-  box-shadow: 0 1px 12px rgba(44, 44, 44, 0.07);
+  box-shadow: var(--lh-shadow-sm);
 }
 .navbar a {
   vertical-align: middle;
@@ -515,7 +515,7 @@ img {
   overflow: hidden;
   width: 100%;
   margin-bottom: 20px;
-  box-shadow: 0 2px 12px rgba(44, 44, 44, 0.07);
+  box-shadow: var(--lh-shadow-sm);
 }
 .card .card-body {
   min-height: 190px;
@@ -1120,7 +1120,7 @@ html body.sidebar-collapse .navbar .navbar-toggler.toggled .bar3 {
     ) !important;
     backdrop-filter: blur(16px) !important;
     -webkit-backdrop-filter: blur(16px) !important;
-    box-shadow: -6px 0 28px rgba(0, 0, 0, 0.45) !important;
+    box-shadow: -8px 0 32px rgba(0, 0, 0, 0.35) !important;
     border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
     padding: 70px 10px 30px 10px !important;
     transition: transform var(--lh-dur-5) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
@@ -1261,7 +1261,7 @@ html body.sidebar-collapse .navbar .navbar-toggler.toggled .bar3 {
 .btn:active,
 .navbar .navbar-nav > a.btn:active {
   transform: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: var(--lh-shadow-primary-active) !important;
 }
 .btn.disabled,
 .btn:disabled {
@@ -1306,7 +1306,7 @@ html body.sidebar-collapse .navbar .navbar-toggler.toggled .bar3 {
   .cc-education .card:hover,
   .cc-experience .card:hover {
     transform: none !important;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06) !important;
+    box-shadow: var(--lh-shadow-md) !important;
   }
   .gallery figure.cc-effect:hover img,
   .gallery figure.cc-effect:focus-within img {

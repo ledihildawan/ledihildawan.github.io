@@ -20,7 +20,7 @@
   border: 1px solid rgba(128, 128, 128, 0.15);
   border-radius: var(--lh-radius-md, 8px);
   padding: 3px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--lh-shadow-xs);
 }
 
 .cc-timeline-logo {

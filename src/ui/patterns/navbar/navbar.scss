@@ -55,7 +55,7 @@
   /* width/height diset inline oleh portfolio.js — jangan hardcode di sini */
   border-radius: 999px !important;
   background-color: var(--lh-base, #f0efeb) !important;
-  box-shadow: 0 4px 14px rgba(44, 44, 44, 0.18) !important;
+  box-shadow: var(--lh-shadow-sm) !important;
   pointer-events: none !important;
   z-index: 1 !important;
   opacity: 0 !important;
@@ -126,7 +126,7 @@
     ) !important;
     backdrop-filter: blur(16px) !important;
     -webkit-backdrop-filter: blur(16px) !important;
-    box-shadow: -6px 0 28px rgba(0, 0, 0, 0.45) !important;
+    box-shadow: -8px 0 32px rgba(0, 0, 0, 0.35) !important;
     border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
     padding: 70px 10px 30px 10px !important;
     transform: translate3d(min(300px, 85vw), 0px, 0px) !important;

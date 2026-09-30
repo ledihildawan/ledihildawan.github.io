@@ -25,7 +25,7 @@
   border-radius: var(--lh-radius-lg, 12px) !important;
   border: 1px solid rgba(128, 128, 128, 0.14) !important;
   background: rgba(128, 128, 128, 0.04) !important;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04) !important;
+  box-shadow: var(--lh-shadow-sm) !important;
   transition:
     transform var(--lh-dur-3, 0.25s) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
     border-color var(--lh-dur-3, 0.25s) ease,
@@ -36,7 +36,7 @@
 
 .gallery .portfolio-item:hover figure.cc-effect {
   transform: none !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06) !important;
+  box-shadow: var(--lh-shadow-md) !important;
 }
 
 .gallery figure.cc-effect figcaption::before,
@@ -200,44 +200,43 @@ to {
   font-family: inherit !important;
   font-size: 0.8571em !important;
   font-weight: 600 !important;
-  color: var(--lh-ink, #2c2c2c) !important;
-  background-color: rgba(222, 221, 216, 0.3) !important;
-  border: 1px solid rgba(128, 128, 128, 0.2) !important;
+  color: var(--lh-ink) !important;
+  background-color: light-dark(var(--lh-base), rgba(255, 255, 255, 0.06)) !important;
+  border: 1px solid light-dark(rgba(128, 128, 128, 0.18), rgba(255, 255, 255, 0.1)) !important;
   border-radius: 999px !important;
   padding: 9px 16px !important;
   cursor: pointer !important;
+  box-shadow: var(--lh-shadow-xs) !important;
   transition:
     border-color var(--lh-dur-3) ease,
-    box-shadow var(--lh-dur-3) ease !important;
+    box-shadow var(--lh-dur-3) ease,
+    background-color var(--lh-dur-3) ease !important;
 }
 
 .sort-trigger:hover,
 .sort-trigger:focus-visible,
 .sort-dropdown.is-open .sort-trigger {
-  border-color: rgba(68, 94, 147, 0.45) !important;
+  border-color: light-dark(rgba(128, 128, 128, 0.38), rgba(255, 255, 255, 0.22)) !important;
+  box-shadow: var(--lh-shadow-sm) !important;
   outline: none !important;
-}
-
-.sort-dropdown.is-open .sort-trigger {
-  box-shadow: 0 4px 14px rgba(44, 44, 44, 0.12) !important;
 }
 
 /* outline global button:focus-visible kena timpa rule lain — eksplisit di sini */
 .sort-trigger:focus-visible {
-  outline: 2px solid var(--lh-accent-soft) !important;
+  outline: 2px solid var(--lh-ink) !important;
   outline-offset: 2px !important;
 }
 
 .sort-icon {
   width: 16px !important;
   height: 16px !important;
-  color: var(--lh-ink-muted, #595550) !important;
+  color: var(--lh-ink-muted) !important;
 }
 
 .sort-chevron {
   width: 18px !important;
   height: 18px !important;
-  color: var(--lh-ink-muted, #595550) !important;
+  color: var(--lh-ink-muted) !important;
   transition: transform var(--lh-dur-3) var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
 }
 
@@ -254,10 +253,10 @@ to {
   margin: 0 !important;
   padding: 6px !important;
   list-style: none !important;
-  background: var(--lh-surface, #ffffff) !important;
-  border: 1px solid rgba(128, 128, 128, 0.16) !important;
+  background: light-dark(var(--lh-surface, #ffffff), var(--lh-base, #2a2825)) !important;
+  border: 1px solid light-dark(rgba(128, 128, 128, 0.16), rgba(255, 255, 255, 0.1)) !important;
   border-radius: 12px !important;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.14) !important;
+  box-shadow: var(--lh-shadow-lg) !important;
   overflow: hidden !important;
   animation: sort-menu-in 0.18s var(--lh-ease-out, cubic-bezier(0.22, 1, 0.36, 1)) !important;
 }
@@ -280,7 +279,7 @@ to {
   border-radius: 8px !important;
   font-size: 0.8571em !important;
   font-weight: 600 !important;
-  color: var(--lh-ink, #2c2c2c) !important;
+  color: var(--lh-ink) !important;
   cursor: pointer !important;
 }
 
@@ -291,7 +290,7 @@ to {
 }
 
 .sort-option:focus-visible {
-  outline: 2px solid var(--lh-ink, #2c2c2c) !important;
+  outline: 2px solid var(--lh-ink) !important;
   outline-offset: -2px !important;
 }
 
@@ -300,12 +299,19 @@ to {
 
 .dark-mode .sort-trigger {
   background-color: rgba(255, 255, 255, 0.06) !important;
-  color: var(--lh-ink, #eceae4) !important;
+  color: var(--lh-ink) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark-mode .sort-trigger:hover,
+.dark-mode .sort-trigger:focus-visible,
+.dark-mode .sort-dropdown.is-open .sort-trigger {
+  border-color: rgba(255, 255, 255, 0.22) !important;
 }
 
 .dark-mode .sort-icon,
 .dark-mode .sort-chevron {
-  color: var(--lh-ink-muted, #a8a5a0) !important;
+  color: var(--lh-ink-muted) !important;
 }
 
 .dark-mode .sort-menu {
@@ -314,11 +320,11 @@ to {
 }
 
 .dark-mode .sort-option {
-  color: var(--lh-ink, #eceae4) !important;
+  color: var(--lh-ink) !important;
 }
 
 .dark-mode .sort-option:focus-visible {
-  outline-color: var(--lh-ink, #eceae4) !important;
+  outline-color: var(--lh-ink) !important;
 }
 
 /* glider vertikal: slide mengikuti hover, pulang ke opsi terpilih.
@@ -326,18 +332,17 @@ to {
    left/top/width/height diset inline oleh JS mengikuti geometri item */
 .sort-glider {
   border-radius: 8px !important;
-  /* tint accent 12% di atas surface menu: dekat background, bukan abu
-     mencolok. Dark memakai base (#2a2825 = bg menu dark) sebagai dasar */
-  background-color: color-mix(in srgb, var(--lh-accent-soft) 12%, var(--lh-surface)) !important;
+  /* pill glider netral senada latar menu: ivory di light surface, translucent di dark base */
+  background-color: light-dark(var(--lh-base, #f0efeb), rgba(255, 255, 255, 0.08)) !important;
 }
 
 /* Dark mode adjustments (urutan penting: base -> hover -> active) */
 .dark-mode .sort-glider {
-  background-color: color-mix(in srgb, var(--lh-accent-soft) 12%, var(--lh-base)) !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
 }
 
 .dark-mode .filter-chip {
-  color: var(--lh-ink-muted, #a8a5a0) !important;
+  color: var(--lh-ink-muted) !important;
 }
 
 /* (0,4,0) dari .dark-mode .nav-pills .nav-link:not(.active) harus dikalahkan;
@@ -346,25 +351,25 @@ to {
 .dark-mode .filter-chip:focus-visible,
 .dark-mode #portfolio .filter-chip:hover,
 .dark-mode #portfolio .filter-chip:focus-visible {
-  color: var(--lh-ink, #eceae4) !important;
+  color: var(--lh-ink) !important;
 }
 
 .dark-mode .filter-chip.active {
-  color: var(--lh-ink, #eceae4) !important;
+  color: var(--lh-ink) !important;
 }
 
 .dark-mode .filter-chips.is-hovering .filter-chip.active {
-  color: var(--lh-ink-muted, #a8a5a0) !important;
+  color: var(--lh-ink-muted) !important;
 }
 
 .dark-mode .portfolio-sort select {
   background-color: rgba(255, 255, 255, 0.06) !important;
-  color: var(--lh-ink, #eceae4) !important;
+  color: var(--lh-ink) !important;
 }
 
 /* 6. Featured badge — penanda karya unggulan (data-featured="true") */
 .portfolio-item[data-featured='true'] figure.cc-effect::after {
-  content: '★ Featured' !important;
+  content: '★ Unggulan' !important;
   position: absolute !important;
   top: 14px !important;
   right: 14px !important;
@@ -377,7 +382,7 @@ to {
   text-transform: uppercase !important;
   padding: 5px 12px !important;
   border-radius: 999px !important;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28) !important;
+  box-shadow: var(--lh-shadow-sm) !important;
 }
 
 /* Re-open dropdown instan: animasi masuk (sort-menu-in) hanya untuk buka
@@ -506,7 +511,7 @@ body.portfolio-modal-open {
   border-top-right-radius: 0 !important;
   background: var(--lh-surface, #ffffff) !important;
   border-top: 1px solid rgba(128, 128, 128, 0.14) !important;
-  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.3) !important;
+  box-shadow: var(--lh-shadow-xl) !important;
   scrollbar-width: thin !important;
   scrollbar-color: rgba(128, 128, 128, 0.35) transparent !important;
   display: flex !important;
@@ -530,7 +535,7 @@ body.portfolio-modal-open {
 .dark-mode .portfolio-modal-main {
   background: var(--lh-charcoal-deep, #1b1d24) !important;
   border-top-color: rgba(255, 255, 255, 0.08) !important;
-  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.6) !important;
+  box-shadow: var(--lh-shadow-xl) !important;
   scrollbar-color: rgba(255, 255, 255, 0.25) transparent !important;
 
   &::-webkit-scrollbar-thumb {
@@ -627,7 +632,7 @@ body.portfolio-modal-open {
   height: auto !important;
   max-height: 85vh !important;
   border-radius: var(--lh-radius-lg, 12px) !important;
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.14) !important;
+  box-shadow: var(--lh-shadow-lg) !important;
   border: 1px solid rgba(128, 128, 128, 0.12) !important;
   display: block !important;
 }
@@ -660,9 +665,9 @@ body.portfolio-modal-open {
 
 /* Dark Mode Theme */
 .dark-mode .portfolio-modal-card {
-  background: var(--lh-charcoal-deep, #1b1d24) !important;
-  border-color: rgba(255, 255, 255, 0.08) !important;
-  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.6) !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .dark-mode .portfolio-modal-title {
