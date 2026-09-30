@@ -323,7 +323,7 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: Montserrat, 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--lh-font-sans);
 }
 a {
   color: rgb(68, 94, 147);
@@ -337,6 +337,8 @@ h2,
   font-size: clamp(1.65rem, 3.5vw, 2rem);
   margin-bottom: 24px;
   line-height: 1.25;
+  letter-spacing: var(--lh-track-tight, -0.015em);
+  font-weight: 600;
 }
 h4,
 .h4 {
@@ -344,15 +346,20 @@ h4,
   line-height: 1.4;
   margin-top: 20px;
   margin-bottom: 12px;
+  letter-spacing: var(--lh-track-tight, -0.015em);
+  font-weight: 600;
 }
 h5,
 .h5 {
   font-size: 1.15rem;
   line-height: 1.4;
   margin-bottom: 12px;
+  letter-spacing: var(--lh-track-tight, -0.015em);
+  font-weight: 600;
 }
 p {
   line-height: 1.65;
+  letter-spacing: var(--lh-track-normal, 0em);
 }
 // .title, .category rules extracted to ./content
 // body extracted to ./html-reset
@@ -360,7 +367,7 @@ body {
   color: var(--lh-ink, #2c2c2c);
   font-size: 15px;
   line-height: 1.65;
-  font-family: Montserrat, 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--lh-font-sans);
   -webkit-font-smoothing: antialiased;
 }
 .nav-pills .nav-item .nav-link {

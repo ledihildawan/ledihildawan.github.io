@@ -4,10 +4,13 @@
 
 html {
   box-sizing: border-box;
-  font-family: sans-serif;
-  line-height: 1.15;
+  font-family: var(--lh-font-sans);
+  line-height: 1.5;
   text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 *,
@@ -30,10 +33,12 @@ section {
   display: block;
 }
 
-// Base body (supplies margin/line-height/weight; framework-overrides theme body
-// loaded later overrides font-size/family/color — matches original cascade)
 body {
   margin: 0px;
+  font-family: var(--lh-font-sans);
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }

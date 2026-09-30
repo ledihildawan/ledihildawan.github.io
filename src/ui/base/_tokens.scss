@@ -61,6 +61,14 @@
   --lh-dur-fast: 0.15s;
   --lh-dur-med: 0.3s;
 
+  // Typography Tokens
+  --lh-font-sans:
+    'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
+  --lh-track-tight: -0.015em;
+  --lh-track-normal: 0em;
+  --lh-track-wide: 0.05em;
+
   // Color Scheme - default LIGHT (BUKAN 'light dark': system-dark tanpa
   // class .dark-mode akan membalik token light-dark() -> mismatch tema).
   // Flip ke dark dilakukan .dark-mode { color-scheme: dark }.
